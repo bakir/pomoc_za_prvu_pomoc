@@ -7,15 +7,12 @@ import {
 } from './cookies';
 import { buildAnswerOrder, orderQuestionIds } from './utils/shuffle';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
-import HelpPage from './pages/HelpPage';
+import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
 
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
 const SETTINGS_STORAGE_KEY = 'firstAidSettings';
-const GITHUB_URL = 'https://github.com/bakir/pomoc_za_prvu_pomoc';
-const QUESTIONS_CATALOG_URL =
-  'https://mo.ks.gov.ba/sed-obavhestenja/obavjestenje-novi-katalog-pitanja-za-polaganje-prve-pomoci';
 
 function App() {
   const [view, setView] = useState(getViewFromHash);
@@ -30,21 +27,18 @@ function App() {
   const [answerOrder, setAnswerOrder] = useState([]);
   const [questionsMenuOpen, setQuestionsMenuOpen] = useState(false);
   const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
-  const [infoMenuOpen, setInfoMenuOpen] = useState(false);
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
   });
 
   const settingsRef = useRef(null);
-  const infoRef = useRef(null);
   const questionsRef = useRef(null);
 
   const navigate = useCallback((nextView) => {
     setViewHash(nextView);
     setView(nextView);
     setQuestionsMenuOpen(false);
-    setInfoMenuOpen(false);
     setSettingsMenuOpen(false);
   }, []);
 
@@ -124,9 +118,6 @@ function App() {
       if (settingsMenuOpen && settingsRef.current && !settingsRef.current.contains(event.target)) {
         setSettingsMenuOpen(false);
       }
-      if (infoMenuOpen && infoRef.current && !infoRef.current.contains(event.target)) {
-        setInfoMenuOpen(false);
-      }
       if (
         questionsMenuOpen &&
         questionsRef.current &&
@@ -139,7 +130,7 @@ function App() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [questionsMenuOpen, settingsMenuOpen, infoMenuOpen]);
+  }, [questionsMenuOpen, settingsMenuOpen]);
 
   const getDisplayOrder = useCallback(() => {
     const question = allQuestions[currentQuestionId];
@@ -293,9 +284,6 @@ function App() {
           <div className="card completion-screen">
             <h1>🎉 Čestitamo! 🎉</h1>
             <p>Uspješno ste savladali sva pitanja!</p>
-            <button type="button" className="primary-button" onClick={() => navigate(VIEWS.EXAM)}>
-              Probaj ispit (10 pitanja)
-            </button>
           </div>
         );
       }
@@ -381,8 +369,8 @@ function App() {
   };
 
   const renderMainContent = () => {
-    if (view === VIEWS.HELP) {
-      return <HelpPage onNavigate={navigate} />;
+    if (view === VIEWS.ABOUT) {
+      return <AboutPage onNavigate={navigate} />;
     }
     if (view === VIEWS.EXAM) {
       return <ExamMode allQuestions={allQuestions} isLoading={isLoading} onNavigate={navigate} />;
@@ -406,55 +394,6 @@ function App() {
             </button>
           )}
 
-          <div className="info-menu" ref={infoRef}>
-            <button
-              type="button"
-              className={`icon-button info-menu-toggle ${infoMenuOpen ? 'active' : ''}`}
-              onClick={() => {
-                setInfoMenuOpen((open) => !open);
-                setSettingsMenuOpen(false);
-              }}
-              aria-label="Informacije"
-              aria-expanded={infoMenuOpen}
-            >
-              i
-            </button>
-            {infoMenuOpen && (
-              <div className="toolbar-dropdown info-dropdown">
-                <h4>Informacije</h4>
-                <p className="dropdown-summary">
-                  Vježbajte pitanja iz prve pomoći, pratite napredak i polagajte probni ispit od 10
-                  pitanja.
-                </p>
-                <button
-                  type="button"
-                  className="dropdown-action"
-                  onClick={() => navigate(VIEWS.HELP)}
-                >
-                  Uputstvo za korištenje
-                </button>
-                <button
-                  type="button"
-                  className="dropdown-action"
-                  onClick={() => navigate(VIEWS.EXAM)}
-                >
-                  Započni ispit (10 pitanja)
-                </button>
-                <a className="dropdown-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                  GitHub repozitorij
-                </a>
-                <a
-                  className="dropdown-link"
-                  href={QUESTIONS_CATALOG_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Katalog pitanja (PDF)
-                </a>
-              </div>
-            )}
-          </div>
-
           {view === VIEWS.PRACTICE && (
             <div className="settings-menu" ref={settingsRef}>
               <button
@@ -462,7 +401,6 @@ function App() {
                 className={`icon-button settings-menu-toggle ${settingsMenuOpen ? 'active' : ''}`}
                 onClick={() => {
                   setSettingsMenuOpen((open) => !open);
-                  setInfoMenuOpen(false);
                 }}
                 aria-label="Postavke"
                 aria-expanded={settingsMenuOpen}
@@ -514,10 +452,10 @@ function App() {
           </button>
           <button
             type="button"
-            className={`mode-nav-button ${view === VIEWS.HELP ? 'active' : ''}`}
-            onClick={() => navigate(VIEWS.HELP)}
+            className={`mode-nav-button ${view === VIEWS.ABOUT ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.ABOUT)}
           >
-            Uputstvo
+            O aplikaciji
           </button>
         </nav>
       </header>

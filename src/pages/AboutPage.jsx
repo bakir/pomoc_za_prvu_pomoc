@@ -2,14 +2,15 @@ const GITHUB_URL = 'https://github.com/bakir/pomoc_za_prvu_pomoc';
 const QUESTIONS_CATALOG_URL =
   'https://mo.ks.gov.ba/sed-obavhestenja/obavjestenje-novi-katalog-pitanja-za-polaganje-prve-pomoci';
 
-export default function HelpPage({ onNavigate }) {
+export default function AboutPage({ onNavigate }) {
   return (
     <div className="card help-page">
-      <h1>Uputstvo za korištenje</h1>
+      <h1>O aplikaciji</h1>
       <p className="help-intro">
         Ova aplikacija pomaže u učenju pitanja iz prve pomoći. Imate dva načina rada:{' '}
         <strong>vježbu</strong> (učite dok napredak raste) i <strong>ispit</strong> (10 nasumičnih
-        pitanja bez uticaja na napredak).
+        pitanja bez uticaja na napredak). Prebacujte se između njih gornjim dugmadima{' '}
+        <strong>Vježba</strong>, <strong>Ispit</strong> i <strong>O aplikaciji</strong>.
       </p>
 
       <section className="help-section">
@@ -29,24 +30,21 @@ export default function HelpPage({ onNavigate }) {
       </section>
 
       <section className="help-section">
-        <h2>Tastatura</h2>
+        <h2>Tastatura (vježba)</h2>
         <ul className="help-shortcuts">
           <li><kbd>1</kbd> — prvi odgovor</li>
           <li><kbd>2</kbd> — drugi odgovor</li>
           <li><kbd>3</kbd> — treći odgovor</li>
-          <li><kbd>4</kbd> — provjeri tačan odgovor (samo u vježbi)</li>
+          <li><kbd>4</kbd> — provjeri tačan odgovor</li>
           <li><kbd>Enter</kbd> — nastavi na sljedeće pitanje</li>
         </ul>
       </section>
 
       <section className="help-section">
-        <h2>Traka sa alatima</h2>
+        <h2>Alati u vježbi</h2>
         <ul>
           <li>
             <strong>?</strong> — lista svih pitanja i napretka; kliknite pitanje da skočite na njega
-          </li>
-          <li>
-            <strong>i</strong> — informacije, linkovi i ovo uputstvo
           </li>
           <li>
             <strong>⚙</strong> — postavke: miješanje pitanja/odgovora i reset napretka
@@ -57,14 +55,10 @@ export default function HelpPage({ onNavigate }) {
       <section className="help-section">
         <h2>Ispit (10 pitanja)</h2>
         <p>
-          Kliknite <strong>Ispit</strong> u traci iznad ili dugme „Započni ispit”. Dobijate 10
-          nasumičnih pitanja odjednom — odaberite odgovore bez povratne informacije, zatim
-          kliknite <strong>Predaj ispit</strong> da vidite rezultat (npr. 7/10). Ispit{' '}
-          <strong>ne mijenja</strong> vaš napredak u vježbi.
+          Odaberite <strong>Ispit</strong> u traci iznad. Dobijate 10 nasumičnih pitanja odjednom —
+          odaberite odgovore bez povratne informacije, zatim kliknite <strong>Predaj ispit</strong>{' '}
+          da vidite rezultat (npr. 7/10). Ispit <strong>ne mijenja</strong> vaš napredak u vježbi.
         </p>
-        <button type="button" className="primary-button" onClick={() => onNavigate('exam')}>
-          Započni ispit
-        </button>
       </section>
 
       <section className="help-section">
