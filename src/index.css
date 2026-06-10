@@ -257,20 +257,6 @@ body {
   font-size: 2.5em;
 }
 
-.reset-button {
-  padding: 0.75rem 1.25rem;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.reset-button:hover {
-  background-color: #5a6268;
-}
-
 .sidebar-backdrop {
   display: none;
   position: fixed;
@@ -420,13 +406,28 @@ body {
   box-shadow: 0 1px 0 #dee2e6;
 }
 
+.cookie-notice {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.cookie-notice p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #868e96;
+}
+
+.cookie-notice strong {
+  font-weight: 600;
+  color: #6c757d;
+}
+
 @media (max-width: 768px) {
   #root {
     padding: 0.75rem 0.75rem 1.5rem;
-  }
-
-  .reset-button {
-    display: none;
   }
 
   .card {

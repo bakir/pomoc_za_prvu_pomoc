@@ -379,10 +379,6 @@ function App() {
             )}
           </div>
         </div>
-
-        <button type="button" className="reset-button" onClick={handleResetProgress}>
-          Reset Progress
-        </button>
       </header>
 
       {questionsMenuOpen && (
@@ -443,6 +439,13 @@ function App() {
 
         <div className="quiz-card">{renderQuizContent()}</div>
       </div>
+
+      <footer className="cookie-notice">
+        <p>
+          Koristimo <strong>kolačiće</strong> isključivo za pohranu vašeg napretka u kvizu.
+          Podaci ostaju u vašem pregledniku i ne dijele se s trećim stranama.
+        </p>
+      </footer>
     </div>
   );
 }
