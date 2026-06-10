@@ -13,8 +13,8 @@
         "question": "Šta nije prvi red hitnosti?",
         "options": [
             "Povreda kičme",
-            "Stanje praćeno gušenjem",
-            "Povreda glave praćena besvjesnim stanjem"
+            "Povreda glave praćena besvjesnim stanjem",
+            "Stanje praćeno gušenjem"
         ],
         "correct_index": 0,
         "correct_count": 0
@@ -32,31 +32,31 @@
     "4": {
         "question": "Koji su znaci teškog iskrvarenja (hemoragijskog šoka)?",
         "options": [
-            "Usporen puls i povišen krvni pritisak, slabost, uznemirenost",
             "Izrazito bljedilo, ubrzano i površno disanje (kratak dah), teško opipljiv i ubrzan puls, koža orošena hladnim znojem, žeđanje, opća slabost, klonulost",
+            "Usporen puls i povišen krvni pritisak, slabost, uznemirenost",
             "Vidi se krv na odjeći, duboko disanje, slabost"
         ],
-        "correct_index": 1,
+        "correct_index": 0,
         "correct_count": 0
     },
     "5": {
         "question": "Šta najviše ugrožava život unesrećenog?",
         "options": [
-            "Udarac u glavu tupim predmetom",
+            "Prestanak disanja, besvjesno stanje i jako krvarenje",
             "Prijelom kičmenog stuba",
-            "Prestanak disanja, besvjesno stanje i jako krvarenje"
+            "Udarac u glavu tupim predmetom"
         ],
-        "correct_index": 2,
+        "correct_index": 0,
         "correct_count": 0
     },
     "6": {
         "question": "Šta je šok?",
         "options": [
-            "Teško stanje nastalo zbog gubitka krvi, tečnosti i jakog bola",
             "Iznenadna stresna situacija",
+            "Teško stanje nastalo zbog gubitka krvi, tečnosti i jakog bola",
             "Strah od posljedica nesreće"
         ],
-        "correct_index": 0,
+        "correct_index": 1,
         "correct_count": 0
     },
     "7": {
@@ -82,21 +82,21 @@
     "9": {
         "question": "Koliko dugo se vrši oživljavanje?",
         "options": [
-            "Do dolaska stručne pomoći",
             "20 minuta",
-            "40 minuta"
+            "40 minuta",
+            "Do dolaska stručne pomoći"
         ],
-        "correct_index": 0,
-        "correct_count": 1
+        "correct_index": 2,
+        "correct_count": 0
     },
     "10": {
         "question": "Kada ne treba započeti oživljavanje (kardiopulmonalnu reanimaciju - KPR)?",
         "options": [
-            "Ako postoji otvorena rana na grudnom košu",
             "Ako je sigurno prošlo više od 10 minuta od zastoja srca",
+            "Ako postoji otvorena rana na grudnom košu",
             "Ako je opečena površina tijela veća od 60%"
         ],
-        "correct_index": 1,
+        "correct_index": 0,
         "correct_count": 0
     },
     "11": {
@@ -277,7 +277,7 @@
             "Zbog gubitka veće količine krvi"
         ],
         "correct_index": 1,
-        "correct_count": 1
+        "correct_count": 0
     },
     "29": {
         "question": "Koji je postupak pružanja prve pomoći kod otvorenog prijeloma kosti bez krvarenja?",
