@@ -1,0 +1,239 @@
+:root {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #212529;
+  background-color: #f8f9fa;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.app-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.quiz-card {
+  flex: 2;
+}
+
+.card {
+  padding: 2em;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.question-stats {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.question-text {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #343a40;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option-button {
+  padding: 1rem;
+  font-size: 1.1em;
+  text-align: left;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: #f1f3f5;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  width: 100%;
+}
+
+.option-button:hover:not(:disabled) {
+  border-color: #80bdff;
+  background-color: #e9ecef;
+}
+
+.option-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.option-button.correct {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+  font-weight: bold;
+}
+
+.option-button.incorrect {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.option-button.neutral {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+  color: #6c757d;
+}
+
+.feedback-container {
+  margin-top: 2rem;
+  height: 50px;
+  text-align: center;
+}
+
+.feedback-text {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.feedback-text.correct {
+  color: #155724;
+}
+
+.feedback-text.incorrect {
+  color: #721c24;
+}
+
+.next-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #6c757d;
+  background-color: #6c757d;
+  color: white;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+.next-button:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.completion-screen {
+  text-align: center;
+}
+
+.completion-screen h1 {
+  font-size: 2.5em;
+}
+
+.reset-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.reset-button:hover {
+  background-color: #5a6268;
+}
+
+/* Progress Sidebar */
+.progress-sidebar {
+  flex: 1;
+  max-width: 400px;
+  background-color: #ffffff;
+  padding: 1.5em;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  align-self: stretch;
+}
+
+.progress-sidebar h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #343a40;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+.progress-list {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.9em;
+}
+
+.progress-item.mastered {
+  opacity: 0.6;
+}
+
+.progress-item-text {
+  flex-grow: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-bar-container {
+  width: 80px;
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #28a745;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-item-count {
+  font-weight: bold;
+  width: 40px;
+  flex-shrink: 0;
+}
