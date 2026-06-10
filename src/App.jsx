@@ -14,7 +14,7 @@ function App() {
 
   // Memoize the sorted list of all questions
   const sortedQuestions = useMemo(() => {
-    return Object.entries(allQuestions).sort(([, a], [, b]) => a.question.localeCompare(b.question));
+    return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
   }, [allQuestions]);
 
   // Load data and progress on initial render
@@ -59,7 +59,9 @@ function App() {
     if (Object.keys(allQuestions).length > 0) {
       refreshActivePool(progress, allQuestions);
     }
-  }, [allQuestions, progress, refreshActivePool]);
+    // Only re-run when questions load — not on every progress update,
+    // otherwise a correct answer immediately jumps to the next question.
+  }, [allQuestions, refreshActivePool]);
 
 
   const loadNextQuestion = useCallback(() => {
@@ -106,34 +108,40 @@ function App() {
     if (window.confirm("Are you sure you want to reset all your progress?")) {
       localStorage.removeItem(PROGRESS_STORAGE_KEY);
       setProgress({});
+      setIsAnswered(false);
+      setSelectedAnswer(null);
+      refreshActivePool({}, allQuestions);
     }
   };
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts: 1–9 to pick an answer, Enter for next (no modifiers)
   useEffect(() => {
-    const handleKeyUp = (event) => {
-      if (event.code === 'Space' && isAnswered) {
-        event.preventDefault();
-        loadNextQuestion();
-      } else if (!isAnswered) {
-        if (event.key === '1') {
+    const handleKeyDown = (event) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+      if (isAnswered) {
+        if (event.key === 'Enter') {
           event.preventDefault();
-          handleAnswer(0);
-        } else if (event.key === '2') {
-          event.preventDefault();
-          handleAnswer(1);
-        } else if (event.key === '3') {
-          event.preventDefault();
-          handleAnswer(2);
+          loadNextQuestion();
         }
+        return;
       }
+
+      const optionIndex = parseInt(event.key, 10) - 1;
+      if (optionIndex < 0 || Number.isNaN(optionIndex)) return;
+
+      const question = allQuestions[currentQuestionId];
+      if (!question || optionIndex >= question.options.length) return;
+
+      event.preventDefault();
+      handleAnswer(optionIndex);
     };
 
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isAnswered, loadNextQuestion, handleAnswer]);
+  }, [isAnswered, loadNextQuestion, handleAnswer, allQuestions, currentQuestionId]);
 
   const renderQuizContent = () => {
     if (isLoading) {
@@ -162,7 +170,7 @@ function App() {
     return (
       <div className="card">
         <div className="question-stats">
-          <span>Pitanje {Object.keys(allQuestions).indexOf(currentQuestionId) + 1} od {Object.keys(allQuestions).length}</span>
+          <span>Pitanje {currentQuestionId} od {Object.keys(allQuestions).length}</span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>Nivo: {correctCount}/{MASTERY_THRESHOLD}</span>
         </div>
@@ -200,11 +208,16 @@ function App() {
                 {isCorrectSelection ? '✅ TAČNO!' : '❌ NETAČNO!'}
               </p>
               <button className="next-button" onClick={loadNextQuestion}>
-                Dalje (Space)
+                Dalje (Enter)
               </button>
             </>
           )}
         </div>
+
+        <p className="keyboard-hints">
+          Pritisni <kbd>1</kbd> za prvi odgovor, <kbd>2</kbd> za drugi, itd.
+          {' '}Pritisni <kbd>Enter</kbd> da nastaviš.
+        </p>
       </div>
     );
   };

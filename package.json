@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/bakir/pomoc_za_prvu_pomoc/issues"
   },
-  "homepage": "https://github.com/bakir/pomoc_za_prvu_pomoc#readme",
+  "homepage": "https://bakir.github.io/pomoc_za_prvu_pomoc/",
   "dependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
