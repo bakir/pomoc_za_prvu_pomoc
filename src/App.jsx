@@ -37,6 +37,7 @@ function App() {
   const [progress, setProgress] = useState({});
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [answerOrder, setAnswerOrder] = useState([]);
   const [questionsMenuOpen, setQuestionsMenuOpen] = useState(false);
@@ -146,6 +147,7 @@ function App() {
 
   const loadNextQuestion = useCallback(() => {
     setIsAnswered(false);
+    setIsRevealed(false);
     setSelectedAnswer(null);
 
     let nextPool = [...activeQuestionPool];
@@ -178,6 +180,7 @@ function App() {
 
       setSelectedAnswer(displayIndex);
       setIsAnswered(true);
+      setIsRevealed(false);
 
       if (isCorrect) {
         const newCount = (progress[currentQuestionId] || 0) + 1;
@@ -189,11 +192,26 @@ function App() {
     [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder]
   );
 
+  const handleRevealAnswer = useCallback(() => {
+    if (isAnswered) return;
+
+    const question = allQuestions[currentQuestionId];
+    if (!question) return;
+
+    const order = getDisplayOrder();
+    const correctDisplayIndex = order.indexOf(question.correct_index);
+
+    setSelectedAnswer(correctDisplayIndex);
+    setIsAnswered(true);
+    setIsRevealed(true);
+  }, [isAnswered, allQuestions, currentQuestionId, getDisplayOrder]);
+
   const handleResetProgress = () => {
     if (window.confirm('Are you sure you want to reset all your progress?')) {
       clearProgress();
       setProgress({});
       setIsAnswered(false);
+      setIsRevealed(false);
       setSelectedAnswer(null);
       refreshActivePool({}, allQuestions, settings.shuffleQuestions);
     }
@@ -204,6 +222,7 @@ function App() {
     updateSettings({ shuffleQuestions: next });
     refreshActivePool(progress, allQuestions, next);
     setIsAnswered(false);
+    setIsRevealed(false);
     setSelectedAnswer(null);
   };
 
@@ -213,6 +232,7 @@ function App() {
 
   const jumpToQuestion = (id) => {
     setIsAnswered(false);
+    setIsRevealed(false);
     setSelectedAnswer(null);
     setCurrentQuestionId(id);
     setQuestionsMenuOpen(false);
@@ -230,6 +250,12 @@ function App() {
         return;
       }
 
+      if (event.key === '4') {
+        event.preventDefault();
+        handleRevealAnswer();
+        return;
+      }
+
       const optionIndex = parseInt(event.key, 10) - 1;
       if (optionIndex < 0 || Number.isNaN(optionIndex)) return;
 
@@ -242,7 +268,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnswered, loadNextQuestion, handleAnswer, allQuestions, currentQuestionId]);
+  }, [isAnswered, loadNextQuestion, handleAnswer, handleRevealAnswer, allQuestions, currentQuestionId]);
 
   const renderQuizContent = () => {
     if (isLoading) {
@@ -276,7 +302,7 @@ function App() {
     const correctCount = progress[currentQuestionId] || 0;
     const displayOrder = getDisplayOrder();
     const correctDisplayIndex = displayOrder.indexOf(question.correct_index);
-    const isCorrectSelection = selectedAnswer === correctDisplayIndex;
+    const isCorrectSelection = isRevealed || selectedAnswer === correctDisplayIndex;
 
     return (
       <div className="card">
@@ -286,7 +312,7 @@ function App() {
           </span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>
-            Nivo: {correctCount}/{MASTERY_THRESHOLD}
+            Tačno odgovoreno: {correctCount}/{MASTERY_THRESHOLD}
           </span>
         </div>
         <h2 className="question-text">{question.question}</h2>
@@ -316,6 +342,12 @@ function App() {
           })}
         </div>
 
+        {!isAnswered && (
+          <button type="button" className="reveal-button" onClick={handleRevealAnswer}>
+            Provjeri tačan odgovor (4)
+          </button>
+        )}
+
         <div className="feedback-container">
           {isAnswered && (
             <>
@@ -329,10 +361,13 @@ function App() {
           )}
         </div>
 
-        <p className="keyboard-hints">
-          Pritisni <kbd>1</kbd> za prvi odgovor, <kbd>2</kbd> za drugi, itd. Pritisni <kbd>Enter</kbd> da
-          nastaviš.
-        </p>
+        <div className="keyboard-hints">
+          <p><kbd>1</kbd> — prvi odgovor</p>
+          <p><kbd>2</kbd> — drugi odgovor</p>
+          <p><kbd>3</kbd> — treći odgovor</p>
+          <p><kbd>4</kbd> — provjeri tačan odgovor</p>
+          <p><kbd>Enter</kbd> — nastavi</p>
+        </div>
       </div>
     );
   };
