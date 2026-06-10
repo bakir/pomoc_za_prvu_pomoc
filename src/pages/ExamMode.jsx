@@ -21,7 +21,7 @@ export default function ExamMode({ allQuestions, isLoading, onNavigate }) {
 
     ids.forEach((id) => {
       const question = allQuestions[id];
-      orders[id] = buildAnswerOrder(question.options.length, true);
+      orders[id] = buildAnswerOrder(question.options.length, false);
     });
 
     setQuestionIds(ids);
