@@ -58,7 +58,8 @@ export default function HelpPage({ onNavigate }) {
         <h2>Ispit (10 pitanja)</h2>
         <p>
           Kliknite <strong>Ispit</strong> u traci iznad ili dugme „Započni ispit”. Dobijate 10
-          nasumičnih pitanja iz cijele baze. Na kraju vidite rezultat (npr. 7/10). Ispit{' '}
+          nasumičnih pitanja odjednom — odaberite odgovore bez povratne informacije, zatim
+          kliknite <strong>Predaj ispit</strong> da vidite rezultat (npr. 7/10). Ispit{' '}
           <strong>ne mijenja</strong> vaš napredak u vježbi.
         </p>
         <button type="button" className="primary-button" onClick={() => onNavigate('exam')}>
