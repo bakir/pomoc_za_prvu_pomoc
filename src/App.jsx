@@ -1,7 +1,31 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import {
+  clearProgress,
+  ensureInstanceCookie,
+  loadProgress,
+  saveProgress,
+} from './cookies';
 
 const MASTERY_THRESHOLD = 3;
-const PROGRESS_STORAGE_KEY = 'firstAidProgress';
+const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
+const SETTINGS_STORAGE_KEY = 'firstAidSettings';
+
+function buildAnswerOrder(optionCount, shuffle) {
+  const order = Array.from({ length: optionCount }, (_, i) => i);
+  if (shuffle) {
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+  }
+  return order;
+}
+
+function orderQuestionIds(ids, shuffle) {
+  const sorted = [...ids].sort((a, b) => Number(a) - Number(b));
+  if (!shuffle) return sorted;
+  return sorted.sort(() => 0.5 - Math.random());
+}
 
 function App() {
   const [allQuestions, setAllQuestions] = useState({});
@@ -11,13 +35,21 @@ function App() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [answerOrder, setAnswerOrder] = useState([]);
+  const [questionsMenuOpen, setQuestionsMenuOpen] = useState(false);
+  const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
+  const [settings, setSettings] = useState({
+    shuffleQuestions: false,
+    shuffleAnswers: false,
+  });
 
-  // Memoize the sorted list of all questions
+  const settingsRef = useRef(null);
+  const questionsRef = useRef(null);
+
   const sortedQuestions = useMemo(() => {
     return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
   }, [allQuestions]);
 
-  // Load data and progress on initial render
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -28,11 +60,14 @@ function App() {
         const data = await response.json();
         setAllQuestions(data);
 
-        const savedProgress = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY) || '{}');
+        ensureInstanceCookie();
+        const savedProgress = loadProgress(LEGACY_PROGRESS_STORAGE_KEY);
         setProgress(savedProgress);
-        
+
+        const savedSettings = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || '{}');
+        setSettings((prev) => ({ ...prev, ...savedSettings }));
       } catch (error) {
-        console.error("Failed to load questions:", error);
+        console.error('Failed to load questions:', error);
       } finally {
         setIsLoading(false);
       }
@@ -40,16 +75,24 @@ function App() {
     loadData();
   }, []);
 
-  const refreshActivePool = useCallback((currentProgress, questions) => {
-    const unmasteredIds = Object.keys(questions).filter(id => 
-      (currentProgress[id] || 0) < MASTERY_THRESHOLD
-    );
-    
-    const shuffled = unmasteredIds.sort(() => 0.5 - Math.random());
-    setActiveQuestionPool(shuffled);
+  const updateSettings = useCallback((patch) => {
+    setSettings((prev) => {
+      const next = { ...prev, ...patch };
+      localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(next));
+      return next;
+    });
+  }, []);
 
-    if (shuffled.length > 0) {
-      setCurrentQuestionId(shuffled[0]);
+  const refreshActivePool = useCallback((currentProgress, questions, shuffleQuestions) => {
+    const unmasteredIds = Object.keys(questions).filter(
+      (id) => (currentProgress[id] || 0) < MASTERY_THRESHOLD
+    );
+
+    const ordered = orderQuestionIds(unmasteredIds, shuffleQuestions);
+    setActiveQuestionPool(ordered);
+
+    if (ordered.length > 0) {
+      setCurrentQuestionId(ordered[0]);
     } else {
       setCurrentQuestionId(null);
     }
@@ -57,64 +100,116 @@ function App() {
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
-      refreshActivePool(progress, allQuestions);
+      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
     }
-    // Only re-run when questions load — not on every progress update,
-    // otherwise a correct answer immediately jumps to the next question.
   }, [allQuestions, refreshActivePool]);
 
+  useEffect(() => {
+    if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
+    const question = allQuestions[currentQuestionId];
+    setAnswerOrder(buildAnswerOrder(question.options.length, settings.shuffleAnswers));
+  }, [currentQuestionId, allQuestions, settings.shuffleAnswers, isAnswered]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingsMenuOpen && settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setSettingsMenuOpen(false);
+      }
+      if (
+        questionsMenuOpen &&
+        questionsRef.current &&
+        !questionsRef.current.contains(event.target) &&
+        !event.target.closest('.questions-menu-toggle')
+      ) {
+        setQuestionsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [questionsMenuOpen, settingsMenuOpen]);
+
+  const getDisplayOrder = useCallback(() => {
+    const question = allQuestions[currentQuestionId];
+    if (!question) return [];
+    if (answerOrder.length === question.options.length) return answerOrder;
+    return buildAnswerOrder(question.options.length, settings.shuffleAnswers);
+  }, [allQuestions, currentQuestionId, answerOrder, settings.shuffleAnswers]);
 
   const loadNextQuestion = useCallback(() => {
     setIsAnswered(false);
     setSelectedAnswer(null);
 
     let nextPool = [...activeQuestionPool];
-    
+
     const currentCount = progress[currentQuestionId] || 0;
     if (currentCount >= MASTERY_THRESHOLD) {
-        nextPool = activeQuestionPool.filter(id => id !== currentQuestionId);
+      nextPool = activeQuestionPool.filter((id) => id !== currentQuestionId);
     } else {
-        nextPool.shift();
+      nextPool.shift();
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions);
+      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
     }
-  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId]);
+  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
 
-  const handleAnswer = useCallback((selectedIndex) => {
-    if (isAnswered) return;
+  const handleAnswer = useCallback(
+    (displayIndex) => {
+      if (isAnswered) return;
 
-    const question = allQuestions[currentQuestionId];
-    if (!question) return; // Guard against race conditions
+      const question = allQuestions[currentQuestionId];
+      if (!question) return;
 
-    const isCorrect = selectedIndex === question.correct_index;
+      const order = getDisplayOrder();
+      const originalIndex = order[displayIndex];
+      const isCorrect = originalIndex === question.correct_index;
 
-    setSelectedAnswer(selectedIndex);
-    setIsAnswered(true);
+      setSelectedAnswer(displayIndex);
+      setIsAnswered(true);
 
-    if (isCorrect) {
-      const newCount = (progress[currentQuestionId] || 0) + 1;
-      const newProgress = { ...progress, [currentQuestionId]: newCount };
-      setProgress(newProgress);
-      localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(newProgress));
-    }
-  }, [isAnswered, allQuestions, currentQuestionId, progress]);
+      if (isCorrect) {
+        const newCount = (progress[currentQuestionId] || 0) + 1;
+        const newProgress = { ...progress, [currentQuestionId]: newCount };
+        setProgress(newProgress);
+        saveProgress(newProgress);
+      }
+    },
+    [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder]
+  );
 
   const handleResetProgress = () => {
-    if (window.confirm("Are you sure you want to reset all your progress?")) {
-      localStorage.removeItem(PROGRESS_STORAGE_KEY);
+    if (window.confirm('Are you sure you want to reset all your progress?')) {
+      clearProgress();
       setProgress({});
       setIsAnswered(false);
       setSelectedAnswer(null);
-      refreshActivePool({}, allQuestions);
+      refreshActivePool({}, allQuestions, settings.shuffleQuestions);
     }
   };
 
-  // Keyboard shortcuts: 1–9 to pick an answer, Enter for next (no modifiers)
+  const handleShuffleQuestionsToggle = () => {
+    const next = !settings.shuffleQuestions;
+    updateSettings({ shuffleQuestions: next });
+    refreshActivePool(progress, allQuestions, next);
+    setIsAnswered(false);
+    setSelectedAnswer(null);
+  };
+
+  const handleShuffleAnswersToggle = () => {
+    updateSettings({ shuffleAnswers: !settings.shuffleAnswers });
+  };
+
+  const jumpToQuestion = (id) => {
+    setIsAnswered(false);
+    setSelectedAnswer(null);
+    setCurrentQuestionId(id);
+    setQuestionsMenuOpen(false);
+  };
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
@@ -138,51 +233,63 @@ function App() {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAnswered, loadNextQuestion, handleAnswer, allQuestions, currentQuestionId]);
 
   const renderQuizContent = () => {
     if (isLoading) {
-      return <div className="card"><h1>Loading...</h1></div>;
+      return (
+        <div className="card">
+          <h1>Loading...</h1>
+        </div>
+      );
     }
 
     if (!currentQuestionId) {
       const totalQuestions = Object.keys(allQuestions).length;
-      const masteredQuestions = Object.values(progress).filter(count => count >= MASTERY_THRESHOLD).length;
+      const masteredQuestions = Object.values(progress).filter((count) => count >= MASTERY_THRESHOLD).length;
 
       if (totalQuestions > 0 && masteredQuestions === totalQuestions) {
-          return (
-              <div className="card completion-screen">
-                  <h1>🎉 Čestitamo! 🎉</h1>
-                  <p>Uspješno ste savladali sva pitanja!</p>
-              </div>
-          );
+        return (
+          <div className="card completion-screen">
+            <h1>🎉 Čestitamo! 🎉</h1>
+            <p>Uspješno ste savladali sva pitanja!</p>
+          </div>
+        );
       }
-      return <div className="card"><h1>No questions available.</h1></div>
+      return (
+        <div className="card">
+          <h1>No questions available.</h1>
+        </div>
+      );
     }
 
     const question = allQuestions[currentQuestionId];
     const correctCount = progress[currentQuestionId] || 0;
-    const isCorrectSelection = selectedAnswer === question.correct_index;
+    const displayOrder = getDisplayOrder();
+    const correctDisplayIndex = displayOrder.indexOf(question.correct_index);
+    const isCorrectSelection = selectedAnswer === correctDisplayIndex;
 
     return (
       <div className="card">
         <div className="question-stats">
-          <span>Pitanje {currentQuestionId} od {Object.keys(allQuestions).length}</span>
+          <span>
+            Pitanje {currentQuestionId} od {Object.keys(allQuestions).length}
+          </span>
           <span style={{ margin: '0 10px' }}>|</span>
-          <span>Nivo: {correctCount}/{MASTERY_THRESHOLD}</span>
+          <span>
+            Nivo: {correctCount}/{MASTERY_THRESHOLD}
+          </span>
         </div>
         <h2 className="question-text">{question.question}</h2>
-        
+
         <div className="options-container">
-          {question.options.map((option, index) => {
+          {displayOrder.map((originalIndex, displayIndex) => {
             let buttonClass = 'option-button';
             if (isAnswered) {
-              if (index === question.correct_index) {
+              if (displayIndex === correctDisplayIndex) {
                 buttonClass += ' correct';
-              } else if (index === selectedAnswer) {
+              } else if (displayIndex === selectedAnswer) {
                 buttonClass += ' incorrect';
               } else {
                 buttonClass += ' neutral';
@@ -190,12 +297,12 @@ function App() {
             }
             return (
               <button
-                key={index}
+                key={originalIndex}
                 className={buttonClass}
-                onClick={() => handleAnswer(index)}
+                onClick={() => handleAnswer(displayIndex)}
                 disabled={isAnswered}
               >
-                {`${String.fromCharCode(65 + index)}) ${option}`}
+                {`${String.fromCharCode(65 + displayIndex)}) ${question.options[originalIndex]}`}
               </button>
             );
           })}
@@ -215,42 +322,127 @@ function App() {
         </div>
 
         <p className="keyboard-hints">
-          Pritisni <kbd>1</kbd> za prvi odgovor, <kbd>2</kbd> za drugi, itd.
-          {' '}Pritisni <kbd>Enter</kbd> da nastaviš.
+          Pritisni <kbd>1</kbd> za prvi odgovor, <kbd>2</kbd> za drugi, itd. Pritisni <kbd>Enter</kbd> da
+          nastaviš.
         </p>
       </div>
     );
   };
 
   return (
-    <div className="app-container">
-      <button className="reset-button" onClick={handleResetProgress}>Reset Progress</button>
-      <div className="quiz-card">
-        {renderQuizContent()}
-      </div>
-      <aside className="progress-sidebar">
-        <h3>Napredak</h3>
-        <div className="progress-list">
-          {sortedQuestions.map(([id, question]) => {
-            const correctCount = progress[id] || 0;
-            const isMastered = correctCount >= MASTERY_THRESHOLD;
-            return (
-              <div key={id} className={`progress-item ${isMastered ? 'mastered' : ''}`}>
-                <span className="progress-item-text">
-                  Pitanje {id}: {question.question.substring(0, 30)}...
-                </span>
-                <div className="progress-bar-container">
-                  <div 
-                    className="progress-bar"
-                    style={{ width: `${(correctCount / MASTERY_THRESHOLD) * 100}%` }}
-                  ></div>
-                </div>
-                <span className="progress-item-count">{correctCount}/{MASTERY_THRESHOLD}</span>
+    <div className="app-shell">
+      <header className="app-toolbar">
+        <div className="toolbar-left">
+          <button
+            type="button"
+            className={`icon-button questions-menu-toggle ${questionsMenuOpen ? 'active' : ''}`}
+            onClick={() => setQuestionsMenuOpen((open) => !open)}
+            aria-label="Lista pitanja"
+            aria-expanded={questionsMenuOpen}
+          >
+            ?
+          </button>
+
+          <div className="settings-menu" ref={settingsRef}>
+            <button
+              type="button"
+              className={`icon-button settings-menu-toggle ${settingsMenuOpen ? 'active' : ''}`}
+              onClick={() => setSettingsMenuOpen((open) => !open)}
+              aria-label="Postavke"
+              aria-expanded={settingsMenuOpen}
+            >
+              ⚙
+            </button>
+            {settingsMenuOpen && (
+              <div className="settings-dropdown">
+                <h4>Postavke</h4>
+                <label className="settings-option">
+                  <input
+                    type="checkbox"
+                    checked={settings.shuffleQuestions}
+                    onChange={handleShuffleQuestionsToggle}
+                  />
+                  <span>Miješaj pitanja</span>
+                </label>
+                <label className="settings-option">
+                  <input
+                    type="checkbox"
+                    checked={settings.shuffleAnswers}
+                    onChange={handleShuffleAnswersToggle}
+                  />
+                  <span>Miješaj odgovore</span>
+                </label>
+                <button type="button" className="settings-reset" onClick={handleResetProgress}>
+                  Resetuj napredak
+                </button>
               </div>
-            );
-          })}
+            )}
+          </div>
         </div>
-      </aside>
+
+        <button type="button" className="reset-button" onClick={handleResetProgress}>
+          Reset Progress
+        </button>
+      </header>
+
+      {questionsMenuOpen && (
+        <button
+          type="button"
+          className="sidebar-backdrop"
+          aria-label="Zatvori listu pitanja"
+          onClick={() => setQuestionsMenuOpen(false)}
+        />
+      )}
+
+      <div className={`app-container ${questionsMenuOpen ? 'sidebar-open' : ''}`}>
+        <aside
+          ref={questionsRef}
+          className={`progress-sidebar ${questionsMenuOpen ? 'open' : ''}`}
+          aria-hidden={!questionsMenuOpen}
+        >
+          <div className="progress-sidebar-header">
+            <h3>Napredak</h3>
+            <button
+              type="button"
+              className="sidebar-close"
+              onClick={() => setQuestionsMenuOpen(false)}
+              aria-label="Zatvori"
+            >
+              ×
+            </button>
+          </div>
+          <div className="progress-list">
+            {sortedQuestions.map(([id, question]) => {
+              const correctCount = progress[id] || 0;
+              const isMastered = correctCount >= MASTERY_THRESHOLD;
+              const isCurrent = id === currentQuestionId;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
+                  onClick={() => jumpToQuestion(id)}
+                >
+                  <span className="progress-item-text">
+                    Pitanje {id}: {question.question.substring(0, 30)}...
+                  </span>
+                  <div className="progress-bar-container">
+                    <div
+                      className="progress-bar"
+                      style={{ width: `${(correctCount / MASTERY_THRESHOLD) * 100}%` }}
+                    />
+                  </div>
+                  <span className="progress-item-count">
+                    {correctCount}/{MASTERY_THRESHOLD}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
+
+        <div className="quiz-card">{renderQuizContent()}</div>
+      </div>
     </div>
   );
 }

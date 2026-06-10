@@ -23,20 +23,121 @@ body {
 #root {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3.5rem 2rem 2rem;
+  padding: 1.25rem 1rem 2rem;
   text-align: center;
   width: 100%;
   position: relative;
 }
 
+.app-shell {
+  width: 100%;
+}
+
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.icon-button:hover,
+.icon-button.active {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  color: #212529;
+}
+
+.settings-menu {
+  position: relative;
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  z-index: 30;
+  min-width: 220px;
+  padding: 1rem;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.settings-dropdown h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: #343a40;
+}
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.95rem;
+  color: #495057;
+  cursor: pointer;
+}
+
+.settings-option input {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.settings-reset {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.9rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  color: #495057;
+  cursor: pointer;
+}
+
+.settings-reset:hover {
+  background-color: #e9ecef;
+}
+
 .app-container {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: flex-start;
+  position: relative;
 }
 
 .quiz-card {
-  flex: 2;
+  flex: 1;
+  min-width: 0;
 }
 
 .card {
@@ -157,55 +258,112 @@ body {
 }
 
 .reset-button {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
   padding: 0.75rem 1.25rem;
   background-color: #6c757d;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  z-index: 10;
+  flex-shrink: 0;
 }
 
 .reset-button:hover {
   background-color: #5a6268;
 }
 
-/* Progress Sidebar */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 15;
+  cursor: pointer;
+}
+
+/* Progress sidebar */
 .progress-sidebar {
-  flex: 1;
-  max-width: 400px;
+  flex-shrink: 0;
+  width: 0;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
   background-color: #ffffff;
-  padding: 1.5em;
+  border: 1px solid transparent;
   border-radius: 8px;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+  transition: width 0.25s ease, max-width 0.25s ease, opacity 0.2s ease, border-color 0.2s ease;
   align-self: stretch;
 }
 
-.progress-sidebar h3 {
-  margin-top: 0;
-  text-align: center;
-  color: #343a40;
+.progress-sidebar.open {
+  width: 320px;
+  max-width: 320px;
+  opacity: 1;
+  border-color: #dee2e6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.progress-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.5rem;
   border-bottom: 1px solid #dee2e6;
-  padding-bottom: 0.5rem;
+}
+
+.progress-sidebar h3 {
+  margin: 0;
+  text-align: left;
+  color: #343a40;
+  font-size: 1rem;
+}
+
+.sidebar-close {
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.sidebar-close:hover {
+  background-color: #f1f3f5;
 }
 
 .progress-list {
-  max-height: 80vh;
+  max-height: 70vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 0.5rem 0.75rem 1rem;
 }
 
 .progress-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 4px;
+  width: 100%;
+  padding: 8px 6px;
+  border: none;
   border-bottom: 1px solid #e9ecef;
   font-size: 0.9em;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.progress-item:hover {
+  background-color: #f8f9fa;
+}
+
+.progress-item.current {
+  background-color: #e7f1ff;
 }
 
 .progress-item.mastered {
@@ -221,7 +379,7 @@ body {
 }
 
 .progress-bar-container {
-  width: 80px;
+  width: 64px;
   height: 10px;
   background-color: #e9ecef;
   border-radius: 5px;
@@ -260,4 +418,65 @@ body {
   border: 1px solid #ced4da;
   border-radius: 4px;
   box-shadow: 0 1px 0 #dee2e6;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0.75rem 0.75rem 1.5rem;
+  }
+
+  .reset-button {
+    display: none;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .question-text {
+    font-size: 1.2em;
+    margin-bottom: 1.25rem;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+  }
+
+  .progress-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    width: min(88vw, 320px);
+    max-width: min(88vw, 320px);
+    border-radius: 0;
+    transform: translateX(-105%);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .progress-sidebar.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .sidebar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .progress-list {
+    max-height: calc(100vh - 4rem);
+  }
+
+  .app-container.sidebar-open .quiz-card {
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .app-container.sidebar-open .progress-sidebar {
+    padding-bottom: 0;
+  }
 }
