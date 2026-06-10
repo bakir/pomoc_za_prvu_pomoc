@@ -1,0 +1,1002 @@
+{
+    "1": {
+        "question": "Šta sadrži poziv hitnoj medicinskoj pomoći?",
+        "options": [
+            "Tačnu lokaciju, broj povrijeđenih osoba i vrstu povreda",
+            "Tačnu lokaciju, broj povrijeđenih osoba bez obzira na stepen povređivanja",
+            "Tačnu lokaciju bez opisa povreda"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "2": {
+        "question": "Šta nije prvi red hitnosti?",
+        "options": [
+            "Povreda kičme",
+            "Povreda glave praćena besvjesnim stanjem",
+            "Stanje praćeno gušenjem"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "3": {
+        "question": "Ko pruža prvu pomoć na licu mjesta?",
+        "options": [
+            "Medicinsko osoblje koje odmah pozivamo",
+            "Slučajni prolaznik ili osoba koja se nađe na licu mjesta",
+            "Stručne službe na licu mjesta"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "4": {
+        "question": "Koji su znaci teškog iskrvarenja (hemoragijskog šoka)?",
+        "options": [
+            "Izrazito bljedilo, ubrzano i površno disanje (kratak dah), teško opipljiv i ubrzan puls, koža orošena hladnim znojem, žeđanje, opća slabost, klonulost",
+            "Usporen puls i povišen krvni pritisak, slabost, uznemirenost",
+            "Vidi se krv na odjeći, duboko disanje, slabost"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "5": {
+        "question": "Šta najviše ugrožava život unesrećenog?",
+        "options": [
+            "Prestanak disanja, besvjesno stanje i jako krvarenje",
+            "Prijelom kičmenog stuba",
+            "Udarac u glavu tupim predmetom"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "6": {
+        "question": "Šta je šok?",
+        "options": [
+            "Iznenadna stresna situacija",
+            "Teško stanje nastalo zbog gubitka krvi, tečnosti i jakog bola",
+            "Strah od posljedica nesreće"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "7": {
+        "question": "Šta je imobilizacija?",
+        "options": [
+            "Postavljanje povrijeđenog dijela tijela u nepokretan, stabilan položaj, izvan funkcije u određenom periodu",
+            "Postavljanje tijela u stanje pripravnosti i hitan transport",
+            "Postavljanje povrijeđenog na stomak i hitan transport"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "8": {
+        "question": "Koje je osnovno pravilo imobilizacije?",
+        "options": [
+            "Da se imobiliziraju dva susjedna zgloba",
+            "Da se imobilizira jedan povrijeđen zglob",
+            "Da se imobiliziraju svi zglobovi"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "9": {
+        "question": "Koliko dugo se vrši oživljavanje?",
+        "options": [
+            "20 minuta",
+            "40 minuta",
+            "Do dolaska stručne pomoći"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "10": {
+        "question": "Kada ne treba započeti oživljavanje (kardiopulmonalnu reanimaciju - KPR)?",
+        "options": [
+            "Ako je sigurno prošlo više od 10 minuta od zastoja srca",
+            "Ako postoji otvorena rana na grudnom košu",
+            "Ako je opečena površina tijela veća od 60%"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "11": {
+        "question": "Kod oživljavanja (KPR) odnos disanja i vanjske masaže srca je:",
+        "options": [
+            "5 upuhivanja i 5 masaža srca, tj. odnos 1:1",
+            "2 upuhivanja i 15 masaža srca, tj. odnos 2:15",
+            "30 masaža srca i 2 upuhivanja, tj. odnos 30:2"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "12": {
+        "question": "Kojom brzinom se vrši pritisak kod vanjske masaže srca?",
+        "options": [
+            "80 do 120 u minuti",
+            "100 do 120 u minuti",
+            "80 do 100 u minuti"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "13": {
+        "question": "Šta prvo treba učiniti kod udara električne struje?",
+        "options": [
+            "Povrijeđenog zakopati u zemlju da bi zemlja izvukla struju",
+            "Prekinuti strujni krug, izvući utikač, osigurač, isključiti sklopku, izolirajućim predmetom skloniti izvor električnog napajanja",
+            "Odmah započeti sa oživljavanjem"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "14": {
+        "question": "Šta učiniti ukoliko situacija nije sigurna i ne možete pristupiti mjestu nesreće?",
+        "options": [
+            "Hitno doći do povrijeđene osobe",
+            "Sanirati najhitnija stanja",
+            "Pozvati hitnu medicinsku pomoć i sačekati dolazak nadležnih"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "15": {
+        "question": "Šta smijemo učiniti kad manje strano tijelo upadne u oko (poput čestica prašine, truna i slično)?",
+        "options": [
+            "Strano tijelo ukloniti sterilnom gazom ili gornji kapak prevući preko trepavica kako bismo uklonili strano tijelo",
+            "Protrljati ili isprati oko kako bismo uklonili strano tijelo",
+            "Ne dirati ništa, zaviti oba oka i transportirati povrijeđenog do bolnice očnom ljekaru"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "16": {
+        "question": "Šta se podrazumijeva pod opekotinama prvog stepena?",
+        "options": [
+            "Opečena je koža, potkožno masno tkivo i mišići u predjelu opekotine",
+            "Zahvaćeni su površinski dijelovi kože, koža je crvena, bez mjehura, lako otečena, a postaje vrlo bolna nakon nekoliko sati",
+            "Zahvaćeni su dublji slojevi tkiva i kosti"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "17": {
+        "question": "Šta kod opekotina podrazumijeva pravilo 9?",
+        "options": [
+            "18% zahvaćenosti tijela - prednja strana grudnog koša i trbuha",
+            "9% genitalije",
+            "18% jedna ruka"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "18": {
+        "question": "Koji su neki od znakova predoziranja narkoticima?",
+        "options": [
+            "Proširene zjenice, besvjesno stanje",
+            "Pojačani refleksi i koncentracija",
+            "Koža koja se ljušti"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "19": {
+        "question": "Šta je AED?",
+        "options": [
+            "Automatski eksterni defibrilator",
+            "Automatski ekstremni defibrilator",
+            "Automatski eksterni dozimetar"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "20": {
+        "question": "Koji su znaci unutrašnjeg krvarenja?",
+        "options": [
+            "Usporeno disanje",
+            "Boja kože lica je crvena a disanje usporeno",
+            "Blijeda koža orošena znojem, usne i jezik suhi, ubrzano disanje, malaksalost i jak osjećaj žeđi"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "21": {
+        "question": "U kojem položaju se transportira osoba sa povredom natkoljenice?",
+        "options": [
+            "U sjedećem položaju sa prethodno izvršenom imobilizacijom",
+            "Nije bitan položaj, bitna je imobilizacija",
+            "U ležećem položaju sa prethodno izvršenom imobilizacijom"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "22": {
+        "question": "Kada se primjenjuje Hajmlihov hvat?",
+        "options": [
+            "Kod utapanja",
+            "Kod gušenja stranim tijelom",
+            "Kod gušenja ugljenmonoksidom"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "23": {
+        "question": "Koji su neki od znakova moždanog udara?",
+        "options": [
+            "Teškoće sa vidom, problemi u govoru i gubitak ravnoteže",
+            "Iskašljavanje krvave pjene",
+            "Svrbež i peckanje kože"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "24": {
+        "question": "Prema kojim sljedećim simptomima i znacima prepoznajemo osobu koja je jako iskrvarila?",
+        "options": [
+            "Osoba je malo blijeda, modra u licu, nije raspoložena, više je nemirna, osjeća opću slabost i malaksalost",
+            "Osoba je modra u licu, uznemirena, konfuzna, puls je usporen ali se normalno lako napipa, diše duboko, osjeća slabost",
+            "Osoba ja izrazito blijeda, kože orošene hladnim i ljepljivim znojem, suhih usta, osjeća žeď, opću slabost i malaksalost do klonulosti"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "25": {
+        "question": "Koja je pravilna metoda zaustavljanja krvarenja?",
+        "options": [
+            "Podvezivanje uda",
+            "Direktan pritisak na ranu",
+            "Autotransfuzija"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "26": {
+        "question": "Kako se provjerava gubitak svijesti?",
+        "options": [
+            "Pritiskom na glavu i čelo da osoba otvori oči i upitom šta se dogodilo",
+            "Glasnim dozivanjem (komunikacija govorom), hvatanjem za ramena, laganim protresanjem ramena bez pomicanja",
+            "Metodom gledam, slušam, osjećam"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "27": {
+        "question": "Koji su neki od znakova epileptičnih napada?",
+        "options": [
+            "Ubrzano disanje",
+            "Groznica i povišena tjelesna temperatura",
+            "Trzanje - grčenje ekstremiteta i/ili cijelog tijela praćeno besvjesnim stanjem, nekad i umokravanje"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "28": {
+        "question": "Zbog čega su opasne opekotine koje zahvataju veću površinu tijela?",
+        "options": [
+            "Zbog nastanka upale pluća",
+            "Zbog gubitka veće količine tečnosti i infekcije",
+            "Zbog gubitka veće količine krvi"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "29": {
+        "question": "Koji je postupak pružanja prve pomoći kod otvorenog prijeloma kosti bez krvarenja?",
+        "options": [
+            "Imobilizacija i hitan transport",
+            "Prekrivanje rane sterilnom gazom, imobilizacija, transport nije hitan",
+            "Prekrivanje rane sterilnom gazom, istezanje, hitan transport"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "30": {
+        "question": "U koji položaj postavljamo povrijeđenog kod povrede kostiju karlice?",
+        "options": [
+            "U položaj autotransfuzije",
+            "Ostavljamo povrijeđenog u zatečenom položaju",
+            "U bočni ili koma položaj"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "31": {
+        "question": "Koji je normalan broj otkucaja srca kod zdrave osobe?",
+        "options": [
+            "100 otkucaja u minuti",
+            "60 do 80 otkucaja u sekundi",
+            "60 do 80 otkucaja u minuti"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "32": {
+        "question": "Kako pružiti prvu pomoć kod iščašenja zgloba?",
+        "options": [
+            "Iščašeni zglob učvrstiti, utegnuti zavojem, staviti na njega hladne obloge i podići ga",
+            "Dvije osobe će potezanjem povrijeđenog zgloba u suprotnom pravcu vratiti iščašeni zglob u ležište, imobilizirati ga i podići",
+            "Sa prednje strane imobilizirati dva susjedna zgloba"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "33": {
+        "question": "U kojem položaju se transportira osoba u besvjesnom stanju?",
+        "options": [
+            "U stabilnom polusjedećem položaju",
+            "U stabilnom ležećem položaju",
+            "U stabilnom bočnom položaju"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "34": {
+        "question": "Koji je postupak pružanja prve pomoći kod zmijskog ujeda?",
+        "options": [
+            "Pozvati hitnu medicinsku pomoć, strogo mirovanje unesrećenog",
+            "Staviti podvesku iznad mjesta ujeda i dobro stegnuti",
+            "Isisati otrov iz rane, osobu transportirati do zdravstvene ustanove"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "35": {
+        "question": "Šta treba učiniti kod udara groma?",
+        "options": [
+            "Zaštititi unesrećenog od groma",
+            "Zakopati unesrećenog da zemlja izvuče opasan elektricitet",
+            "Pozvati hitnu medicinsku pomoć, ako mjesto nije sigurno, unesrećenog izmjestiti na sigurno, procijeniti svijest, disanje i cirkulaciju te odmah započni KPR kod vitalno ugroženih"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "36": {
+        "question": "Koji je postupak kod trovanja ispušnim gasovima?",
+        "options": [
+            "Otvoriti vrata i prozore, unesrećenom omogućiti dotok svježeg zraka, potom pozvati pomoć",
+            "Započeti oživljavanje",
+            "Obavijestiti vatrogasce i hitnu pomoć i čekati dok oni ne stignu"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "37": {
+        "question": "U čemu se sastoji prva pomoć kod hemijske povrede oka?",
+        "options": [
+            "Oko obilno ispirati čistom vodom i hitno transportirati povrijeđenog",
+            "Oko zaviti zavojem i povrijeđenog što prije odvesti do stručne pomoći",
+            "Isprati oko kapima za oči i hitno transportirati povrijeđenog"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "38": {
+        "question": "Šta su opekotine trećeg stepena?",
+        "options": [
+            "One koje zahvataju površne slojeve kože i jako bole",
+            "One koje zahvataju kosti i stvaraju ugljenisanost",
+            "One koje izazivaju jaku bol sa sukrvicom"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "39": {
+        "question": "Šta je traumatski pneumotoraks?",
+        "options": [
+            "Porast pritiska u plućima nakon traume koji teško ugrožava disanje",
+            "Hronična upala plućne maramice zbog pušenja i tuberkuloze",
+            "Traumatski pneumotoraks rezultat je tupe ili probojne traume koja oštećuje listove plućne maramice"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "40": {
+        "question": "Koji su znaci prestanka disanja?",
+        "options": [
+            "Bljedilo usana",
+            "Unesrećeni je bez svijesti, ne može se vidjeti dizanje grudnog koša, čuti niti osjetiti izdahnuti zrak",
+            "Modrilo ruku i nogu"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "41": {
+        "question": "Koji su sigurni znaci smrti?",
+        "options": [
+            "Gubitak svijesti, prestanak disanja i gubitak pulsa",
+            "Gubitak svijesti, prestanak disanja i gubitak pulsa te plave usne",
+            "Mačje oko, mrtvačke modre mrlje (pjege), mrtvačka mlitavost i mrtvačka ukočenost"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "42": {
+        "question": "Koji je postupak pružanja prve pomoći kod ujeda krpelja?",
+        "options": [
+            "Mjesto ujeda natopiti alkoholom",
+            "Pincetom izvaditi krpelja, osobu uputiti u zdravstvenu ustanovu",
+            "Strogo mirovanje, stavljanje hladnih obloga"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "43": {
+        "question": "Kada upotrebljavamo kompresivni zavoj?",
+        "options": [
+            "Za zaustavljanje srednje jakog krvarenja",
+            "Za kompresiju prijeloma, pritisak na kost",
+            "Kod jakih krvarenja kod amputacija"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "44": {
+        "question": "Koje su metode provjere disanja?",
+        "options": [
+            "Gledam, pipam, osjetim",
+            "Gledam, slušam, osluškujem",
+            "Gledam, slušam, osjećam"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "45": {
+        "question": "Koji su neki od znakova toplotne iscrpljenosti?",
+        "options": [
+            "Pretjerano znojenje, umor, mučnina",
+            "Glavobolja, osip po tijelu",
+            "Nekontrolirano mokrenje"
+        ],
+        "correct_index": 0,
+        "correct_count": 1
+    },
+    "46": {
+        "question": "Telefonski broj policije je:",
+        "options": [
+            "135",
+            "122",
+            "125"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "47": {
+        "question": "Kod sumnje na ozljedu vratnog segmenta kičme prvu pomoć pružamo postavljanjem:",
+        "options": [
+            "improviziranog okovratnika",
+            "povrijeđenog u koma položaj",
+            "zavoja oko vrata"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "48": {
+        "question": "Kako zaustavljamo krvarenje iz nosa?",
+        "options": [
+            "Začepljivanjem nosa, zabacivanjem glave unazad i stavljanjem hladne obloge",
+            "Stiskanjem krila nosa između palca i kažiprsta i potiskivanjem brade na grudi",
+            "Stavljanjem hladnog obloga na glavu i vrat"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "49": {
+        "question": "Šta primjećujemo kod sumnje na alergijsku reakciju?",
+        "options": [
+            "Osip, pospanost, teškoće prilikom disanja",
+            "Nepravilnost u čulu dodira ili paralizu",
+            "Grčeve u stomaku"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "50": {
+        "question": "Šta treba učiniti pri nailasku na mjesto nesreće?",
+        "options": [
+            "Parkirati vozilo na sigurno mjesto uz upotrebu svjetlosne signalizacije, isključiti motor, postaviti znakove sigurnosti, pozvati hitnu pomoć i pristupiti pružanju prve pomoći",
+            "Hitno zvati prvu pomoć",
+            "Uključiti signalizaciju na automobilu i sačekati da naiđe drugo vozilo i hitna pomoć"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "51": {
+        "question": "Koja je prva pomoć kod nesvjestice?",
+        "options": [
+            "Pozvati hitnu pomoć da se ne izgubi dragocjeno vrijeme i ponuditi unesrećenom osvježavajuće piće",
+            "Postaviti unesrećenog u ležeći položaj s uzdignutim nogama, raskomotiti ga te postaviti u bočni položaj ukoliko povraća",
+            "Raskomotiti tijesnu odjeću, mirno i pribrano započeti oživljavanje"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "52": {
+        "question": "Da li je pružanje prve pomoći u prometu za vozača moralna ili zakonska obaveza?",
+        "options": [
+            "To je moralna obaveza i dobra volja vozača",
+            "Ne postoji jasno definirana obaveza, to su više humane preporuke",
+            "Pružanje prve pomoći u prometu je zakonska obaveza za svakog vozača"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "53": {
+        "question": "Koliko osoba vrši prenošenje osobe sa povredom kičme?",
+        "options": [
+            "Ne vrši se prenošenje",
+            "Prenošenje vrši 4-5 osoba",
+            "Prenošenje vrši 6-7 a nekad i više osoba"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "54": {
+        "question": "Šta treba učiniti ako krv probije sve slojeve kompresivnog zavoja i pojavi se na površini?",
+        "options": [
+            "Pojačati pritisak sa još jednim koturom zavoja",
+            "Ne treba ništa poduzimati",
+            "Samo prekriti sterilnom gazom"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "55": {
+        "question": "Kako se zbrinjavaju povrede nastale niskom temperaturom (smrzotine)?",
+        "options": [
+            "Unesrećenog držati van prostorije i pozvati hitnu pomoć",
+            "Unesrećenog unijeti u toplu prostoriju i dati mu tople napitke",
+            "Unesrećenom skinuti odjeću, trljati ili masirati smrznute dijelove tijela i ponuditi mu toplu kupku"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "56": {
+        "question": "Koji se gas oslobađa pri sagorijevanju goriva, a koji u zatvorenom prostoru može izazvati smrt akutnim trovanjem?",
+        "options": [
+            "Eurosuper 95, Super plus 98",
+            "Natrijum hlorid",
+            "Ugljenmonoksid"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "57": {
+        "question": "Šta je trijaža?",
+        "options": [
+            "Određivanje prioriteta zbrinjavanja prema vrsti i težini povreda te razvrstavanje prema hitnosti transporta",
+            "Efikasno zbrinjavanje povreda",
+            "Određivanje pristupa povrijeđenim osobama"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "58": {
+        "question": "Telefonski broj službe hitne pomoći je:",
+        "options": [
+            "122",
+            "123",
+            "124"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "59": {
+        "question": "Unesrećenog koji ima astmatični napad treba pitati ima li:",
+        "options": [
+            "sprej-pumpicu-inhalator",
+            "nitroglicerin",
+            "leksaurin"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "60": {
+        "question": "Da li se strano tijelo uklanja iz rane?",
+        "options": [
+            "Predmet koji je napravio ozljedu i nalazi se u rani ne smijemo nikako uklanjati",
+            "Da, uvijek",
+            "Da, samo u slučaju veće infekcije"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "61": {
+        "question": "Šta je srčani zastoj?",
+        "options": [
+            "Poremećaj dotoka krvi u srčani mišić, srčani udar",
+            "Prestanak rada srca i zaustavljanje cirkulacije",
+            "Zapadanje jezika i poremećaj srčanog ritma"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "62": {
+        "question": "Koji su neki od znakova srčanog udara?",
+        "options": [
+            "Bol u prsima koja traje, širi se u vrat, vilicu, ruku, praćena znojenjem, gušenjem, mučninom, nekad povraćanjem, slabošću, tjeskobom i strahom",
+            "Bol u dnu stomaka koja se širi u ekstremitete",
+            "Tupa bol u gornjem dijelu stomaka"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "63": {
+        "question": "Kako se pruža prva pomoć kod sunčanice i toplotnog udara?",
+        "options": [
+            "Stavljanjem leda na glavu unesrećenog",
+            "Prenošenjem unesrećenog u hladan i prozračan prostor, oslobađanjem od viška odjeće, rashlađivanjem i davanjem hladnih napitaka",
+            "Stavljanjem tijela unesrećenog u bočni položaj"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "64": {
+        "question": "Šta je hipoglikemija?",
+        "options": [
+            "Nizak nivo glukoze (šećera) u krvi",
+            "Visok nivo glukoze (šećera) u krvi",
+            "Visok nivo hormona u krvi"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "65": {
+        "question": "Koje su opasnosti kod besvjesnog stanja (unesrećeni je bez svijesti, leži na leđima i diše)?",
+        "options": [
+            "Moguća oduzetost ruku i nogu",
+            "Gušenje jezikom, povraćenim sadržajem",
+            "Gubitak velike količine krvi"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "66": {
+        "question": "Šta je najvažnije kad dođemo na mjesto nesreće?",
+        "options": [
+            "Zaštititi prvo sebe i ostale",
+            "Pomoći unesrećenom bez obzira na sve",
+            "Pozvati hitnu pomoć"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "67": {
+        "question": "Šta se stavlja na otvorenu ranu?",
+        "options": [
+            "Samo dezinfekciono sredstvo pa onda gaza",
+            "Sterilna gaza",
+            "Asepsol, rivanol, jod ili drugo sredstvo"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "68": {
+        "question": "Šta je prva pomoć?",
+        "options": [
+            "Pomoć koja se pruža u kolima hitne pomoći, prije ambulante ili bolnice",
+            "Pomoć koju pružaju zdravstveni radnici",
+            "Pomoć koja se ukazuje na mjestu nesreće"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "69": {
+        "question": "Šta je puls?",
+        "options": [
+            "Vitalni parametar cirkulacije",
+            "Odraz naizmjeničnog širenja i suženja vena",
+            "Pulsiranje vena na vratu"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "70": {
+        "question": "U koji položaj postavljamo unesrećenog s povredom grudnog koša?",
+        "options": [
+            "U polusjedeći položaj",
+            "U koma položaj",
+            "U ležeći položaj"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "71": {
+        "question": "Broj telefona vatrogasne službe je:",
+        "options": [
+            "123",
+            "132",
+            "142"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "72": {
+        "question": "Do čega može dovesti pregrijavanje kabine motornog vozila?",
+        "options": [
+            "Kvara na kontrolnoj tabli i zamagljenja",
+            "Isparavanja plastike i slabljenja imuniteta",
+            "Toplotnog udara"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "73": {
+        "question": "Šta su kontuzije?",
+        "options": [
+            "Nagnječenja mekih tkiva",
+            "Povrede glave",
+            "Otvorene frakture"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "74": {
+        "question": "Čovjek normalno diše:",
+        "options": [
+            "14 do 16 puta u minuti",
+            "12 do 20 puta u minuti",
+            "16 do 20 puta u minuti"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "75": {
+        "question": "Šta je potrebno zadovoljiti trijažom?",
+        "options": [
+            "Red hitnosti ukazivanja pomoći",
+            "Sigurnosne mjere pružanja pomoći",
+            "Red hitnosti kod poziva u pomoć"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "76": {
+        "question": "Krvarenja dijelimo prema:",
+        "options": [
+            "izgledu",
+            "jačini i brzini",
+            "lokalitetu, vremenu nastanka i povrijeđenom krvnom sudu"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "77": {
+        "question": "Šta je astma?",
+        "options": [
+            "Poremećaj kod kojeg hronično zapaljenje bronhija uzrokuje oticanje i sužavanje dišnih puteva",
+            "Poremećaj kod kojeg osoba ima smanjen nivo šećera u krvi",
+            "Poremećaj kod kojeg se osoba guši i gubi svijest radi iskrvarenja"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "78": {
+        "question": "Kod zbrinjavanja krvarenja zaštitne rukavice koristimo kako bismo:",
+        "options": [
+            "zaustavili krvarenje",
+            "zaštitili sebe i spriječili infekciju rane",
+            "spriječili širenje zaraze i smanjili krvarenje"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "79": {
+        "question": "Drugi red hitnosti čine:",
+        "options": [
+            "besvjesno stanje",
+            "krvarenja bez općih znakova iskrvarenja",
+            "manje smrzotine i opekotine"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "80": {
+        "question": "Šta je zabranjeno kod razderotine?",
+        "options": [
+            "Postaviti sterilne gaze",
+            "Trljati ranu da bi se isprala prljavština",
+            "Pritiskati ranu kako bismo zaustavili krvarenje"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "81": {
+        "question": "Ogrebotinu je važno:",
+        "options": [
+            "ostaviti na čistom zraku",
+            "skinuti nečisti sloj kože",
+            "potpuno isprati vodom"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "82": {
+        "question": "Šta primjećujemo kod dehidracije?",
+        "options": [
+            "Blijedu i suhu kožu koja se lako nabire, slabost",
+            "Povišenu tjelesnu temperaturu i nepravilno disanje",
+            "Nesvjesticu i nepravilno disanje"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "83": {
+        "question": "Hajmlihov zahvat ne smijemo primijeniti:",
+        "options": [
+            "kod djece starije od 1 godine",
+            "kod trudnica ili gojaznih osoba",
+            "bez prisustva stručnih osoba"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "84": {
+        "question": "Kako diše osoba kod hiperventilacije?",
+        "options": [
+            "Diše ubrzano",
+            "Diše plitko",
+            "Diše usporeno"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "85": {
+        "question": "Šta čini treći red hitnosti?",
+        "options": [
+            "Prividna smrt",
+            "Iščašenja i uganuća zglobova",
+            "Manje smrzotine i opekotine"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "86": {
+        "question": "Trovanje alkoholom nastaje kada je nivo promila u krvi:",
+        "options": [
+            "3 do 5",
+            "2 do 3",
+            "1 do 2"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "87": {
+        "question": "Koliko u dubinu se potiskuje prsna kost kod reanimacije odraslih?",
+        "options": [
+            "9 do 10 cm",
+            "4 do 5 cm",
+            "2 do 3 cm"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "88": {
+        "question": "Trijaža može biti po:",
+        "options": [
+            "uzrastu (prvo djeca)",
+            "ozljedama i prioritetu transporta",
+            "mjestu nesreće"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "89": {
+        "question": "Šta se prvo zbrinjava od navedenog?",
+        "options": [
+            "Epileptični napad",
+            "Sumnja na uganuće skočnog zgloba",
+            "Krvarenje iz nosa"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "90": {
+        "question": "Kojim redoslijedom se vrši kardiopulmonalna reanimacija djece?",
+        "options": [
+            "5 inicijalnih upuhivanja, a zatim vanjska masaža srca sa 2 upuhivanja",
+            "Vanjska masaža srca sa 2 upuhivanja, zatim 5 inicijalnih upuhivanja",
+            "2 upuhivanja, vanjska masaža srca, zatim 5 inicijalnih upuhivanja"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "91": {
+        "question": "Kakvu boju kože ima osoba otrovana ugljenmonoksidom?",
+        "options": [
+            "Blijedu",
+            "Jarko ružičastu",
+            "Plavičasto sivu"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "92": {
+        "question": "Kada se ne izvodi zabacivanje glave unazad?",
+        "options": [
+            "Kod ozljede vratne kičme",
+            "Kod djece",
+            "Kod prisustva stranog tijela u jednjaku"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "93": {
+        "question": "Čime se karakterizira drugi stepen opekotina?",
+        "options": [
+            "Jakim krvarenjem",
+            "Pojavom mjehura ispunjenih tekućinom",
+            "Gubitkom funkcije opečenog dijela tijela"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "94": {
+        "question": "Koji su sigurni znaci prijeloma?",
+        "options": [
+            "Krvarenje, otok",
+            "Crvenilo, neosjetljivost na bol, otvrdnuće tetive",
+            "Bol, deformacija i patološka gibljivost"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "95": {
+        "question": "Koliko u dubinu se pritišće prsna kost kod reanimacije beba?",
+        "options": [
+            "Minimalno da se ne ozljede rebra i srce",
+            "1,5 do 2,5 cm",
+            "3 do 5 cm"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    },
+    "96": {
+        "question": "Kako osiguravamo prohodnost dišnih puteva?",
+        "options": [
+            "Zabacivanjem glave (defleksija)",
+            "Vađenjem stranog tijela",
+            "Pružanjem umjetnog disanja"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "97": {
+        "question": "Šta je cijanoza?",
+        "options": [
+            "Žuta boja kože",
+            "Jarko crvena boja kože",
+            "Plavičasta prebojenost kože"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "98": {
+        "question": "Kako pružiti prvu pomoć kod blaže hipoglikemije?",
+        "options": [
+            "Dati kocku šećera, čokoladu, zaslađen napitak",
+            "Dati inzulin",
+            "Osloboditi od odjeće koja steže i postaviti osobu u bočni položaj"
+        ],
+        "correct_index": 0,
+        "correct_count": 0
+    },
+    "99": {
+        "question": "Zašto ujed insekta u ustima ili grlu može biti opasan po život?",
+        "options": [
+            "Zato što ujed izaziva malaksalost",
+            "Zato što se otok širi na sve udove",
+            "Zato što otok može zaustaviti disanje"
+        ],
+        "correct_index": 2,
+        "correct_count": 0
+    },
+    "100": {
+        "question": "Do čega dolazi zbog dehidratacije?",
+        "options": [
+            "Do pojačanog znojenja",
+            "Do toplotnih mišićnih grčeva",
+            "Do sniženja tjelesne temperature"
+        ],
+        "correct_index": 1,
+        "correct_count": 0
+    }
+}
