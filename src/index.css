@@ -1,15 +1,27 @@
 :root {
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  color: #212529;
-  background-color: #f8f9fa;
+  font-family: var(--font-sans);
+  line-height: 1.47059;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+
+  color: #1d1d1f;
+  background-color: #f5f5f7;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sans);
 }
 
 body {
@@ -157,9 +169,10 @@ body {
 
 .question-text {
   font-size: 1.5em;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: -0.022em;
   margin-bottom: 2rem;
-  color: #343a40;
+  color: #1d1d1f;
 }
 
 .options-container {
@@ -195,7 +208,7 @@ body {
   background-color: #d4edda;
   border-color: #c3e6cb;
   color: #155724;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .option-button.incorrect {
@@ -219,7 +232,8 @@ body {
 
 .feedback-text {
   font-size: 1.2em;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .feedback-text.correct {
@@ -255,6 +269,8 @@ body {
 
 .completion-screen h1 {
   font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .sidebar-backdrop {
@@ -301,8 +317,10 @@ body {
 .progress-sidebar h3 {
   margin: 0;
   text-align: left;
-  color: #343a40;
+  color: #1d1d1f;
   font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .sidebar-close {
@@ -380,7 +398,7 @@ body {
 }
 
 .progress-item-count {
-  font-weight: bold;
+  font-weight: 600;
   width: 40px;
   flex-shrink: 0;
 }
