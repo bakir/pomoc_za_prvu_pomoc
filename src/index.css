@@ -68,6 +68,7 @@ body {
   padding: 0;
   font-size: 1.25rem;
   font-weight: 700;
+  font-style: normal;
   line-height: 1;
   border: 1px solid #ced4da;
   border-radius: 8px;
@@ -84,11 +85,18 @@ body {
   color: #212529;
 }
 
-.settings-menu {
+.settings-menu,
+.info-menu {
   position: relative;
 }
 
-.settings-dropdown {
+.info-menu-toggle {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.toolbar-dropdown {
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
@@ -102,10 +110,30 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.settings-dropdown h4 {
+.toolbar-dropdown h4 {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
-  color: #343a40;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+  color: #0071e3;
+  text-decoration: none;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.dropdown-link:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dropdown-link:hover {
+  color: #0077ed;
+  text-decoration: underline;
 }
 
 .settings-option {

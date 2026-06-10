@@ -9,6 +9,9 @@ import {
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
 const SETTINGS_STORAGE_KEY = 'firstAidSettings';
+const GITHUB_URL = 'https://github.com/bakir/pomoc_za_prvu_pomoc';
+const QUESTIONS_CATALOG_URL =
+  'https://mo.ks.gov.ba/sed-obavhestenja/obavjestenje-novi-katalog-pitanja-za-polaganje-prve-pomoci';
 
 function buildAnswerOrder(optionCount, shuffle) {
   const order = Array.from({ length: optionCount }, (_, i) => i);
@@ -38,12 +41,14 @@ function App() {
   const [answerOrder, setAnswerOrder] = useState([]);
   const [questionsMenuOpen, setQuestionsMenuOpen] = useState(false);
   const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
+  const [infoMenuOpen, setInfoMenuOpen] = useState(false);
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
   });
 
   const settingsRef = useRef(null);
+  const infoRef = useRef(null);
   const questionsRef = useRef(null);
 
   const sortedQuestions = useMemo(() => {
@@ -115,6 +120,9 @@ function App() {
       if (settingsMenuOpen && settingsRef.current && !settingsRef.current.contains(event.target)) {
         setSettingsMenuOpen(false);
       }
+      if (infoMenuOpen && infoRef.current && !infoRef.current.contains(event.target)) {
+        setInfoMenuOpen(false);
+      }
       if (
         questionsMenuOpen &&
         questionsRef.current &&
@@ -127,7 +135,7 @@ function App() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [questionsMenuOpen, settingsMenuOpen]);
+  }, [questionsMenuOpen, settingsMenuOpen, infoMenuOpen]);
 
   const getDisplayOrder = useCallback(() => {
     const question = allQuestions[currentQuestionId];
@@ -343,18 +351,52 @@ function App() {
             ?
           </button>
 
+          <div className="info-menu" ref={infoRef}>
+            <button
+              type="button"
+              className={`icon-button info-menu-toggle ${infoMenuOpen ? 'active' : ''}`}
+              onClick={() => {
+                setInfoMenuOpen((open) => !open);
+                setSettingsMenuOpen(false);
+              }}
+              aria-label="Informacije"
+              aria-expanded={infoMenuOpen}
+            >
+              i
+            </button>
+            {infoMenuOpen && (
+              <div className="toolbar-dropdown info-dropdown">
+                <h4>Informacije</h4>
+                <a className="dropdown-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                  GitHub repozitorij
+                </a>
+                <a
+                  className="dropdown-link"
+                  href={QUESTIONS_CATALOG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Katalog pitanja (PDF)
+                </a>
+              </div>
+            )}
+          </div>
+
           <div className="settings-menu" ref={settingsRef}>
             <button
               type="button"
               className={`icon-button settings-menu-toggle ${settingsMenuOpen ? 'active' : ''}`}
-              onClick={() => setSettingsMenuOpen((open) => !open)}
+              onClick={() => {
+                setSettingsMenuOpen((open) => !open);
+                setInfoMenuOpen(false);
+              }}
               aria-label="Postavke"
               aria-expanded={settingsMenuOpen}
             >
               ⚙
             </button>
             {settingsMenuOpen && (
-              <div className="settings-dropdown">
+              <div className="toolbar-dropdown settings-dropdown">
                 <h4>Postavke</h4>
                 <label className="settings-option">
                   <input
