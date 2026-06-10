@@ -136,6 +136,241 @@ body {
   text-decoration: underline;
 }
 
+.dropdown-summary {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #6c757d;
+}
+
+.dropdown-action {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.9rem;
+  text-align: left;
+  color: #1d1d1f;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-action:hover {
+  background-color: #e9ecef;
+}
+
+.mode-nav {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mode-nav-button {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.mode-nav-button:hover {
+  background-color: #f8f9fa;
+}
+
+.mode-nav-button.active {
+  color: #ffffff;
+  background-color: #1d1d1f;
+  border-color: #1d1d1f;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.primary-button {
+  color: #ffffff;
+  background-color: #1d1d1f;
+  border-color: #1d1d1f;
+}
+
+.primary-button:hover {
+  background-color: #333333;
+}
+
+.secondary-button {
+  color: #1d1d1f;
+  background-color: #ffffff;
+  border-color: #ced4da;
+}
+
+.secondary-button:hover {
+  background-color: #f8f9fa;
+}
+
+.help-page h1 {
+  margin-top: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.help-intro {
+  font-size: 1.05rem;
+  color: #495057;
+  line-height: 1.55;
+}
+
+.help-section {
+  margin-top: 1.75rem;
+  text-align: left;
+}
+
+.help-section h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.help-section ol,
+.help-section ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: #343a40;
+}
+
+.help-section li {
+  margin-bottom: 0.4rem;
+}
+
+.help-shortcuts {
+  list-style: none;
+  padding-left: 0;
+}
+
+.help-shortcuts li {
+  margin-bottom: 0.35rem;
+}
+
+.help-link {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #0071e3;
+  text-decoration: none;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+}
+
+.help-actions,
+.exam-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.exam-intro h1,
+.exam-results h1 {
+  margin-top: 0;
+}
+
+.exam-rules {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.exam-score {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 1rem 0 0.5rem;
+}
+
+.exam-score.passed {
+  color: #155724;
+}
+
+.exam-score.failed {
+  color: #721c24;
+}
+
+.exam-score-message {
+  font-size: 1.05rem;
+  color: #495057;
+  margin-bottom: 1.5rem;
+}
+
+.exam-review {
+  text-align: left;
+  margin-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+  padding-top: 1.25rem;
+}
+
+.exam-review h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.exam-review-item {
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+.exam-review-item.correct {
+  border-color: #c3e6cb;
+  background-color: #f4fbf6;
+}
+
+.exam-review-item.incorrect {
+  border-color: #f5c6cb;
+  background-color: #fff5f5;
+}
+
+.exam-review-question {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.exam-review-wrong,
+.exam-review-correct {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.exam-review-wrong {
+  color: #721c24;
+}
+
+.exam-review-correct {
+  color: #155724;
+}
+
+.completion-screen .primary-button {
+  margin-top: 1.25rem;
+}
+
 .settings-option {
   display: flex;
   align-items: center;
@@ -496,6 +731,20 @@ body {
 @media (max-width: 768px) {
   #root {
     padding: 0.75rem 0.75rem 1.5rem;
+  }
+
+  .app-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mode-nav {
+    justify-content: stretch;
+  }
+
+  .mode-nav-button {
+    flex: 1;
+    text-align: center;
   }
 
   .card {

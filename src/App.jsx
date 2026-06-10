@@ -5,6 +5,10 @@ import {
   loadProgress,
   saveProgress,
 } from './cookies';
+import { buildAnswerOrder, orderQuestionIds } from './utils/shuffle';
+import { getViewFromHash, setViewHash, VIEWS } from './routing';
+import HelpPage from './pages/HelpPage';
+import ExamMode from './pages/ExamMode';
 
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
@@ -13,24 +17,8 @@ const GITHUB_URL = 'https://github.com/bakir/pomoc_za_prvu_pomoc';
 const QUESTIONS_CATALOG_URL =
   'https://mo.ks.gov.ba/sed-obavhestenja/obavjestenje-novi-katalog-pitanja-za-polaganje-prve-pomoci';
 
-function buildAnswerOrder(optionCount, shuffle) {
-  const order = Array.from({ length: optionCount }, (_, i) => i);
-  if (shuffle) {
-    for (let i = order.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [order[i], order[j]] = [order[j], order[i]];
-    }
-  }
-  return order;
-}
-
-function orderQuestionIds(ids, shuffle) {
-  const sorted = [...ids].sort((a, b) => Number(a) - Number(b));
-  if (!shuffle) return sorted;
-  return sorted.sort(() => 0.5 - Math.random());
-}
-
 function App() {
+  const [view, setView] = useState(getViewFromHash);
   const [allQuestions, setAllQuestions] = useState({});
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
@@ -51,6 +39,20 @@ function App() {
   const settingsRef = useRef(null);
   const infoRef = useRef(null);
   const questionsRef = useRef(null);
+
+  const navigate = useCallback((nextView) => {
+    setViewHash(nextView);
+    setView(nextView);
+    setQuestionsMenuOpen(false);
+    setInfoMenuOpen(false);
+    setSettingsMenuOpen(false);
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => setView(getViewFromHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   const sortedQuestions = useMemo(() => {
     return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
@@ -111,10 +113,11 @@ function App() {
   }, [allQuestions, refreshActivePool]);
 
   useEffect(() => {
+    if (view !== VIEWS.PRACTICE) return;
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
     const question = allQuestions[currentQuestionId];
     setAnswerOrder(buildAnswerOrder(question.options.length, settings.shuffleAnswers));
-  }, [currentQuestionId, allQuestions, settings.shuffleAnswers, isAnswered]);
+  }, [view, currentQuestionId, allQuestions, settings.shuffleAnswers, isAnswered]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -239,6 +242,8 @@ function App() {
   };
 
   useEffect(() => {
+    if (view !== VIEWS.PRACTICE) return;
+
     const handleKeyDown = (event) => {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
 
@@ -268,13 +273,13 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnswered, loadNextQuestion, handleAnswer, handleRevealAnswer, allQuestions, currentQuestionId]);
+  }, [view, isAnswered, loadNextQuestion, handleAnswer, handleRevealAnswer, allQuestions, currentQuestionId]);
 
-  const renderQuizContent = () => {
+  const renderPracticeContent = () => {
     if (isLoading) {
       return (
         <div className="card">
-          <h1>Loading...</h1>
+          <h1>Učitavanje...</h1>
         </div>
       );
     }
@@ -288,12 +293,15 @@ function App() {
           <div className="card completion-screen">
             <h1>🎉 Čestitamo! 🎉</h1>
             <p>Uspješno ste savladali sva pitanja!</p>
+            <button type="button" className="primary-button" onClick={() => navigate(VIEWS.EXAM)}>
+              Probaj ispit (10 pitanja)
+            </button>
           </div>
         );
       }
       return (
         <div className="card">
-          <h1>No questions available.</h1>
+          <h1>Nema dostupnih pitanja.</h1>
         </div>
       );
     }
@@ -372,19 +380,31 @@ function App() {
     );
   };
 
+  const renderMainContent = () => {
+    if (view === VIEWS.HELP) {
+      return <HelpPage onNavigate={navigate} />;
+    }
+    if (view === VIEWS.EXAM) {
+      return <ExamMode allQuestions={allQuestions} isLoading={isLoading} onNavigate={navigate} />;
+    }
+    return renderPracticeContent();
+  };
+
   return (
     <div className="app-shell">
       <header className="app-toolbar">
         <div className="toolbar-left">
-          <button
-            type="button"
-            className={`icon-button questions-menu-toggle ${questionsMenuOpen ? 'active' : ''}`}
-            onClick={() => setQuestionsMenuOpen((open) => !open)}
-            aria-label="Lista pitanja"
-            aria-expanded={questionsMenuOpen}
-          >
-            ?
-          </button>
+          {view === VIEWS.PRACTICE && (
+            <button
+              type="button"
+              className={`icon-button questions-menu-toggle ${questionsMenuOpen ? 'active' : ''}`}
+              onClick={() => setQuestionsMenuOpen((open) => !open)}
+              aria-label="Lista pitanja"
+              aria-expanded={questionsMenuOpen}
+            >
+              ?
+            </button>
+          )}
 
           <div className="info-menu" ref={infoRef}>
             <button
@@ -402,6 +422,24 @@ function App() {
             {infoMenuOpen && (
               <div className="toolbar-dropdown info-dropdown">
                 <h4>Informacije</h4>
+                <p className="dropdown-summary">
+                  Vježbajte pitanja iz prve pomoći, pratite napredak i polagajte probni ispit od 10
+                  pitanja.
+                </p>
+                <button
+                  type="button"
+                  className="dropdown-action"
+                  onClick={() => navigate(VIEWS.HELP)}
+                >
+                  Uputstvo za korištenje
+                </button>
+                <button
+                  type="button"
+                  className="dropdown-action"
+                  onClick={() => navigate(VIEWS.EXAM)}
+                >
+                  Započni ispit (10 pitanja)
+                </button>
                 <a className="dropdown-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
                   GitHub repozitorij
                 </a>
@@ -417,48 +455,74 @@ function App() {
             )}
           </div>
 
-          <div className="settings-menu" ref={settingsRef}>
-            <button
-              type="button"
-              className={`icon-button settings-menu-toggle ${settingsMenuOpen ? 'active' : ''}`}
-              onClick={() => {
-                setSettingsMenuOpen((open) => !open);
-                setInfoMenuOpen(false);
-              }}
-              aria-label="Postavke"
-              aria-expanded={settingsMenuOpen}
-            >
-              ⚙
-            </button>
-            {settingsMenuOpen && (
-              <div className="toolbar-dropdown settings-dropdown">
-                <h4>Postavke</h4>
-                <label className="settings-option">
-                  <input
-                    type="checkbox"
-                    checked={settings.shuffleQuestions}
-                    onChange={handleShuffleQuestionsToggle}
-                  />
-                  <span>Miješaj pitanja</span>
-                </label>
-                <label className="settings-option">
-                  <input
-                    type="checkbox"
-                    checked={settings.shuffleAnswers}
-                    onChange={handleShuffleAnswersToggle}
-                  />
-                  <span>Miješaj odgovore</span>
-                </label>
-                <button type="button" className="settings-reset" onClick={handleResetProgress}>
-                  Resetuj napredak
-                </button>
-              </div>
-            )}
-          </div>
+          {view === VIEWS.PRACTICE && (
+            <div className="settings-menu" ref={settingsRef}>
+              <button
+                type="button"
+                className={`icon-button settings-menu-toggle ${settingsMenuOpen ? 'active' : ''}`}
+                onClick={() => {
+                  setSettingsMenuOpen((open) => !open);
+                  setInfoMenuOpen(false);
+                }}
+                aria-label="Postavke"
+                aria-expanded={settingsMenuOpen}
+              >
+                ⚙
+              </button>
+              {settingsMenuOpen && (
+                <div className="toolbar-dropdown settings-dropdown">
+                  <h4>Postavke</h4>
+                  <label className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.shuffleQuestions}
+                      onChange={handleShuffleQuestionsToggle}
+                    />
+                    <span>Miješaj pitanja</span>
+                  </label>
+                  <label className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.shuffleAnswers}
+                      onChange={handleShuffleAnswersToggle}
+                    />
+                    <span>Miješaj odgovore</span>
+                  </label>
+                  <button type="button" className="settings-reset" onClick={handleResetProgress}>
+                    Resetuj napredak
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
+
+        <nav className="mode-nav" aria-label="Način rada">
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.PRACTICE ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.PRACTICE)}
+          >
+            Vježba
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.EXAM ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.EXAM)}
+          >
+            Ispit
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.HELP ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.HELP)}
+          >
+            Uputstvo
+          </button>
+        </nav>
       </header>
 
-      {questionsMenuOpen && (
+      {view === VIEWS.PRACTICE && questionsMenuOpen && (
         <button
           type="button"
           className="sidebar-backdrop"
@@ -467,54 +531,56 @@ function App() {
         />
       )}
 
-      <div className={`app-container ${questionsMenuOpen ? 'sidebar-open' : ''}`}>
-        <aside
-          ref={questionsRef}
-          className={`progress-sidebar ${questionsMenuOpen ? 'open' : ''}`}
-          aria-hidden={!questionsMenuOpen}
-        >
-          <div className="progress-sidebar-header">
-            <h3>Napredak</h3>
-            <button
-              type="button"
-              className="sidebar-close"
-              onClick={() => setQuestionsMenuOpen(false)}
-              aria-label="Zatvori"
-            >
-              ×
-            </button>
-          </div>
-          <div className="progress-list">
-            {sortedQuestions.map(([id, question]) => {
-              const correctCount = progress[id] || 0;
-              const isMastered = correctCount >= MASTERY_THRESHOLD;
-              const isCurrent = id === currentQuestionId;
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
-                  onClick={() => jumpToQuestion(id)}
-                >
-                  <span className="progress-item-text">
-                    Pitanje {id}: {question.question.substring(0, 30)}...
-                  </span>
-                  <div className="progress-bar-container">
-                    <div
-                      className="progress-bar"
-                      style={{ width: `${(correctCount / MASTERY_THRESHOLD) * 100}%` }}
-                    />
-                  </div>
-                  <span className="progress-item-count">
-                    {correctCount}/{MASTERY_THRESHOLD}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </aside>
+      <div className={`app-container ${view === VIEWS.PRACTICE && questionsMenuOpen ? 'sidebar-open' : ''}`}>
+        {view === VIEWS.PRACTICE && (
+          <aside
+            ref={questionsRef}
+            className={`progress-sidebar ${questionsMenuOpen ? 'open' : ''}`}
+            aria-hidden={!questionsMenuOpen}
+          >
+            <div className="progress-sidebar-header">
+              <h3>Napredak</h3>
+              <button
+                type="button"
+                className="sidebar-close"
+                onClick={() => setQuestionsMenuOpen(false)}
+                aria-label="Zatvori"
+              >
+                ×
+              </button>
+            </div>
+            <div className="progress-list">
+              {sortedQuestions.map(([id, question]) => {
+                const correctCount = progress[id] || 0;
+                const isMastered = correctCount >= MASTERY_THRESHOLD;
+                const isCurrent = id === currentQuestionId;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
+                    onClick={() => jumpToQuestion(id)}
+                  >
+                    <span className="progress-item-text">
+                      Pitanje {id}: {question.question.substring(0, 30)}...
+                    </span>
+                    <div className="progress-bar-container">
+                      <div
+                        className="progress-bar"
+                        style={{ width: `${(correctCount / MASTERY_THRESHOLD) * 100}%` }}
+                      />
+                    </div>
+                    <span className="progress-item-count">
+                      {correctCount}/{MASTERY_THRESHOLD}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
+        )}
 
-        <div className="quiz-card">{renderQuizContent()}</div>
+        <div className="quiz-card">{renderMainContent()}</div>
       </div>
 
       <footer className="cookie-notice">

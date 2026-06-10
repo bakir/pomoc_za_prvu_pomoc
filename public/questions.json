@@ -526,7 +526,7 @@
             "Prenošenje vrši 4-5 osoba",
             "Prenošenje vrši 6-7 a nekad i više osoba"
         ],
-        "correct_index": 1,
+        "correct_index": 0,
         "correct_count": 0
     },
     "54": {
@@ -846,7 +846,7 @@
             "Iščašenja i uganuća zglobova",
             "Manje smrzotine i opekotine"
         ],
-        "correct_index": 1,
+        "correct_index": 2,
         "correct_count": 0
     },
     "86": {
