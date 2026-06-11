@@ -5,7 +5,7 @@ import {
   loadProgress,
   saveProgress,
 } from './cookies';
-import { buildAnswerOrder, orderQuestionIds } from './utils/shuffle';
+import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from './utils/shuffle';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
@@ -145,6 +145,12 @@ function App() {
     setIsAnswered(false);
     setIsRevealed(false);
     setSelectedAnswer(null);
+
+    if (!settings.shuffleQuestions) {
+      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      setCurrentQuestionId(nextId);
+      return;
+    }
 
     let nextPool = [...activeQuestionPool];
 

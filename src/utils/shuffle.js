@@ -15,6 +15,14 @@ export function orderQuestionIds(ids, shuffle) {
   return sorted.sort(() => 0.5 - Math.random());
 }
 
+export function getNextSequentialQuestionId(currentId, questionIds) {
+  const sorted = [...questionIds].map(String).sort((a, b) => Number(a) - Number(b));
+  if (sorted.length === 0) return null;
+  const currentIndex = sorted.indexOf(String(currentId));
+  if (currentIndex === -1) return sorted[0];
+  return sorted[(currentIndex + 1) % sorted.length];
+}
+
 export function pickRandomQuestionIds(questions, count) {
   const ids = Object.keys(questions);
   const shuffled = [...ids].sort(() => 0.5 - Math.random());

@@ -4,7 +4,7 @@ import {
   loadKatalog1Progress,
   saveKatalog1Progress,
 } from '../cookies';
-import { buildAnswerOrder, orderQuestionIds } from '../utils/shuffle';
+import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from '../utils/shuffle';
 import {
   clearKatalog1Reviews,
   getCorrectDisplayIndices,
@@ -125,6 +125,12 @@ export default function Katalog1Practice() {
 
   const loadNextQuestion = useCallback(() => {
     resetQuestionState();
+
+    if (!settings.shuffleQuestions) {
+      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      setCurrentQuestionId(nextId);
+      return;
+    }
 
     let nextPool = [...activeQuestionPool];
     const currentCount = progress[currentQuestionId] || 0;
