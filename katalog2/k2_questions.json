@@ -1,0 +1,1377 @@
+{
+    "1": {
+      "question": "Šta treba izbjegavati nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "vožnju prilagođenu uslovima koji vladaju na kolovozu;",
+        "nagle pokrete točkom upravljača;",
+        "naglo kočenje i zaustavljanje."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/001.png",
+      "question_pic": "katalog2_questionpics/001.png"
+    },
+    "2": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "pripremiti se za savladavanje više uzastopnih krivina od kojih je prva udesno;",
+        "učesnike u saobraćaju iza sebe upozoriti desnim pokazivačem pravca;"
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/002.png",
+      "question_pic": "katalog2_questionpics/002.png"
+    },
+    "3": {
+      "question": "Na koju opasnost upozorava ovaj saobraćajni znak?",
+      "options": [
+        "na blizinu dijela puta gdje je uz kolovoz neutvrđena bankina;",
+        "na blizinu dijela puta gdje je zaleđen kolovoz."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/003.png",
+      "question_pic": "katalog2_questionpics/003.png"
+    },
+    "4": {
+      "question": "Kako ćete postupiti nailaskom na ovoj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "nastaviti kretanje vozilom jer imam prvenstvo prolaza;",
+        "smanjiti brzinu kretanja vozila i po potrebi zaustaviti vozilo;",
+        "propustiti vozila iz suprotnog smjera."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/004.png",
+      "question_pic": "katalog2_questionpics/004.png"
+    },
+    "5": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "zabrana saobraćaja za sva motorna vozila koja vuku priključno vozilo;",
+        "zabrana saobraćaja za sva motorna vozila koja vuku laku prikolicu."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/005.png",
+      "question_pic": "katalog2_questionpics/005.png"
+    },
+    "6": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "elektronska naplata putarine;",
+        "zabrana korištenja radio-aparata u vozilu."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/006.png",
+      "question_pic": "katalog2_questionpics/006.png"
+    },
+    "7": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "niša za zaustavljanje vozila u slučaju opasnosti;",
+        "prostor rezervisan za zaustavljanje vozila javnog gradskog prevoza."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/007.png",
+      "question_pic": "katalog2_questionpics/007.png"
+    },
+    "8": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "radionica za popravak guma;",
+        "mjesto gdje možete kontrolisati pritisak u gumama."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/008.png",
+      "question_pic": "katalog2_questionpics/008.png"
+    },
+    "9": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "povećavati pažnju;",
+        "pružiti pomoć povrjeđenim u saobraćajnoj nezgodi",
+        "povećavati brzinu kretanja vozila."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/009.png",
+      "question_pic": "katalog2_questionpics/009.png"
+    },
+    "10": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "ulazak u područje u kojem postoji povećana opasnost od izbijanja nekontrolisanog požara;",
+        "ulazak u područje gdje je izletnicima dozvoljeno paljenje vatre."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/010.png",
+      "question_pic": "katalog2_questionpics/010.png"
+    },
+    "11": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "smanjiti brzinu kretanja vozila i povećavati pažnju;",
+        "predviditi mogućnost nailaska na poledicu na kolovozu;",
+        "povećavati brzinu kretanja vozila."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/011.png",
+      "question_pic": "katalog2_questionpics/011.png"
+    },
+    "12": {
+      "question": "Kojim vozilima je zabranjeno kretanje putem označenim ovim saobraćajnim znakom?",
+      "options": [
+        "bicikli;",
+        "autobusi i teretna vozila."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/012.jpeg",
+      "question_pic": "katalog2_questionpics/012.png"
+    },
+    "13": {
+      "question": "Kojim vozilima je dozvoljeno kretanje putem označenim ovim saobraćajnim znakom?",
+      "options": [
+        "bicikli, mopedi i laki motocikli;",
+        "motocikli."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/013.jpeg",
+      "question_pic": "katalog2_questionpics/013.png"
+    },
+    "14": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "zabrana saobraćaja za vozila koja prevoze opasne materije iznad određene količine;",
+        "zabrana saobraćaja za vozila koja prevoze eksploziv ili neke lako zapaljive materije."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/014.png",
+      "question_pic": "katalog2_questionpics/014.png"
+    },
+    "15": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "teren uređen za kampovanje u vozilima;",
+        "zabranjeno kampovanje u vozilima."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/015.png",
+      "question_pic": "katalog2_questionpics/015.png"
+    },
+    "16": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "blizina mjesta na kojem se nalazi autopraonica;",
+        "blizina mjesta gdje je zabranjeno pranje vozila."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/016.png",
+      "question_pic": "katalog2_questionpics/016.png"
+    },
+    "17": {
+      "question": "Koje značenje ima znak koji daje ovlašteno lice na raskrsnici?",
+      "options": [
+        "dozvoljen prolaz vozilima koja dolaze sa bočnih strana ovlaštenog lica;",
+        "obavezno zaustavljanje za sva vozila ispred raskrsnice."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/017.jpeg",
+      "question_pic": "katalog2_questionpics/017.png"
+    },
+    "18": {
+      "question": "Dvostruka isprekidana linija služi za obilježavanje:",
+      "options": [
+        "saobraćajnih traka sa izmjenljivim smjerom kretanja na kojima je saobraćaj regulisan uređajima za davanje svjetlosnih saobraćajnih znakova;",
+        "saobraćajne trake koju mogu koristiti samo vozila sa pravom prvenstva prolaza."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/018.png",
+      "question_pic": "katalog2_questionpics/018.png"
+    },
+    "19": {
+      "question": "Kada će vozač koji upravlja vozilom koje prevozi opasne materije koristiti ovaj znak?",
+      "options": [
+        "kad vrši prevoz na temperaturi ispod 0°C;",
+        "kad vrši prevoz opasnih materija na povišenoj temperaturi."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/019.png",
+      "question_pic": "katalog2_questionpics/019.png"
+    },
+    "20": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "obavezno voziti ulijevo;",
+        "nastaviti kretanje vozilom pravom."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/020.png",
+      "question_pic": "katalog2_questionpics/020.png"
+    },
+    "21": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "ukrštanje puteva istog značaja;",
+        "ukrštanje sporednih puteva pod oštrim uglom."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/021.png",
+      "question_pic": "katalog2_questionpics/021.png"
+    },
+    "22": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "pokretni most;",
+        "blizina obale."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/022.png",
+      "question_pic": "katalog2_questionpics/022.png"
+    },
+    "23": {
+      "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "zabrana saobraćaja u oba smjera;",
+        "zabrana saobraćaja u smjeru kretanja vozila;",
+        "da se saobraćaj odvija iz suprotnog smjera."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/023.jpeg",
+      "question_pic": "katalog2_questionpics/023.png"
+    },
+    "24": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "produžetak puta sa prvenstvom prolaza;",
+        "završetak puta ili dijela puta sa prvenstvom prolaza."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/024.jpeg",
+      "question_pic": "katalog2_questionpics/024.png"
+    },
+    "25": {
+      "question": "Kako ćete postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "uz povećanu pažnju nastaviti kretanje vozilom, jer imam pravo prvenstva prolaza u odnosu na vozila koja dolaze iz suprotnog smjera;",
+        "zaustaviti vozilo i propustiti vozila iz suprotnog smjera."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/025.png",
+      "question_pic": "katalog2_questionpics/025.png"
+    },
+    "26": {
+      "question": "Kako ćete postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "smanjiti brzinu kretanja vozila do brzine hoda pješaka;",
+        "povećati brzinu kretanja vozila."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/026.png",
+      "question_pic": "katalog2_questionpics/026.png"
+    },
+    "27": {
+      "question": "Kojim vozilima je dozvoljeno kretanje putem označenim ovim saobraćajnim znakom? (više tačnih odgovora)",
+      "options": [
+        "bicikl;",
+        "putničko vozilo, teretno vozilo, autobus;",
+        "motocikl."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/027.png",
+      "question_pic": "katalog2_questionpics/027.png"
+    },
+    "28": {
+      "question": "Koja vozila se obilježavaju znakom kao na slici?",
+      "options": [
+        "vozila koja prevoze opasne materije;",
+        "spora vozila;"
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/028.jpeg",
+      "question_pic": "katalog2_questionpics/028.png"
+    },
+    "29": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "opasnost za koju nije predviđen poseban znak;",
+        "opasnost kad se krećemo klizavim kolovozom."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/029.png",
+      "question_pic": "katalog2_questionpics/029.png"
+    },
+    "30": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "pravovremeno prebaciti u niži stepen prenosa;",
+        "prebaciti u viši stepen prenosa i što više kočiti nožnom kočnicom."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/030.png",
+      "question_pic": "katalog2_questionpics/030.png"
+    },
+    "31": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "smanjiti brzinu kretanja vozila;",
+        "povećavati pažnju i očekivati bicikliste;",
+        "povećati brzinu kretanja vozila."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/031.png",
+      "question_pic": "katalog2_questionpics/031.png"
+    },
+    "32": {
+      "question": "Kojim vozilima nije dozvoljeno kretanje putem označenim ovim saobraćajnim znakom?",
+      "options": [
+        "vozilima čije je osovinsko opterećenje veće od određenog na znaku;",
+        "vozilima čije je osovinsko opterećenje manje od određenog na znaku."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/032.png",
+      "question_pic": "katalog2_questionpics/032.png"
+    },
+    "33": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za sva motorna vozila, osim za motocikla bez prikolice i mopeda;",
+        "zabrana saobraćaja za sva motorna vozila, osim za motocikla bez prikolice."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/033.png",
+      "question_pic": "katalog2_questionpics/033.png"
+    },
+    "34": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "zabrana saobraćaja za bicikle;",
+        "zabrana saobraćaja za bicikle i mopede."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/034.png",
+      "question_pic": "katalog2_questionpics/034.png"
+    },
+    "35": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "obavezno obilaženje sa lijeve strane;",
+        "obavezan smjer."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/035.png",
+      "question_pic": "katalog2_questionpics/035.png"
+    },
+    "36": {
+      "question": "Šta zabranjuje ovaj saobraćajni znak?",
+      "options": [
+        "zaustavljanje vozila;",
+        "parkiranje vozila."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/036.jpeg",
+      "question_pic": "katalog2_questionpics/036.png"
+    },
+    "37": {
+      "question": "Koja vozila se obilježavaju oznakom kao na slici?",
+      "options": [
+        "teška vozila;",
+        "vozila šira od 2,5 m."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/037.png",
+      "question_pic": "katalog2_questionpics/037.png"
+    },
+    "38": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "prvenstvo prolaza za vozila iz suprotnog smjera;",
+        "dozvoljeni smjer;",
+        "saobraćaj u oba smjera."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/038.png",
+      "question_pic": "katalog2_questionpics/038.png"
+    },
+    "39": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "moguće neravnine i izbočine na putu;",
+        "opasnost od kamenja koje se odronjava na put."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/039.jpeg",
+      "question_pic": "katalog2_questionpics/039.png"
+    },
+    "40": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "blizina prelaza puta preko željezničke pruge u nivou koja nije obezbijeđena branicima ili polubranicima;",
+        "blizina prelaza puta preko željezničke pruge u nivou koja je obezbijeđena branicima ili polubranicima;",
+        "nailazak na drveni bridge."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/040.png",
+      "question_pic": "katalog2_questionpics/040.png"
+    },
+    "41": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za vozila koja prevoze opasne materije;",
+        "zabrana saobraćaja za teretna vozila koja prevoze opasne materije"
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/041.jpeg",
+      "question_pic": "katalog2_questionpics/041.png"
+    },
+    "42": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za vozila koja prekoračuju određeno dvoosovinsko opterećenje;",
+        "zabrana saobraćaja za vozila čije opterećenje po jednostrukoj osovini prelazi opterećenje označeno na znaku."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/042.jpeg",
+      "question_pic": "katalog2_questionpics/042.png"
+    },
+    "43": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "pješačka staza;",
+        "zona smirenog saobraćaja."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/043.jpeg",
+      "question_pic": "katalog2_questionpics/043.png"
+    },
+    "44": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "put sa jednosmjernim saobraćajem;",
+        "obavezan smjer."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/044.png",
+      "question_pic": "katalog2_questionpics/044.png"
+    },
+    "45": {
+      "question": "Koja vozila se obilježavaju oznakom kao na slici?",
+      "options": [
+        "duga vozila;",
+        "vozila čija širina prelazi 2,5 m."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/045.png",
+      "question_pic": "katalog2_questionpics/045.png"
+    },
+    "46": {
+      "question": "Šta može imati za posljedicu nepoštovanje ovog znaka? (više tačnih odgovora)",
+      "options": [
+        "moguće zanošenje i izlijetanje vozila sa kolovoza;",
+        "veću kontrolu prilikom upravljanja vozilom;",
+        "moguće oštećenje ili lomljenje dijelova na vozilu."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "image": "katalog2_images/046.png",
+      "question_pic": "katalog2_questionpics/046.png"
+    },
+    "47": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "pokretni most;",
+        "blizina obale."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/047.jpeg",
+      "question_pic": "katalog2_questionpics/047.png"
+    },
+    "48": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "životinje na putu;",
+        "divljač na putu."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/048.png",
+      "question_pic": "katalog2_questionpics/048.png"
+    },
+    "49": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "zabrana preticanja svih motornih vozila, osim motocikla bez prikolice i mopeda;",
+        "zabrana preticanja svih motornih vozila, osim mopeda."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/049.jpeg",
+      "question_pic": "katalog2_questionpics/049.png"
+    },
+    "50": {
+      "question": "Kojim vozilima nije dozvoljeno kretanje putem označenim ovim saobraćajnim znakom?",
+      "options": [
+        "vozilima čija ukupna visina premašuje visinu označenu na znaku;",
+        "vozilima čija ukupna visina ne premašuje visinu označenu na znaku."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/050.jpeg",
+      "question_pic": "katalog2_questionpics/050.png"
+    },
+    "51": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "obavezni smjerovi;",
+        "dozvoljeni smjerovi."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/051.png",
+      "question_pic": "katalog2_questionpics/051.png"
+    },
+    "52": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "najmanja dozvoljena brzina;",
+        "najveća dozvoljena brzina;",
+        "brzina koja se preporučuje na određenom dijelu puta."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/052.png",
+      "question_pic": "katalog2_questionpics/052.png"
+    },
+    "53": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "početak autoputa;",
+        "početak brzog puta;",
+        "početak puta rezervisanog za saobraćaj motornih vozila."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/053.png",
+      "question_pic": "katalog2_questionpics/053.png"
+    },
+    "54": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "povećati brzinu kretanja vozila;",
+        "smanjiti brzinu kretanja vozila;",
+        "računati na mogućnost udara bočnog vjetra sa desne strane."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/054.png",
+      "question_pic": "katalog2_questionpics/054.png"
+    },
+    "55": {
+      "question": "Koje značenje imaj ovaj saobraćajni znak?",
+      "options": [
+        "obavezno zaustaviti vozilo;",
+        "nailazak na raskrsnicu regulisanu svjetlosnom saobraćajnom signalizacijom;",
+        "nastaviti kretanje vozilom bez smanjenja brzine kretanja."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/055.jpeg",
+      "question_pic": "katalog2_questionpics/055.png"
+    },
+    "56": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "povećati pažnju;",
+        "povećati brzinu kretanja vozila;",
+        "smanjiti brzinu kretanja vozila."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "image": "katalog2_images/056.png",
+      "question_pic": "katalog2_questionpics/056.png"
+    },
+    "57": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana polukružnog okretanja;",
+        "obavezno polukružno okretanje."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/057.jpeg",
+      "question_pic": "katalog2_questionpics/057.png"
+    },
+    "58": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za vozila koja prevoze opasne materije;",
+        "zabrana saobraćaja za vozila cisterne."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/058.jpeg",
+      "question_pic": "katalog2_questionpics/058.png"
+    },
+    "59": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za sva motorna vozila koja vuku priključno vozilo;",
+        "zabrana saobraćaja za teretno vozilo koje vuče priključno vozilo."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/059.png",
+      "question_pic": "katalog2_questionpics/059.png"
+    },
+    "60": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "obavezan smjer;",
+        "obavezno polukružno okretanje."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/060.png",
+      "question_pic": "katalog2_questionpics/060.png"
+    },
+    "61": {
+      "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "zabrana kretanja za bicikle.",
+        "staza kojom se moraju kretati bicikli;",
+        "biciklistička staza;"
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/061.jpeg",
+      "question_pic": "katalog2_questionpics/061.png"
+    },
+    "62": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana održavanja sportskih priredbi na putu;",
+        "prevrtanje ili iskliznuće vozila sa kolovoza."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/062.png",
+      "question_pic": "katalog2_questionpics/062.png"
+    },
+    "63": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "obavezno zaustavljanje;",
+        "nailazak na put sa prvenstvom prolaza."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/063.png",
+      "question_pic": "katalog2_questionpics/063.png"
+    },
+    "64": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "najveće odstojanje između vozila;",
+        "najmanje odstojanje između vozila."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/064.jpeg",
+      "question_pic": "katalog2_questionpics/064.png"
+    },
+    "65": {
+      "question": "Tačan naziv saobraćajnog znaka je:",
+      "options": [
+        "zabrana saobraćaja za sva motorna vozila;",
+        "zabrana saobraćaja za sva motorna vozila, osim mopeda."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/065.jpeg",
+      "question_pic": "katalog2_questionpics/065.png"
+    },
+    "66": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "brzina koja je preporučena;",
+        "najmanja dopuštena brzina kretanja vozila;",
+        "ograničenje brzine."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/066.png",
+      "question_pic": "katalog2_questionpics/066.png"
+    },
+    "67": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "zabrana saobraćaja za vozila koja na točkovima koriste lance;",
+        "označava početak dijela puta na kome motorna vozila, osim motocikla moraju imati propisanu zimsku opremu u zimskim uslovima."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/067.jpeg",
+      "question_pic": "katalog2_questionpics/067.png"
+    },
+    "68": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "obavezno se prestrojiti u desnu saobraćajnu traku;",
+        "najava završetka preticanja."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/068.png",
+      "question_pic": "katalog2_questionpics/068.png"
+    },
+    "69": {
+      "question": "Koja motorna vozila je dozvoljeno preticati na putu označenim ovim saobraćajnim znakom?",
+      "options": [
+        "motocikl bez prikolice i moped;",
+        "putničko vozilo."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/069.jpeg",
+      "question_pic": "katalog2_questionpics/069.png"
+    },
+    "70": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "obavezno zaustaviti vozilo;",
+        "povećavati pažnju;",
+        "smanjiti brzinu kretanja vozila tako da se u slučaju potrebe može blagovremeno izvršiti radnja kočenja i zaustavljanja;",
+        "nastaviti kretanje vozilom bez smanjenja brzine kretanja."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/070.jpeg",
+      "question_pic": "katalog2_questionpics/070.png"
+    },
+    "71": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "obavezno zaustaviti vozilo;",
+        "nastaviti kretanje vozilom sa naročitom opreznošću;",
+        "smanjiti brzinu kretanja vozila tako da se u slučaju potrebe može blagovremeno izvršiti radnja kočenja i zaustavljanja;",
+        "nastaviti kretanje vozilom bez smanjenja brzine kretanja."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/071.jpeg",
+      "question_pic": "katalog2_questionpics/071.png"
+    },
+    "72": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "dozvoljeni smjer;",
+        "put sa jednosmjernim saobraćajem;",
+        "obavezno obilaženje sa desne strane."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/072.jpeg",
+      "question_pic": "katalog2_questionpics/072.png"
+    },
+    "73": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "obavezno smanjiti brzinu kretanja vozila ispod 30 km/h;",
+        "nastaviti kretanje vozilom sa naročitom opreznošću u dužini od 30 km;",
+        "nastaviti kretanje vozilom pri čemu je najmanja dopuštena brzina kretanja vozila 30 km/h."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/073.png",
+      "question_pic": "katalog2_questionpics/073.png"
+    },
+    "74": {
+      "question": "Kako treba postupiti nailaskom na ove oznake na kolovozu? (više tačnih odgovora)",
+      "options": [
+        "obavezno izvršiti radnju skretanja udesno;",
+        "zaustaviti se po potrebi i propustiti pješake na obilježenom pješačkom prelazu;",
+        "zaustaviti se po potrebi i propustiti vozila koja se kreću na putu sa prvenstvom prolaza."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/074.png",
+      "question_pic": "katalog2_questionpics/074.png"
+    },
+    "75": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "obavezno zaustaviti vozilo;",
+        "nastaviti kretanje vozilom sa naročitom opreznošću;",
+        "prilagoditi brzinu kretanja vozila tako da se, u slučaju potrebe, može blagovremeno zaustaviti vozilo."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/075.jpeg",
+      "question_pic": "katalog2_questionpics/075.png"
+    },
+    "76": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "prestanak ograničenja brzine od 80 km/h;",
+        "dio puta gdje prestaje preporučena brzina od 80 km/h;",
+        "dio puta gdje je preporučena brzina 80 km/h."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/076.jpeg",
+      "question_pic": "katalog2_questionpics/076.png"
+    },
+    "77": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "mjesto gdje prestaju sve zabrane;",
+        "put ili dio puta na kojem vozila imaju prednost prolaza prema vozilima koja se kreću putevima koji se ukrštaju, odnosno spajaju sa tim putem ili dijelom puta;",
+        "prelazak puta preko željezničke pruge."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/077.jpeg",
+      "question_pic": "katalog2_questionpics/077.png"
+    },
+    "78": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "dozvoljeni smjer;",
+        "prvenstvo prolaza u odnosu na vozila koja dolaze iz suprotnog smjera;",
+        "put sa jednosmjernim saobraćajem."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/078.jpeg",
+      "question_pic": "katalog2_questionpics/078.png"
+    },
+    "79": {
+      "question": "Tačan naziv saobraćajnog znaka je?",
+      "options": [
+        "prestanak najmanje dopuštene brzine;",
+        "prestanak preporučene brzine.",
+        "prestanak ograničenja brzine."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/079.png",
+      "question_pic": "katalog2_questionpics/079.png"
+    },
+    "80": {
+      "question": "Kako treba postupiti nailaskom na ove oznake na kolovozu?",
+      "options": [
+        "odustati od eventualne namjere zaustavljanja i parkiranja;",
+        "po potrebi se zaustaviti, ali ne i parkirati;",
+        "obavezno se zaustaviti."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/080.png",
+      "question_pic": "katalog2_questionpics/080.png"
+    },
+    "81": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "zabrana kretanja za bicikliste i pješake;",
+        "razdvojena staza za pješake i bicikliste, kojom je zabranjeno kretanje drugih učesnika u saobraćaju,",
+        "staza za kretanje pješaka, bicikla i motocikla."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/081.jpeg",
+      "question_pic": "katalog2_questionpics/081.png"
+    },
+    "82": {
+      "question": "Kako treba postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "povećati brzinu kretanja vozila;",
+        "prilagoditi brzinu kretanja vozila uslovima i stanju na putu jer postoji povećana opasnost od iskliznuća ili prevrtanja vozila."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/082.jpeg",
+      "question_pic": "katalog2_questionpics/082.png"
+    },
+    "83": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "mjesto na putu gdje je postavljeno preventivno ulegnuće kao objekat koji se koristi za smirivanje saobraćaja.",
+        "mjesto na putu gdje je postavljena preventivna izbočina kao objekat koji se koristi za smirivanje saobraćaja."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/083.jpeg",
+      "question_pic": "katalog2_questionpics/083.png"
+    },
+    "84": {
+      "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "blizina mjesta na kojem se izvode radovi ili na kojem je prepreka na putu;",
+        "približavanje mjestu na kojem je saobraćaj regulisan svjetlosnim saobraćajnim znacima;",
+        "smjer i način preusmjeravanja saobraćaja."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "image": "katalog2_images/084.jpeg",
+      "question_pic": "katalog2_questionpics/084.png"
+    },
+    "85": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "blizina dijela puta na kojem se često događaju saobraćajne nezgode;",
+        "blizina dijela puta na kojem se dogodila saobraćajna nezgoda."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/085.jpeg",
+      "question_pic": "katalog2_questionpics/085.png"
+    },
+    "86": {
+      "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "mjesto od kog počinje autoput;",
+        "mjesto od kog počinje put rezervisan za saobraćaj motornih vozila;",
+        "mjesto od kog počinje brzi put."
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "image": "katalog2_images/086.jpeg",
+      "question_pic": "katalog2_questionpics/086.png"
+    },
+    "87": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "položaj puta sa pravom prvenstva prolaza;",
+        "obavezno skretanje ulijevo;",
+        "prvenstvo prolaza u svim smjerovima."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/087.png",
+      "question_pic": "katalog2_questionpics/087.png"
+    },
+    "88": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "mjesto u naselju na kojem se ulazi u područje u kojem se ne smije upravljati vozilom brže od brzine hoda pješaka budući da je dječija igra dopuštena;",
+        "mjesto u naselju na kojem se ulazi u područje u kojem je dozvoljeno upravljati vozilom brže od brzine hoda pješaka."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/088.png",
+      "question_pic": "katalog2_questionpics/088.png"
+    },
+    "89": {
+      "question": "Kako treba postupiti prilikom nailaska vozilom na ovlašteno lice koje u vašem smjeru kretanja daje znak kao na slici?",
+      "options": [
+        "povećati brzinu kretanja vozila;",
+        "smanjiti brzinu kretanja vozila;",
+        "zaustaviti vozilo."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/089.jpeg",
+      "question_pic": "katalog2_questionpics/089.png"
+    },
+    "90": {
+      "question": "Kako ćete postupiti nailaskom na ovaj saobraćajni znak?",
+      "options": [
+        "nastaviti kretanje vozilom jer imam prednost u odnosu na vozila iz suprotnog smjera;",
+        "nastaviti kretanje vozilom sa naročitom opreznošću u odnosu na vozila iz suprotnog smjera;",
+        "ne nastaviti kretanje vozilom, jer je zabranjen saobraćaj vozilima iz smjera prema kome je okrenut znak."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/090.jpeg",
+      "question_pic": "katalog2_questionpics/090.png"
+    },
+    "91": {
+      "question": "Na koju opasnost upozorava ovaj saobraćajni znak?",
+      "options": [
+        "na blizinu tramvajske pruge;",
+        "na blizinu prelaza puta preko željezničke pruge u nivou koja je obezbijeđena branicima ili polubranicima;",
+        "na blizinu prelaza puta preko željezničke pruge u nivou koja nije obezbijeđena branicima ili polubranicima."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/091.jpeg",
+      "question_pic": "katalog2_questionpics/091.png"
+    },
+    "92": {
+      "question": "Na koju opasnost upozorava ovaj saobraćajni znak?",
+      "options": [
+        "na blizinu dijela puta na kojem su česte duže kolone vozila u kretanju;",
+        "na blizinu dijela puta na kojem u određenim uslovima saobraćaja ili drugim okolnostima postoji opasnost od kolone zaustavljenih vozila."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/092.jpeg",
+      "question_pic": "katalog2_questionpics/092.png"
+    },
+    "93": {
+      "question": "Dva crvena trepćuća svjetla koja se naizmjenično pale na saobraćajnom znaku postavljenom prije prelaza puta preko željezničke pruge u nivou, kao na slici, upozoravaju na: (više tačnih odgovora)",
+      "options": [
+        "približavanje voza;",
+        "spuštanje branika ili polubranika;",
+        "mjesto na putu gdje se izvode radovi."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/093.png",
+      "question_pic": "katalog2_questionpics/093.png"
+    },
+    "94": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "blizina i položaj puta koji nema izlaza (slijepi put);",
+        "zabrana skretanja ulijevo."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/094.png",
+      "question_pic": "katalog2_questionpics/094.png"
+    },
+    "95": {
+      "question": "Šta zabranjuje ovaj saobraćajni znak?",
+      "options": [
+        "parkiranje vozila;",
+        "samo zaustavljanje vozila;",
+        "zaustavljanje i parkiranje vozila."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/095.jpeg",
+      "question_pic": "katalog2_questionpics/095.png"
+    },
+    "96": {
+      "question": "Kako ćete postupiti prilikom nailaska vozilom na ovlašteno lice koje u vašem smjeru kretanja daje znak kao na slici?",
+      "options": [
+        "povećati brzinu kretanja vozila;",
+        "zaustaviti vozilo;",
+        "smanjiti brzinu kretanja vozila."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/096.jpeg",
+      "question_pic": "katalog2_questionpics/096.png"
+    },
+    "97": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "mjesto na kojem se nalazi obilježeni pješački prelaz;",
+        "blizina mjesta na kojem se nalazi obilježeni pješački prelaz;",
+        "posebno izgrađena pješačka staza."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/097.jpeg",
+      "question_pic": "katalog2_questionpics/097.png"
+    },
+    "98": {
+      "question": "Sta označava crvena kontrolna lampica ako vam se upali za vrijeme kretanja vozilom, kao na slici?",
+      "options": [
+        "kvar u sistemu za punjenje akumulatora;",
+        "kvar u sistemu za osvjetljenje puta."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/098.png",
+      "question_pic": "katalog2_questionpics/098.png"
+    },
+    "99": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "ukrštanje puteva iste važnosti;",
+        "ukrštanje puta sa sporednim putem pod pravim uglom."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/099.jpeg",
+      "question_pic": "katalog2_questionpics/099.png"
+    },
+    "100": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "prevoj puta;",
+        "suženje puta."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/100.jpeg",
+      "question_pic": "katalog2_questionpics/100.png"
+    },
+    "101": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "blizina raskrsnice na kojoj se saobraćaj odvija kružno;",
+        "kružni tok saobraćaja."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/101.jpeg",
+      "question_pic": "katalog2_questionpics/101.png"
+    },
+    "102": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "vremensko ograničenje parkiranja;",
+        "zona u kojoj je ograničeno trajanje parkiranja;",
+        "parkiralište."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/102.png",
+      "question_pic": "katalog2_questionpics/102.png"
+    },
+    "103": {
+      "question": "Kako ćete postupiti prilikom nailaska na saobraćajni znak sa dopunskom tablom, ukoliko nastavljate kretanje vozilom pravo?",
+      "options": [
+        "propustiću vozila koja se nalaze na putu sa prvenstvom prolaza;",
+        "obavezno ću se zaustaviti;",
+        "propustiću samo vozila sa desne strane."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/103.jpeg",
+      "question_pic": "katalog2_questionpics/103.png"
+    },
+    "104": {
+      "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "da upravljamo vozilom po jednosmjernom putu;",
+        "da ne smijemo skrenuti udesno ili ulijevo;",
+        "da je zabranjen saobraćaj iz suprotnog smjera."
+      ],
+      "answers": [
+        1,
+        3
+      ],
+      "image": "katalog2_images/104.png",
+      "question_pic": "katalog2_questionpics/104.png"
+    },
+    "105": {
+      "question": "Kako postupate za vrijeme upravljanja vozilom nailaskom na ovaj saobraćajni znak? (više tačnih odgovora)",
+      "options": [
+        "smanjujete brzinu kretanja vozila jer nailazite na oštru krivinu udesno;",
+        "izbjegavate kočenje u krivini;",
+        "povećavate brzinu kretanja vozila."
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "image": "katalog2_images/105.png",
+      "question_pic": "katalog2_questionpics/105.png"
+    },
+    "106": {
+      "question": "Na šta vas upozorava crvena kontrolna lampica na instrument-tabli, ako vam se upali za vrijeme kretanja vozilom, kao na slici?",
+      "options": [
+        "višak ulja u motoru;",
+        "kvar u sistemu za podmazivanje motora."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/106.png",
+      "question_pic": "katalog2_questionpics/106.png"
+    },
+    "107": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "zabrana prelaza za bicikl;",
+        "obilježeni prelaz biciklističke staze."
+      ],
+      "answers": [
+        2
+      ],
+      "image": "katalog2_images/107.jpeg",
+      "question_pic": "katalog2_questionpics/107.png"
+    },
+    "108": {
+      "question": "Kako treba postupiti prilikom nailaska vozilom na ovlašteno lice koje u vašem smjeru kretanja daje znak kao na slici?",
+      "options": [
+        "izvršiti radnju skretanja udesno;",
+        "izvršiti radnju skretanja ulijevo;",
+        "obavezno se zaustaviti."
+      ],
+      "answers": [
+        3
+      ],
+      "image": "katalog2_images/108.jpeg",
+      "question_pic": "katalog2_questionpics/108.png"
+    },
+    "109": {
+      "question": "Koje značenje ima ovaj saobraćajni znak?",
+      "options": [
+        "mjesto gdje se nailazi na oštru krivinu;",
+        "mjesto gdje se nailazi na blagu krivinu;",
+        "mjesto gdje se izvode radovi na putu."
+      ],
+      "answers": [
+        1
+      ],
+      "image": "katalog2_images/109.png",
+      "question_pic": "katalog2_questionpics/109.png"
+    }
+  }

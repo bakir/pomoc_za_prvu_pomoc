@@ -9,6 +9,7 @@ import { buildAnswerOrder, orderQuestionIds } from './utils/shuffle';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
+import Katalog2Practice from './pages/Katalog2Practice';
 
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
@@ -375,6 +376,9 @@ function App() {
     if (view === VIEWS.EXAM) {
       return <ExamMode allQuestions={allQuestions} isLoading={isLoading} onNavigate={navigate} />;
     }
+    if (view === VIEWS.KATALOG2) {
+      return <Katalog2Practice />;
+    }
     return renderPracticeContent();
   };
 
@@ -441,7 +445,14 @@ function App() {
             className={`mode-nav-button ${view === VIEWS.PRACTICE ? 'active' : ''}`}
             onClick={() => navigate(VIEWS.PRACTICE)}
           >
-            Vježba
+            Prva pomoć
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.KATALOG2 ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.KATALOG2)}
+          >
+            Znakovi
           </button>
           <button
             type="button"

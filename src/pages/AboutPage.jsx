@@ -8,9 +8,9 @@ export default function AboutPage({ onNavigate }) {
       <h1>O aplikaciji</h1>
       <p className="help-intro">
         Ova aplikacija pomaže u učenju pitanja iz prve pomoći. Imate dva načina rada:{' '}
-        <strong>vježbu</strong> (učite dok napredak raste) i <strong>ispit</strong> (10 nasumičnih
-        pitanja bez uticaja na napredak). Prebacujte se između njih gornjim dugmadima{' '}
-        <strong>Vježba</strong>, <strong>Ispit</strong> i <strong>O aplikaciji</strong>.
+        <strong>prvu pomoć</strong> (učite dok napredak raste), <strong>znakove</strong> (pitanja sa
+        slikama saobraćajnih znakova) i <strong>ispit</strong> (10 nasumičnih pitanja bez uticaja na
+        napredak). Prebacujte se gornjim dugmadima.
       </p>
 
       <section className="help-section">
