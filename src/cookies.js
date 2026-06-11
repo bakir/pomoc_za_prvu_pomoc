@@ -2,6 +2,7 @@ const ONE_YEAR_SECONDS = 365 * 24 * 60 * 60;
 
 export const PROGRESS_COOKIE_KEY = 'firstAidProgress';
 export const KATALOG2_PROGRESS_COOKIE_KEY = 'katalog2Progress';
+export const KATALOG1_PROGRESS_COOKIE_KEY = 'katalog1Progress';
 export const INSTANCE_COOKIE_KEY = 'firstAidInstance';
 
 export function getCookie(name) {
@@ -85,4 +86,16 @@ export function saveKatalog2Progress(progress) {
 
 export function clearKatalog2Progress() {
   deleteCookie(KATALOG2_PROGRESS_COOKIE_KEY);
+}
+
+export function loadKatalog1Progress() {
+  return loadJsonCookie(KATALOG1_PROGRESS_COOKIE_KEY);
+}
+
+export function saveKatalog1Progress(progress) {
+  saveJsonCookie(KATALOG1_PROGRESS_COOKIE_KEY, progress);
+}
+
+export function clearKatalog1Progress() {
+  deleteCookie(KATALOG1_PROGRESS_COOKIE_KEY);
 }

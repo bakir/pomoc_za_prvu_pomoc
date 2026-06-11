@@ -616,6 +616,11 @@ body {
   margin-bottom: 1rem;
 }
 
+.question-category {
+  font-weight: 600;
+  color: #495057;
+}
+
 .question-text {
   font-size: 1.5em;
   font-weight: 600;

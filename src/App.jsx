@@ -9,6 +9,7 @@ import { buildAnswerOrder, orderQuestionIds } from './utils/shuffle';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
+import Katalog1Practice from './pages/Katalog1Practice';
 import Katalog2Practice from './pages/Katalog2Practice';
 
 const MASTERY_THRESHOLD = 3;
@@ -376,6 +377,9 @@ function App() {
     if (view === VIEWS.EXAM) {
       return <ExamMode allQuestions={allQuestions} isLoading={isLoading} onNavigate={navigate} />;
     }
+    if (view === VIEWS.KATALOG1) {
+      return <Katalog1Practice />;
+    }
     if (view === VIEWS.KATALOG2) {
       return <Katalog2Practice />;
     }
@@ -446,6 +450,13 @@ function App() {
             onClick={() => navigate(VIEWS.PRACTICE)}
           >
             Prva pomoć
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.KATALOG1 ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.KATALOG1)}
+          >
+            Propisi
           </button>
           <button
             type="button"
