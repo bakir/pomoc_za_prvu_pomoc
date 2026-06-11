@@ -621,6 +621,24 @@ body {
   color: #495057;
 }
 
+.settings-categories {
+  margin: 0.85rem 0 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.settings-categories h5 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  color: #343a40;
+}
+
+.settings-categories-hint {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  color: #6c757d;
+}
+
 .question-text {
   font-size: 1.5em;
   font-weight: 600;

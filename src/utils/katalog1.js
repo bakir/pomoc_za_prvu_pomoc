@@ -1,5 +1,28 @@
 const KATALOG1_REVIEWS_KEY = 'katalog1QuestionReviews';
 
+export const KATALOG1_CATEGORIES = ['A', 'B', 'C', 'D', 'T'];
+
+export const KATALOG1_DEFAULT_CATEGORIES = ['B'];
+
+export function parseQuestionCategories(categories) {
+  if (!categories) return [];
+  return categories.split(',').map((c) => c.trim()).filter(Boolean);
+}
+
+export function questionMatchesCategories(question, selectedCategories) {
+  if (!selectedCategories?.length) return false;
+  const questionCategories = parseQuestionCategories(question.categories);
+  return selectedCategories.some((cat) => questionCategories.includes(cat));
+}
+
+export function filterQuestionsByCategories(questions, selectedCategories) {
+  return Object.fromEntries(
+    Object.entries(questions).filter(([, question]) =>
+      questionMatchesCategories(question, selectedCategories)
+    )
+  );
+}
+
 export function katalog1AssetUrl(relativePath) {
   const base = import.meta.env.BASE_URL;
   return `${base}katalog1/${relativePath}`;

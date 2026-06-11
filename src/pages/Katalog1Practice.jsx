@@ -7,10 +7,14 @@ import {
 import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from '../utils/shuffle';
 import {
   clearKatalog1Reviews,
+  filterQuestionsByCategories,
   getCorrectDisplayIndices,
   isKatalog1SelectionCorrect,
+  KATALOG1_CATEGORIES,
+  KATALOG1_DEFAULT_CATEGORIES,
   katalog1AssetUrl,
   loadKatalog1Reviews,
+  parseQuestionCategories,
   saveKatalog1Review,
 } from '../utils/katalog1';
 
@@ -33,14 +37,29 @@ export default function Katalog1Practice() {
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
+    selectedCategories: KATALOG1_DEFAULT_CATEGORIES,
   });
 
   const settingsRef = useRef(null);
   const questionsRef = useRef(null);
 
-  const sortedQuestions = useMemo(() => {
-    return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
+  const filteredQuestions = useMemo(() => {
+    return filterQuestionsByCategories(allQuestions, settings.selectedCategories);
+  }, [allQuestions, settings.selectedCategories]);
+
+  const categoryCounts = useMemo(() => {
+    const counts = Object.fromEntries(KATALOG1_CATEGORIES.map((cat) => [cat, 0]));
+    for (const question of Object.values(allQuestions)) {
+      for (const cat of parseQuestionCategories(question.categories)) {
+        if (counts[cat] !== undefined) counts[cat]++;
+      }
+    }
+    return counts;
   }, [allQuestions]);
+
+  const sortedQuestions = useMemo(() => {
+    return Object.entries(filteredQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
+  }, [filteredQuestions]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -52,7 +71,11 @@ export default function Katalog1Practice() {
         setProgress(loadKatalog1Progress());
 
         const savedSettings = JSON.parse(localStorage.getItem(KATALOG1_SETTINGS_KEY) || '{}');
-        setSettings((prev) => ({ ...prev, ...savedSettings }));
+        setSettings((prev) => ({
+          ...prev,
+          ...savedSettings,
+          selectedCategories: savedSettings.selectedCategories ?? KATALOG1_DEFAULT_CATEGORIES,
+        }));
       } catch (error) {
         console.error('Failed to load katalog1 questions:', error);
       } finally {
@@ -81,9 +104,9 @@ export default function Katalog1Practice() {
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, filteredQuestions, settings.shuffleQuestions);
     }
-  }, [allQuestions, refreshActivePool]);
+  }, [allQuestions, filteredQuestions, settings.shuffleQuestions, refreshActivePool]);
 
   useEffect(() => {
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
@@ -127,7 +150,7 @@ export default function Katalog1Practice() {
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(filteredQuestions));
       setCurrentQuestionId(nextId);
       return;
     }
@@ -142,12 +165,12 @@ export default function Katalog1Practice() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, filteredQuestions, settings.shuffleQuestions);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
     }
-  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
+  }, [activeQuestionPool, filteredQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
 
   const toggleSelection = useCallback(
     (displayIndex) => {
@@ -206,7 +229,7 @@ export default function Katalog1Practice() {
       clearKatalog1Progress();
       setProgress({});
       resetQuestionState();
-      refreshActivePool({}, allQuestions, settings.shuffleQuestions);
+      refreshActivePool({}, filteredQuestions, settings.shuffleQuestions);
     }
   };
 
@@ -220,12 +243,29 @@ export default function Katalog1Practice() {
   const handleShuffleQuestionsToggle = () => {
     const next = !settings.shuffleQuestions;
     updateSettings({ shuffleQuestions: next });
-    refreshActivePool(progress, allQuestions, next);
+    refreshActivePool(progress, filteredQuestions, next);
     resetQuestionState();
   };
 
   const handleShuffleAnswersToggle = () => {
     updateSettings({ shuffleAnswers: !settings.shuffleAnswers });
+  };
+
+  const handleCategoryToggle = (category) => {
+    const current = settings.selectedCategories ?? KATALOG1_DEFAULT_CATEGORIES;
+    let next;
+
+    if (current.includes(category)) {
+      if (current.length === 1) return;
+      next = current.filter((cat) => cat !== category);
+    } else {
+      next = KATALOG1_CATEGORIES.filter((cat) => current.includes(cat) || cat === category);
+    }
+
+    updateSettings({ selectedCategories: next });
+    const nextFiltered = filterQuestionsByCategories(allQuestions, next);
+    refreshActivePool(progress, nextFiltered, settings.shuffleQuestions);
+    resetQuestionState();
   };
 
   const jumpToQuestion = (id) => {
@@ -292,8 +332,11 @@ export default function Katalog1Practice() {
     }
 
     if (!currentQuestionId) {
-      const totalQuestions = Object.keys(allQuestions).length;
-      const masteredQuestions = Object.values(progress).filter((count) => count >= MASTERY_THRESHOLD).length;
+      const filteredIds = Object.keys(filteredQuestions);
+      const totalQuestions = filteredIds.length;
+      const masteredQuestions = filteredIds.filter(
+        (id) => (progress[id] || 0) >= MASTERY_THRESHOLD
+      ).length;
 
       if (totalQuestions > 0 && masteredQuestions === totalQuestions) {
         return (
@@ -306,6 +349,7 @@ export default function Katalog1Practice() {
       return (
         <div className="card">
           <h1>Nema dostupnih pitanja.</h1>
+          <p>Odaberite barem jednu kategoriju u postavkama (⚙).</p>
         </div>
       );
     }
@@ -324,7 +368,7 @@ export default function Katalog1Practice() {
       <div className="card">
         <div className="question-stats">
           <span>
-            Pitanje {currentQuestionId} od {Object.keys(allQuestions).length}
+            Pitanje {currentQuestionId} od {Object.keys(filteredQuestions).length}
           </span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>
@@ -487,6 +531,25 @@ export default function Katalog1Practice() {
                 />
                 <span>Miješaj odgovore</span>
               </label>
+              <div className="settings-categories">
+                <h5>Kategorije dozvola</h5>
+                <p className="settings-categories-hint">
+                  Uključena: {settings.selectedCategories.join(', ')} (
+                  {Object.keys(filteredQuestions).length} pitanja)
+                </p>
+                {KATALOG1_CATEGORIES.map((category) => (
+                  <label key={category} className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.selectedCategories.includes(category)}
+                      onChange={() => handleCategoryToggle(category)}
+                    />
+                    <span>
+                      {category} ({categoryCounts[category]})
+                    </span>
+                  </label>
+                ))}
+              </div>
               <button type="button" className="settings-reset" onClick={handleResetProgress}>
                 Resetuj napredak
               </button>
