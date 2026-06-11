@@ -747,9 +747,9 @@
     "61": {
       "question": "Koje značenje ima ovaj saobraćajni znak? (više tačnih odgovora)",
       "options": [
-        "zabrana kretanja za bicikle.",
         "staza kojom se moraju kretati bicikli;",
-        "biciklistička staza;"
+        "biciklistička staza;",
+        "zabrana kretanja za bicikle."
       ],
       "answers": [
         1,
