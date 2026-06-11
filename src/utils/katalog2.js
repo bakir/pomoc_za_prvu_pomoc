@@ -17,6 +17,14 @@ export function getCorrectDisplayIndices(question, displayOrder) {
     .filter((index) => index >= 0);
 }
 
+export function isKatalog2SelectionCorrect(question, displayOrder, selectedDisplayIndices) {
+  const correctIndices = getCorrectDisplayIndices(question, displayOrder);
+  if (selectedDisplayIndices.length !== correctIndices.length) return false;
+
+  const selectedSet = new Set(selectedDisplayIndices);
+  return correctIndices.every((index) => selectedSet.has(index));
+}
+
 export function loadKatalog2Reviews() {
   try {
     return JSON.parse(localStorage.getItem(KATALOG2_REVIEWS_KEY) || '{}');

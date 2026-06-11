@@ -468,6 +468,26 @@ body {
   text-align: center;
 }
 
+.multi-select-hint {
+  margin: -1rem 0 1.25rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.submit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.submit-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+}
+
 .exam-form-header {
   text-align: left;
   margin-bottom: 1.5rem;

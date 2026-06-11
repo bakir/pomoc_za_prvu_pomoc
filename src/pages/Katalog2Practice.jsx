@@ -8,7 +8,7 @@ import { buildAnswerOrder, orderQuestionIds } from '../utils/shuffle';
 import {
   clearKatalog2Reviews,
   getCorrectDisplayIndices,
-  isKatalog2AnswerCorrect,
+  isKatalog2SelectionCorrect,
   katalog2AssetUrl,
   loadKatalog2Reviews,
   saveKatalog2Review,
@@ -22,7 +22,7 @@ export default function Katalog2Practice() {
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [progress, setProgress] = useState({});
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -119,7 +119,7 @@ export default function Katalog2Practice() {
   const resetQuestionState = () => {
     setIsAnswered(false);
     setIsRevealed(false);
-    setSelectedAnswer(null);
+    setSelectedAnswers([]);
     setQuestionReview(null);
   };
 
@@ -143,30 +143,38 @@ export default function Katalog2Practice() {
     }
   }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
 
-  const handleAnswer = useCallback(
+  const toggleSelection = useCallback(
     (displayIndex) => {
       if (isAnswered) return;
-      const question = allQuestions[currentQuestionId];
-      if (!question) return;
-
-      const order = getDisplayOrder();
-      const originalIndex = order[displayIndex];
-      const isCorrect = isKatalog2AnswerCorrect(question, originalIndex);
-
-      setSelectedAnswer(displayIndex);
-      setIsAnswered(true);
-      setIsRevealed(false);
-      setQuestionReview(loadKatalog2Reviews()[currentQuestionId] || null);
-
-      if (isCorrect) {
-        const newCount = (progress[currentQuestionId] || 0) + 1;
-        const newProgress = { ...progress, [currentQuestionId]: newCount };
-        setProgress(newProgress);
-        saveKatalog2Progress(newProgress);
-      }
+      setSelectedAnswers((prev) =>
+        prev.includes(displayIndex)
+          ? prev.filter((index) => index !== displayIndex)
+          : [...prev, displayIndex].sort((a, b) => a - b)
+      );
     },
-    [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder]
+    [isAnswered]
   );
+
+  const handleSubmitAnswer = useCallback(() => {
+    if (isAnswered) return;
+
+    const question = allQuestions[currentQuestionId];
+    if (!question) return;
+
+    const order = getDisplayOrder();
+    const isCorrect = isKatalog2SelectionCorrect(question, order, selectedAnswers);
+
+    setIsAnswered(true);
+    setIsRevealed(false);
+    setQuestionReview(loadKatalog2Reviews()[currentQuestionId] || null);
+
+    if (isCorrect) {
+      const newCount = (progress[currentQuestionId] || 0) + 1;
+      const newProgress = { ...progress, [currentQuestionId]: newCount };
+      setProgress(newProgress);
+      saveKatalog2Progress(newProgress);
+    }
+  }, [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder, selectedAnswers]);
 
   const handleRevealAnswer = useCallback(() => {
     if (isAnswered) return;
@@ -176,7 +184,7 @@ export default function Katalog2Practice() {
     const order = getDisplayOrder();
     const correctIndices = getCorrectDisplayIndices(question, order);
 
-    setSelectedAnswer(correctIndices[0] ?? null);
+    setSelectedAnswers(correctIndices);
     setIsAnswered(true);
     setIsRevealed(true);
     setQuestionReview(loadKatalog2Reviews()[currentQuestionId] || null);
@@ -232,6 +240,12 @@ export default function Katalog2Practice() {
         return;
       }
 
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleSubmitAnswer();
+        return;
+      }
+
       if (event.key === '4') {
         event.preventDefault();
         handleRevealAnswer();
@@ -245,12 +259,20 @@ export default function Katalog2Practice() {
       if (!question || optionIndex >= question.options.length) return;
 
       event.preventDefault();
-      handleAnswer(optionIndex);
+      toggleSelection(optionIndex);
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isAnswered, loadNextQuestion, handleAnswer, handleRevealAnswer, allQuestions, currentQuestionId]);
+  }, [
+    isAnswered,
+    loadNextQuestion,
+    handleSubmitAnswer,
+    handleRevealAnswer,
+    toggleSelection,
+    allQuestions,
+    currentQuestionId,
+  ]);
 
   const renderQuizCard = () => {
     if (isLoading) {
@@ -286,7 +308,8 @@ export default function Katalog2Practice() {
     const correctDisplayIndices = getCorrectDisplayIndices(question, displayOrder);
     const isCorrectSelection =
       isRevealed ||
-      (selectedAnswer !== null && correctDisplayIndices.includes(selectedAnswer));
+      (isAnswered && isKatalog2SelectionCorrect(question, displayOrder, selectedAnswers));
+    const hasMultipleCorrect = correctDisplayIndices.length > 1;
 
     return (
       <div className="card">
@@ -312,24 +335,33 @@ export default function Katalog2Practice() {
 
         <h2 className="question-text">{question.question}</h2>
 
+        {hasMultipleCorrect && !isAnswered && (
+          <p className="multi-select-hint">Možete odabrati više odgovora prije potvrde.</p>
+        )}
+
         <div className="options-container">
           {displayOrder.map((originalIndex, displayIndex) => {
             let buttonClass = 'option-button';
+            const isSelected = selectedAnswers.includes(displayIndex);
+
             if (isAnswered) {
               if (correctDisplayIndices.includes(displayIndex)) {
                 buttonClass += ' correct';
-              } else if (displayIndex === selectedAnswer) {
+              } else if (isSelected) {
                 buttonClass += ' incorrect';
               } else {
                 buttonClass += ' neutral';
               }
+            } else if (isSelected) {
+              buttonClass += ' selected';
             }
+
             return (
               <button
                 key={originalIndex}
                 type="button"
                 className={buttonClass}
-                onClick={() => handleAnswer(displayIndex)}
+                onClick={() => toggleSelection(displayIndex)}
                 disabled={isAnswered}
               >
                 {`${String.fromCharCode(65 + displayIndex)}) ${question.options[originalIndex]}`}
@@ -339,9 +371,14 @@ export default function Katalog2Practice() {
         </div>
 
         {!isAnswered && (
-          <button type="button" className="reveal-button" onClick={handleRevealAnswer}>
-            Provjeri tačan odgovor (4)
-          </button>
+          <div className="submit-actions">
+            <button type="button" className="primary-button submit-button" onClick={handleSubmitAnswer}>
+              Potvrdi odgovor (Enter)
+            </button>
+            <button type="button" className="reveal-button" onClick={handleRevealAnswer}>
+              Provjeri tačan odgovor (4)
+            </button>
+          </div>
         )}
 
         <div className="feedback-container">
@@ -392,11 +429,10 @@ export default function Katalog2Practice() {
         </div>
 
         <div className="keyboard-hints">
-          <p><kbd>1</kbd> — prvi odgovor</p>
-          <p><kbd>2</kbd> — drugi odgovor</p>
-          <p><kbd>3</kbd> — treći odgovor</p>
+          <p><kbd>1</kbd>–<kbd>3</kbd> — odaberi / poništi odgovor</p>
+          <p><kbd>Enter</kbd> — potvrdi odgovor</p>
           <p><kbd>4</kbd> — provjeri tačan odgovor</p>
-          <p><kbd>Enter</kbd> — nastavi</p>
+          <p><kbd>Enter</kbd> (nakon odgovora) — nastavi</p>
         </div>
       </div>
     );
