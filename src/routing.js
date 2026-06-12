@@ -2,6 +2,7 @@ export const VIEWS = {
   PRACTICE: 'practice',
   KATALOG1: 'katalog1',
   KATALOG2: 'katalog2',
+  KATALOG3: 'katalog3',
   ABOUT: 'about',
   EXAM: 'exam',
 };
@@ -12,6 +13,7 @@ export function getViewFromHash() {
   if (hash === 'ispit') return VIEWS.EXAM;
   if (hash === 'znakovi' || hash === 'katalog2') return VIEWS.KATALOG2;
   if (hash === 'propisi' || hash === 'katalog1') return VIEWS.KATALOG1;
+  if (hash === 'raskrsnice' || hash === 'katalog3') return VIEWS.KATALOG3;
   return VIEWS.PRACTICE;
 }
 
@@ -30,6 +32,10 @@ export function setViewHash(view) {
   }
   if (view === VIEWS.KATALOG1) {
     window.location.hash = '#/propisi';
+    return;
+  }
+  if (view === VIEWS.KATALOG3) {
+    window.location.hash = '#/raskrsnice';
     return;
   }
   window.location.hash = '';

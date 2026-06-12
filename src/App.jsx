@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
 import Katalog1Practice from './pages/Katalog1Practice';
 import Katalog2Practice from './pages/Katalog2Practice';
+import Katalog3Practice from './pages/Katalog3Practice';
 
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
@@ -389,6 +390,9 @@ function App() {
     if (view === VIEWS.KATALOG2) {
       return <Katalog2Practice />;
     }
+    if (view === VIEWS.KATALOG3) {
+      return <Katalog3Practice />;
+    }
     return renderPracticeContent();
   };
 
@@ -470,6 +474,13 @@ function App() {
             onClick={() => navigate(VIEWS.KATALOG2)}
           >
             Znakovi
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.KATALOG3 ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.KATALOG3)}
+          >
+            Raskrsnice
           </button>
           <button
             type="button"
