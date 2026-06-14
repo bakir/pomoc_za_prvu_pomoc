@@ -8,10 +8,8 @@ export default function AboutPage({ onNavigate }) {
       <h1>O aplikaciji</h1>
       <p className="help-intro">
         Ova aplikacija pomaže u učenju pitanja iz prve pomoći i saobraćaja. Imate nekoliko načina
-        rada: <strong>prva pomoć</strong> (učite dok napredak raste), <strong>propisi</strong>{' '}
-        (pitanja iz kataloga propisa saobraćaja), <strong>znakovi</strong> (pitanja sa slikama
-        saobraćajnih znakova), <strong>raskrsnice</strong> (pitanja o prolasku kroz raskrsnice) i{' '}
-        <strong>ispit</strong> (10 nasumičnih pitanja iz prve pomoći bez
+        rada: <strong>prva pomoć</strong>, <strong>propisi</strong>, <strong>znakovi</strong>,{' '}
+        <strong>raskrsnice</strong> i <strong>ispit</strong> (10 nasumičnih pitanja iz prve pomoći bez
         uticaja na napredak). Prebacujte se gornjim dugmadima.
       </p>
 

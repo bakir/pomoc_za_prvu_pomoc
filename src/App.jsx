@@ -5,17 +5,26 @@ import {
   loadProgress,
   saveProgress,
 } from './cookies';
-import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from './utils/shuffle';
+import { buildAnswerOrder } from './utils/shuffle';
+import { buildActivePool, getNextSequentialVisibleId } from './utils/practicePool';
+import {
+  hasQuestionNote,
+  isQuestionHard,
+  isQuestionHidden,
+  loadQuestionMeta,
+} from './utils/questionMeta';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
 import Katalog1Practice from './pages/Katalog1Practice';
 import Katalog2Practice from './pages/Katalog2Practice';
 import Katalog3Practice from './pages/Katalog3Practice';
+import QuestionMetaPanel from './components/QuestionMetaPanel';
 
 const MASTERY_THRESHOLD = 3;
 const LEGACY_PROGRESS_STORAGE_KEY = 'firstAidProgress';
 const SETTINGS_STORAGE_KEY = 'firstAidSettings';
+const META_MODE_KEY = 'practice';
 
 function App() {
   const [view, setView] = useState(getViewFromHash);
@@ -23,6 +32,7 @@ function App() {
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [progress, setProgress] = useState({});
+  const [questionMeta, setQuestionMeta] = useState({});
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -33,6 +43,8 @@ function App() {
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
+    prioritizeLowest: false,
+    showHardOnly: false,
   });
 
   const settingsRef = useRef(null);
@@ -52,8 +64,10 @@ function App() {
   }, []);
 
   const sortedQuestions = useMemo(() => {
-    return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
-  }, [allQuestions]);
+    const entries = Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
+    if (!settings.showHardOnly) return entries;
+    return entries.filter(([id]) => isQuestionHard(questionMeta, id));
+  }, [allQuestions, questionMeta, settings.showHardOnly]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -68,6 +82,7 @@ function App() {
         ensureInstanceCookie();
         const savedProgress = loadProgress(LEGACY_PROGRESS_STORAGE_KEY);
         setProgress(savedProgress);
+        setQuestionMeta(loadQuestionMeta(META_MODE_KEY));
 
         const savedSettings = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || '{}');
         setSettings((prev) => ({ ...prev, ...savedSettings }));
@@ -88,26 +103,17 @@ function App() {
     });
   }, []);
 
-  const refreshActivePool = useCallback((currentProgress, questions, shuffleQuestions) => {
-    const unmasteredIds = Object.keys(questions).filter(
-      (id) => (currentProgress[id] || 0) < MASTERY_THRESHOLD
-    );
-
-    const ordered = orderQuestionIds(unmasteredIds, shuffleQuestions);
-    setActiveQuestionPool(ordered);
-
-    if (ordered.length > 0) {
-      setCurrentQuestionId(ordered[0]);
-    } else {
-      setCurrentQuestionId(null);
-    }
+  const refreshActivePool = useCallback((currentProgress, questions, meta, currentSettings) => {
+    const pool = buildActivePool(questions, currentProgress, meta, currentSettings, MASTERY_THRESHOLD);
+    setActiveQuestionPool(pool);
+    setCurrentQuestionId(pool.length > 0 ? pool[0] : null);
   }, []);
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, refreshActivePool]);
+  }, [allQuestions, questionMeta, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
 
   useEffect(() => {
     if (view !== VIEWS.PRACTICE) return;
@@ -148,7 +154,7 @@ function App() {
     setSelectedAnswer(null);
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta);
       setCurrentQuestionId(nextId);
       return;
     }
@@ -163,12 +169,19 @@ function App() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
     }
-  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
+  }, [activeQuestionPool, allQuestions, progress, questionMeta, refreshActivePool, currentQuestionId, settings]);
+
+  const handleQuestionHidden = useCallback((nextMeta = questionMeta) => {
+    setIsAnswered(false);
+    setIsRevealed(false);
+    setSelectedAnswer(null);
+    refreshActivePool(progress, allQuestions, nextMeta, settings);
+  }, [progress, allQuestions, questionMeta, settings, refreshActivePool]);
 
   const handleAnswer = useCallback(
     (displayIndex) => {
@@ -216,14 +229,15 @@ function App() {
       setIsAnswered(false);
       setIsRevealed(false);
       setSelectedAnswer(null);
-      refreshActivePool({}, allQuestions, settings.shuffleQuestions);
+      refreshActivePool({}, allQuestions, questionMeta, settings);
     }
   };
 
   const handleShuffleQuestionsToggle = () => {
     const next = !settings.shuffleQuestions;
+    const nextSettings = { ...settings, shuffleQuestions: next };
     updateSettings({ shuffleQuestions: next });
-    refreshActivePool(progress, allQuestions, next);
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
     setIsAnswered(false);
     setIsRevealed(false);
     setSelectedAnswer(null);
@@ -231,6 +245,20 @@ function App() {
 
   const handleShuffleAnswersToggle = () => {
     updateSettings({ shuffleAnswers: !settings.shuffleAnswers });
+  };
+
+  const handlePrioritizeToggle = () => {
+    const next = !settings.prioritizeLowest;
+    const nextSettings = { ...settings, prioritizeLowest: next };
+    updateSettings({ prioritizeLowest: next });
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
+    setIsAnswered(false);
+    setIsRevealed(false);
+    setSelectedAnswer(null);
+  };
+
+  const handleShowHardOnlyToggle = () => {
+    updateSettings({ showHardOnly: !settings.showHardOnly });
   };
 
   const jumpToQuestion = (id) => {
@@ -319,6 +347,12 @@ function App() {
           <span>
             Tačno odgovoreno: {correctCount}/{MASTERY_THRESHOLD}
           </span>
+          {isQuestionHard(questionMeta, currentQuestionId) && (
+            <>
+              <span style={{ margin: '0 10px' }}>|</span>
+              <span className="question-hard-badge">★ Teško</span>
+            </>
+          )}
         </div>
         <h2 className="question-text">{question.question}</h2>
 
@@ -352,6 +386,14 @@ function App() {
             Provjeri tačan odgovor (4)
           </button>
         )}
+
+        <QuestionMetaPanel
+          modeKey={META_MODE_KEY}
+          questionId={currentQuestionId}
+          meta={questionMeta}
+          setMeta={setQuestionMeta}
+          onHidden={handleQuestionHidden}
+        />
 
         <div className="feedback-container">
           {isAnswered && (
@@ -444,6 +486,22 @@ function App() {
                     />
                     <span>Miješaj odgovore</span>
                   </label>
+                  <label className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.prioritizeLowest}
+                      onChange={handlePrioritizeToggle}
+                    />
+                    <span>Prioritizuj najslabija pitanja</span>
+                  </label>
+                  <label className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.showHardOnly}
+                      onChange={handleShowHardOnlyToggle}
+                    />
+                    <span>Samo teška u listi (?)</span>
+                  </label>
                   <button type="button" className="settings-reset" onClick={handleResetProgress}>
                     Resetuj napredak
                   </button>
@@ -531,14 +589,20 @@ function App() {
                 const correctCount = progress[id] || 0;
                 const isMastered = correctCount >= MASTERY_THRESHOLD;
                 const isCurrent = id === currentQuestionId;
+                const hidden = isQuestionHidden(questionMeta, id);
+                const hard = isQuestionHard(questionMeta, id);
+                const noted = hasQuestionNote(questionMeta, id);
                 return (
                   <button
                     key={id}
                     type="button"
-                    className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
+                    className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''} ${hidden ? 'hidden-question' : ''} ${hard ? 'hard-question' : ''}`}
                     onClick={() => jumpToQuestion(id)}
                   >
                     <span className="progress-item-text">
+                      {hard && '★ '}
+                      {noted && '📝 '}
+                      {hidden && '🚫 '}
                       Pitanje {id}: {question.question.substring(0, 30)}...
                     </span>
                     <div className="progress-bar-container">
@@ -562,7 +626,7 @@ function App() {
 
       <footer className="cookie-notice">
         <p>
-          Koristimo <strong>kolačiće</strong> isključivo za pohranu vašeg napretka u kvizu.
+          Koristimo <strong>kolačiće</strong> za pohranu napretka, bilješki i oznaka pitanja.
           Podaci ostaju u vašem pregledniku i ne dijele se s trećim stranama.
         </p>
       </footer>

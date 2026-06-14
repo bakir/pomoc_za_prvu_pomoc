@@ -4,7 +4,9 @@ import {
   loadKatalog3Progress,
   saveKatalog3Progress,
 } from '../cookies';
-import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from '../utils/shuffle';
+import QuestionMetaPanel from '../components/QuestionMetaPanel';
+import { buildAnswerOrder } from '../utils/shuffle';
+import { buildActivePool, getNextSequentialVisibleId } from '../utils/practicePool';
 import {
   clearKatalog3Reviews,
   getCorrectDisplayIndices,
@@ -13,15 +15,23 @@ import {
   loadKatalog3Reviews,
   saveKatalog3Review,
 } from '../utils/katalog3';
+import {
+  hasQuestionNote,
+  isQuestionHard,
+  isQuestionHidden,
+  loadQuestionMeta,
+} from '../utils/questionMeta';
 
 const MASTERY_THRESHOLD = 3;
 const KATALOG3_SETTINGS_KEY = 'katalog3Settings';
+const META_MODE_KEY = 'katalog3';
 
 export default function Katalog3Practice() {
   const [allQuestions, setAllQuestions] = useState({});
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [progress, setProgress] = useState({});
+  const [questionMeta, setQuestionMeta] = useState({});
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -33,14 +43,18 @@ export default function Katalog3Practice() {
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
+    prioritizeLowest: false,
+    showHardOnly: false,
   });
 
   const settingsRef = useRef(null);
   const questionsRef = useRef(null);
 
   const sortedQuestions = useMemo(() => {
-    return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
-  }, [allQuestions]);
+    const entries = Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
+    if (!settings.showHardOnly) return entries;
+    return entries.filter(([id]) => isQuestionHard(questionMeta, id));
+  }, [allQuestions, questionMeta, settings.showHardOnly]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -50,6 +64,7 @@ export default function Katalog3Practice() {
         const data = await response.json();
         setAllQuestions(data);
         setProgress(loadKatalog3Progress());
+        setQuestionMeta(loadQuestionMeta(META_MODE_KEY));
 
         const savedSettings = JSON.parse(localStorage.getItem(KATALOG3_SETTINGS_KEY) || '{}');
         setSettings((prev) => ({ ...prev, ...savedSettings }));
@@ -70,20 +85,17 @@ export default function Katalog3Practice() {
     });
   }, []);
 
-  const refreshActivePool = useCallback((currentProgress, questions, shuffleQuestions) => {
-    const unmasteredIds = Object.keys(questions).filter(
-      (id) => (currentProgress[id] || 0) < MASTERY_THRESHOLD
-    );
-    const ordered = orderQuestionIds(unmasteredIds, shuffleQuestions);
-    setActiveQuestionPool(ordered);
-    setCurrentQuestionId(ordered.length > 0 ? ordered[0] : null);
+  const refreshActivePool = useCallback((currentProgress, questions, meta, currentSettings) => {
+    const pool = buildActivePool(questions, currentProgress, meta, currentSettings, MASTERY_THRESHOLD);
+    setActiveQuestionPool(pool);
+    setCurrentQuestionId(pool.length > 0 ? pool[0] : null);
   }, []);
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, refreshActivePool]);
+  }, [allQuestions, questionMeta, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
 
   useEffect(() => {
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
@@ -127,7 +139,7 @@ export default function Katalog3Practice() {
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta);
       setCurrentQuestionId(nextId);
       return;
     }
@@ -142,12 +154,25 @@ export default function Katalog3Practice() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
     }
-  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
+  }, [
+    activeQuestionPool,
+    allQuestions,
+    progress,
+    questionMeta,
+    refreshActivePool,
+    currentQuestionId,
+    settings,
+  ]);
+
+  const handleQuestionHidden = useCallback((nextMeta = questionMeta) => {
+    resetQuestionState();
+    refreshActivePool(progress, allQuestions, nextMeta, settings);
+  }, [progress, allQuestions, questionMeta, settings, refreshActivePool]);
 
   const toggleSelection = useCallback(
     (displayIndex) => {
@@ -206,7 +231,7 @@ export default function Katalog3Practice() {
       clearKatalog3Progress();
       setProgress({});
       resetQuestionState();
-      refreshActivePool({}, allQuestions, settings.shuffleQuestions);
+      refreshActivePool({}, allQuestions, questionMeta, settings);
     }
   };
 
@@ -219,13 +244,26 @@ export default function Katalog3Practice() {
 
   const handleShuffleQuestionsToggle = () => {
     const next = !settings.shuffleQuestions;
+    const nextSettings = { ...settings, shuffleQuestions: next };
     updateSettings({ shuffleQuestions: next });
-    refreshActivePool(progress, allQuestions, next);
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
     resetQuestionState();
   };
 
   const handleShuffleAnswersToggle = () => {
     updateSettings({ shuffleAnswers: !settings.shuffleAnswers });
+  };
+
+  const handlePrioritizeToggle = () => {
+    const next = !settings.prioritizeLowest;
+    const nextSettings = { ...settings, prioritizeLowest: next };
+    updateSettings({ prioritizeLowest: next });
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
+    resetQuestionState();
+  };
+
+  const handleShowHardOnlyToggle = () => {
+    updateSettings({ showHardOnly: !settings.showHardOnly });
   };
 
   const jumpToQuestion = (id) => {
@@ -252,19 +290,17 @@ export default function Katalog3Practice() {
         return;
       }
 
-      const question = allQuestions[currentQuestionId];
-      if (!question) return;
-
-      if (event.key === '4' && question.options.length < 4) {
+      if (event.key === '4') {
         event.preventDefault();
         handleRevealAnswer();
         return;
       }
 
       const optionIndex = parseInt(event.key, 10) - 1;
-      if (optionIndex < 0 || Number.isNaN(optionIndex) || optionIndex >= question.options.length) {
-        return;
-      }
+      if (optionIndex < 0 || Number.isNaN(optionIndex)) return;
+
+      const question = allQuestions[currentQuestionId];
+      if (!question || optionIndex >= question.options.length) return;
 
       event.preventDefault();
       toggleSelection(optionIndex);
@@ -292,10 +328,14 @@ export default function Katalog3Practice() {
     }
 
     if (!currentQuestionId) {
-      const totalQuestions = Object.keys(allQuestions).length;
-      const masteredQuestions = Object.values(progress).filter((count) => count >= MASTERY_THRESHOLD).length;
+      const visibleCount = Object.keys(allQuestions).filter(
+        (id) => !isQuestionHidden(questionMeta, id)
+      ).length;
+      const masteredQuestions = Object.entries(progress).filter(
+        ([id, count]) => !isQuestionHidden(questionMeta, id) && count >= MASTERY_THRESHOLD
+      ).length;
 
-      if (totalQuestions > 0 && masteredQuestions === totalQuestions) {
+      if (visibleCount > 0 && masteredQuestions === visibleCount) {
         return (
           <div className="card completion-screen">
             <h1>🎉 Čestitamo! 🎉</h1>
@@ -306,6 +346,7 @@ export default function Katalog3Practice() {
       return (
         <div className="card">
           <h1>Nema dostupnih pitanja.</h1>
+          <p>Provjerite postavke ili vratite sakrivena pitanja.</p>
         </div>
       );
     }
@@ -318,7 +359,6 @@ export default function Katalog3Practice() {
       isRevealed ||
       (isAnswered && isKatalog3SelectionCorrect(question, displayOrder, selectedAnswers));
     const hasMultipleCorrect = correctDisplayIndices.length > 1;
-    const revealKeyHint = question.options.length < 4 ? '4' : null;
 
     return (
       <div className="card">
@@ -330,6 +370,12 @@ export default function Katalog3Practice() {
           <span>
             Tačno odgovoreno: {correctCount}/{MASTERY_THRESHOLD}
           </span>
+          {isQuestionHard(questionMeta, currentQuestionId) && (
+            <>
+              <span style={{ margin: '0 10px' }}>|</span>
+              <span className="question-hard-badge">★ Teško</span>
+            </>
+          )}
         </div>
 
         {question.image && (
@@ -385,10 +431,18 @@ export default function Katalog3Practice() {
               Potvrdi odgovor (Enter)
             </button>
             <button type="button" className="reveal-button" onClick={handleRevealAnswer}>
-              Provjeri tačan odgovor{revealKeyHint ? ` (${revealKeyHint})` : ''}
+              Provjeri tačan odgovor (4)
             </button>
           </div>
         )}
+
+        <QuestionMetaPanel
+          modeKey={META_MODE_KEY}
+          questionId={currentQuestionId}
+          meta={questionMeta}
+          setMeta={setQuestionMeta}
+          onHidden={handleQuestionHidden}
+        />
 
         <div className="feedback-container">
           {isAnswered && (
@@ -442,7 +496,7 @@ export default function Katalog3Practice() {
             <kbd>1</kbd>–<kbd>{question.options.length}</kbd> — odaberi / poništi odgovor
           </p>
           <p><kbd>Enter</kbd> — potvrdi odgovor</p>
-          {revealKeyHint && <p><kbd>{revealKeyHint}</kbd> — provjeri tačan odgovor</p>}
+          <p><kbd>4</kbd> — provjeri tačan odgovor</p>
           <p><kbd>Enter</kbd> (nakon odgovora) — nastavi</p>
         </div>
       </div>
@@ -491,6 +545,22 @@ export default function Katalog3Practice() {
                 />
                 <span>Miješaj odgovore</span>
               </label>
+              <label className="settings-option">
+                <input
+                  type="checkbox"
+                  checked={settings.prioritizeLowest}
+                  onChange={handlePrioritizeToggle}
+                />
+                <span>Prioritizuj najslabija pitanja</span>
+              </label>
+              <label className="settings-option">
+                <input
+                  type="checkbox"
+                  checked={settings.showHardOnly}
+                  onChange={handleShowHardOnlyToggle}
+                />
+                <span>Samo teška u listi (?)</span>
+              </label>
               <button type="button" className="settings-reset" onClick={handleResetProgress}>
                 Resetuj napredak
               </button>
@@ -534,14 +604,20 @@ export default function Katalog3Practice() {
               const isMastered = correctCount >= MASTERY_THRESHOLD;
               const isCurrent = id === currentQuestionId;
               const review = loadKatalog3Reviews()[id];
+              const hidden = isQuestionHidden(questionMeta, id);
+              const hard = isQuestionHard(questionMeta, id);
+              const noted = hasQuestionNote(questionMeta, id);
               return (
                 <button
                   key={id}
                   type="button"
-                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
+                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''} ${hidden ? 'hidden-question' : ''} ${hard ? 'hard-question' : ''}`}
                   onClick={() => jumpToQuestion(id)}
                 >
                   <span className="progress-item-text">
+                    {hard && '★ '}
+                    {noted && '📝 '}
+                    {hidden && '🚫 '}
                     {review === 'agree' && '👍 '}
                     {review === 'disagree' && '👎 '}
                     Pitanje {id}: {q.question.substring(0, 28)}...

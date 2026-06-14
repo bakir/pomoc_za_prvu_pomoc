@@ -639,6 +639,69 @@ body {
   color: #6c757d;
 }
 
+.question-hard-badge {
+  font-weight: 600;
+  color: #c0392b;
+}
+
+.question-meta-panel {
+  margin: 1.25rem 0 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.question-meta-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.question-meta-note {
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+}
+
+.question-meta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.meta-action-button {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.meta-action-button:hover {
+  background: #f8f9fa;
+}
+
+.meta-action-button.hard-button.selected {
+  border-color: #c0392b;
+  color: #c0392b;
+  background: #fff5f5;
+}
+
+.progress-item.hidden-question {
+  opacity: 0.55;
+}
+
+.progress-item.hard-question {
+  border-left: 3px solid #c0392b;
+}
+
 .question-text {
   font-size: 1.5em;
   font-weight: 600;

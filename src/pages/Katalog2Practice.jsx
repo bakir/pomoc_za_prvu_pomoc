@@ -4,7 +4,9 @@ import {
   loadKatalog2Progress,
   saveKatalog2Progress,
 } from '../cookies';
-import { buildAnswerOrder, getNextSequentialQuestionId, orderQuestionIds } from '../utils/shuffle';
+import QuestionMetaPanel from '../components/QuestionMetaPanel';
+import { buildAnswerOrder } from '../utils/shuffle';
+import { buildActivePool, getNextSequentialVisibleId } from '../utils/practicePool';
 import {
   clearKatalog2Reviews,
   getCorrectDisplayIndices,
@@ -13,15 +15,23 @@ import {
   loadKatalog2Reviews,
   saveKatalog2Review,
 } from '../utils/katalog2';
+import {
+  hasQuestionNote,
+  isQuestionHard,
+  isQuestionHidden,
+  loadQuestionMeta,
+} from '../utils/questionMeta';
 
 const MASTERY_THRESHOLD = 3;
 const KATALOG2_SETTINGS_KEY = 'katalog2Settings';
+const META_MODE_KEY = 'katalog2';
 
 export default function Katalog2Practice() {
   const [allQuestions, setAllQuestions] = useState({});
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [progress, setProgress] = useState({});
+  const [questionMeta, setQuestionMeta] = useState({});
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -33,14 +43,18 @@ export default function Katalog2Practice() {
   const [settings, setSettings] = useState({
     shuffleQuestions: false,
     shuffleAnswers: false,
+    prioritizeLowest: false,
+    showHardOnly: false,
   });
 
   const settingsRef = useRef(null);
   const questionsRef = useRef(null);
 
   const sortedQuestions = useMemo(() => {
-    return Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
-  }, [allQuestions]);
+    const entries = Object.entries(allQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
+    if (!settings.showHardOnly) return entries;
+    return entries.filter(([id]) => isQuestionHard(questionMeta, id));
+  }, [allQuestions, questionMeta, settings.showHardOnly]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -50,6 +64,7 @@ export default function Katalog2Practice() {
         const data = await response.json();
         setAllQuestions(data);
         setProgress(loadKatalog2Progress());
+        setQuestionMeta(loadQuestionMeta(META_MODE_KEY));
 
         const savedSettings = JSON.parse(localStorage.getItem(KATALOG2_SETTINGS_KEY) || '{}');
         setSettings((prev) => ({ ...prev, ...savedSettings }));
@@ -70,20 +85,17 @@ export default function Katalog2Practice() {
     });
   }, []);
 
-  const refreshActivePool = useCallback((currentProgress, questions, shuffleQuestions) => {
-    const unmasteredIds = Object.keys(questions).filter(
-      (id) => (currentProgress[id] || 0) < MASTERY_THRESHOLD
-    );
-    const ordered = orderQuestionIds(unmasteredIds, shuffleQuestions);
-    setActiveQuestionPool(ordered);
-    setCurrentQuestionId(ordered.length > 0 ? ordered[0] : null);
+  const refreshActivePool = useCallback((currentProgress, questions, meta, currentSettings) => {
+    const pool = buildActivePool(questions, currentProgress, meta, currentSettings, MASTERY_THRESHOLD);
+    setActiveQuestionPool(pool);
+    setCurrentQuestionId(pool.length > 0 ? pool[0] : null);
   }, []);
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, refreshActivePool]);
+  }, [allQuestions, questionMeta, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
 
   useEffect(() => {
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
@@ -127,7 +139,7 @@ export default function Katalog2Practice() {
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialQuestionId(currentQuestionId, Object.keys(allQuestions));
+      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta);
       setCurrentQuestionId(nextId);
       return;
     }
@@ -142,12 +154,17 @@ export default function Katalog2Practice() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, settings.shuffleQuestions);
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
     }
-  }, [activeQuestionPool, allQuestions, progress, refreshActivePool, currentQuestionId, settings.shuffleQuestions]);
+  }, [activeQuestionPool, allQuestions, progress, questionMeta, refreshActivePool, currentQuestionId, settings]);
+
+  const handleQuestionHidden = useCallback((nextMeta = questionMeta) => {
+    resetQuestionState();
+    refreshActivePool(progress, allQuestions, nextMeta, settings);
+  }, [progress, allQuestions, questionMeta, settings, refreshActivePool]);
 
   const toggleSelection = useCallback(
     (displayIndex) => {
@@ -206,7 +223,7 @@ export default function Katalog2Practice() {
       clearKatalog2Progress();
       setProgress({});
       resetQuestionState();
-      refreshActivePool({}, allQuestions, settings.shuffleQuestions);
+      refreshActivePool({}, allQuestions, questionMeta, settings);
     }
   };
 
@@ -219,13 +236,26 @@ export default function Katalog2Practice() {
 
   const handleShuffleQuestionsToggle = () => {
     const next = !settings.shuffleQuestions;
+    const nextSettings = { ...settings, shuffleQuestions: next };
     updateSettings({ shuffleQuestions: next });
-    refreshActivePool(progress, allQuestions, next);
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
     resetQuestionState();
   };
 
   const handleShuffleAnswersToggle = () => {
     updateSettings({ shuffleAnswers: !settings.shuffleAnswers });
+  };
+
+  const handlePrioritizeToggle = () => {
+    const next = !settings.prioritizeLowest;
+    const nextSettings = { ...settings, prioritizeLowest: next };
+    updateSettings({ prioritizeLowest: next });
+    refreshActivePool(progress, allQuestions, questionMeta, nextSettings);
+    resetQuestionState();
+  };
+
+  const handleShowHardOnlyToggle = () => {
+    updateSettings({ showHardOnly: !settings.showHardOnly });
   };
 
   const jumpToQuestion = (id) => {
@@ -327,6 +357,12 @@ export default function Katalog2Practice() {
           <span>
             Tačno odgovoreno: {correctCount}/{MASTERY_THRESHOLD}
           </span>
+          {isQuestionHard(questionMeta, currentQuestionId) && (
+            <>
+              <span style={{ margin: '0 10px' }}>|</span>
+              <span className="question-hard-badge">★ Teško</span>
+            </>
+          )}
         </div>
 
         {question.image && (
@@ -386,6 +422,14 @@ export default function Katalog2Practice() {
             </button>
           </div>
         )}
+
+        <QuestionMetaPanel
+          modeKey={META_MODE_KEY}
+          questionId={currentQuestionId}
+          meta={questionMeta}
+          setMeta={setQuestionMeta}
+          onHidden={handleQuestionHidden}
+        />
 
         <div className="feedback-container">
           {isAnswered && (
@@ -486,6 +530,22 @@ export default function Katalog2Practice() {
                 />
                 <span>Miješaj odgovore</span>
               </label>
+              <label className="settings-option">
+                <input
+                  type="checkbox"
+                  checked={settings.prioritizeLowest}
+                  onChange={handlePrioritizeToggle}
+                />
+                <span>Prioritizuj najslabija pitanja</span>
+              </label>
+              <label className="settings-option">
+                <input
+                  type="checkbox"
+                  checked={settings.showHardOnly}
+                  onChange={handleShowHardOnlyToggle}
+                />
+                <span>Samo teška u listi (?)</span>
+              </label>
               <button type="button" className="settings-reset" onClick={handleResetProgress}>
                 Resetuj napredak
               </button>
@@ -529,14 +589,20 @@ export default function Katalog2Practice() {
               const isMastered = correctCount >= MASTERY_THRESHOLD;
               const isCurrent = id === currentQuestionId;
               const review = loadKatalog2Reviews()[id];
+              const hidden = isQuestionHidden(questionMeta, id);
+              const hard = isQuestionHard(questionMeta, id);
+              const noted = hasQuestionNote(questionMeta, id);
               return (
                 <button
                   key={id}
                   type="button"
-                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''}`}
+                  className={`progress-item ${isMastered ? 'mastered' : ''} ${isCurrent ? 'current' : ''} ${hidden ? 'hidden-question' : ''} ${hard ? 'hard-question' : ''}`}
                   onClick={() => jumpToQuestion(id)}
                 >
                   <span className="progress-item-text">
+                    {hard && '★ '}
+                    {noted && '📝 '}
+                    {hidden && '🚫 '}
                     {review === 'agree' && '👍 '}
                     {review === 'disagree' && '👎 '}
                     Pitanje {id}: {q.question.substring(0, 28)}...
