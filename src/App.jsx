@@ -103,17 +103,24 @@ function App() {
     });
   }, []);
 
-  const refreshActivePool = useCallback((currentProgress, questions, meta, currentSettings) => {
+  const refreshActivePool = useCallback((currentProgress, questions, meta, currentSettings, preserveQuestionId = null) => {
     const pool = buildActivePool(questions, currentProgress, meta, currentSettings, MASTERY_THRESHOLD);
     setActiveQuestionPool(pool);
-    setCurrentQuestionId(pool.length > 0 ? pool[0] : null);
+    const preserve = preserveQuestionId != null ? String(preserveQuestionId) : null;
+    if (preserve && pool.map(String).includes(preserve)) {
+      setCurrentQuestionId(preserve);
+    } else if (pool.length > 0) {
+      setCurrentQuestionId(pool[0]);
+    } else {
+      setCurrentQuestionId(null);
+    }
   }, []);
 
   useEffect(() => {
     if (Object.keys(allQuestions).length > 0) {
       refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, questionMeta, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
+  }, [allQuestions, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
 
   useEffect(() => {
     if (view !== VIEWS.PRACTICE) return;
@@ -176,12 +183,18 @@ function App() {
     }
   }, [activeQuestionPool, allQuestions, progress, questionMeta, refreshActivePool, currentQuestionId, settings]);
 
-  const handleQuestionHidden = useCallback((nextMeta = questionMeta) => {
+  const handleQuestionHidden = useCallback((nextMeta = questionMeta, isNowHidden = true) => {
     setIsAnswered(false);
     setIsRevealed(false);
     setSelectedAnswer(null);
-    refreshActivePool(progress, allQuestions, nextMeta, settings);
-  }, [progress, allQuestions, questionMeta, settings, refreshActivePool]);
+    refreshActivePool(
+      progress,
+      allQuestions,
+      nextMeta,
+      settings,
+      isNowHidden ? null : currentQuestionId
+    );
+  }, [progress, allQuestions, questionMeta, settings, refreshActivePool, currentQuestionId]);
 
   const handleAnswer = useCallback(
     (displayIndex) => {

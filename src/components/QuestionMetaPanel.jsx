@@ -18,7 +18,7 @@ export default function QuestionMetaPanel({ modeKey, questionId, meta, setMeta, 
     const hidden = !entry.hidden;
     const next = updateQuestionMeta(modeKey, meta, questionId, { hidden });
     setMeta(next);
-    if (hidden) onHidden?.(next);
+    onHidden?.(next, hidden);
   };
 
   const toggleHard = () => {
