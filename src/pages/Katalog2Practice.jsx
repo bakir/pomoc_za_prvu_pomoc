@@ -20,6 +20,7 @@ import {
   isQuestionHard,
   isQuestionHidden,
   loadQuestionMeta,
+  toggleQuestionHard,
 } from '../utils/questionMeta';
 
 const MASTERY_THRESHOLD = 3;
@@ -281,6 +282,16 @@ export default function Katalog2Practice() {
     const handleKeyDown = (event) => {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
 
+      if (
+        event.key.toLowerCase() === 'h' &&
+        !['INPUT', 'TEXTAREA'].includes(event.target?.tagName) &&
+        currentQuestionId
+      ) {
+        event.preventDefault();
+        setQuestionMeta((prev) => toggleQuestionHard(META_MODE_KEY, prev, currentQuestionId));
+        return;
+      }
+
       if (isAnswered) {
         if (event.key === 'Enter') {
           event.preventDefault();
@@ -495,6 +506,7 @@ export default function Katalog2Practice() {
           <p><kbd>1</kbd>–<kbd>3</kbd> — odaberi / poništi odgovor</p>
           <p><kbd>Enter</kbd> — potvrdi odgovor</p>
           <p><kbd>4</kbd> — provjeri tačan odgovor</p>
+          <p><kbd>h</kbd> — označi / poništi teško</p>
           <p><kbd>Enter</kbd> (nakon odgovora) — nastavi</p>
         </div>
       </div>

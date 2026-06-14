@@ -44,6 +44,11 @@ export function updateQuestionMeta(modeKey, meta, questionId, patch) {
   return next;
 }
 
+export function toggleQuestionHard(modeKey, meta, questionId) {
+  const entry = getQuestionMetaEntry(meta, questionId);
+  return updateQuestionMeta(modeKey, meta, questionId, { hard: !entry.hard });
+}
+
 export function clearQuestionMeta(modeKey) {
   saveQuestionMeta(modeKey, {});
   return {};

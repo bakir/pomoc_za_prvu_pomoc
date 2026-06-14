@@ -12,6 +12,7 @@ import {
   isQuestionHard,
   isQuestionHidden,
   loadQuestionMeta,
+  toggleQuestionHard,
 } from './utils/questionMeta';
 import { getViewFromHash, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
@@ -288,6 +289,16 @@ function App() {
     const handleKeyDown = (event) => {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
 
+      if (
+        event.key.toLowerCase() === 'h' &&
+        !['INPUT', 'TEXTAREA'].includes(event.target?.tagName) &&
+        currentQuestionId
+      ) {
+        event.preventDefault();
+        setQuestionMeta((prev) => toggleQuestionHard(META_MODE_KEY, prev, currentQuestionId));
+        return;
+      }
+
       if (isAnswered) {
         if (event.key === 'Enter') {
           event.preventDefault();
@@ -426,6 +437,7 @@ function App() {
           <p><kbd>2</kbd> — drugi odgovor</p>
           <p><kbd>3</kbd> — treći odgovor</p>
           <p><kbd>4</kbd> — provjeri tačan odgovor</p>
+          <p><kbd>h</kbd> — označi / poništi teško</p>
           <p><kbd>Enter</kbd> — nastavi</p>
         </div>
       </div>
