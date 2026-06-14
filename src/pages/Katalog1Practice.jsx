@@ -166,6 +166,20 @@ export default function Katalog1Practice() {
     setQuestionReview(null);
   };
 
+  useEffect(() => {
+    if (Object.keys(allQuestions).length === 0) return;
+
+    if (Object.keys(filteredQuestions).length === 0) {
+      if (currentQuestionId !== null) setCurrentQuestionId(null);
+      return;
+    }
+
+    if (currentQuestionId && !filteredQuestions[currentQuestionId]) {
+      refreshActivePool(progress, filteredQuestions, questionMeta, settings);
+      resetQuestionState();
+    }
+  }, [filteredQuestions, currentQuestionId, allQuestions, progress, questionMeta, settings, refreshActivePool]);
+
   const loadNextQuestion = useCallback(() => {
     resetQuestionState();
 
@@ -314,6 +328,7 @@ export default function Katalog1Practice() {
   };
 
   const jumpToQuestion = (id) => {
+    if (!filteredQuestions[id]) return;
     resetQuestionState();
     setCurrentQuestionId(id);
     setQuestionsMenuOpen(false);
@@ -409,7 +424,16 @@ export default function Katalog1Practice() {
       );
     }
 
-    const question = allQuestions[currentQuestionId];
+    const question = filteredQuestions[currentQuestionId];
+    if (!question) {
+      return (
+        <div className="card">
+          <h1>Nema dostupnih pitanja.</h1>
+          <p>Odaberite barem jednu kategoriju u postavkama (⚙).</p>
+        </div>
+      );
+    }
+
     const correctCount = progress[currentQuestionId] || 0;
     const displayOrder = getDisplayOrder();
     const correctDisplayIndices = getCorrectDisplayIndices(question, displayOrder);
