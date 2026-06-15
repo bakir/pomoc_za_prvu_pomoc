@@ -70,20 +70,21 @@ export default function Katalog1Practice() {
     return counts;
   }, [allQuestions]);
 
-  const filteredQuestionIds = useMemo(() => {
-    return Object.keys(filteredQuestions).sort((a, b) => Number(a) - Number(b));
-  }, [filteredQuestions]);
-
-  const currentQuestionPosition = useMemo(() => {
-    const index = filteredQuestionIds.indexOf(String(currentQuestionId));
-    return index >= 0 ? index + 1 : 0;
-  }, [filteredQuestionIds, currentQuestionId]);
-
   const sortedQuestions = useMemo(() => {
     const entries = Object.entries(filteredQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
     if (!settings.showHardOnly) return entries;
     return entries.filter(([id]) => isQuestionHard(questionMeta, id));
   }, [filteredQuestions, questionMeta, settings.showHardOnly]);
+
+  const sidebarQuestionIds = useMemo(
+    () => sortedQuestions.map(([id]) => String(id)),
+    [sortedQuestions]
+  );
+
+  const currentQuestionPosition = useMemo(() => {
+    const index = sidebarQuestionIds.indexOf(String(currentQuestionId));
+    return index >= 0 ? index + 1 : 0;
+  }, [sidebarQuestionIds, currentQuestionId]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -464,7 +465,7 @@ export default function Katalog1Practice() {
       <div className="card">
         <div className="question-stats">
           <span>
-            Pitanje {currentQuestionPosition} od {filteredQuestionIds.length}
+            Pitanje {currentQuestionPosition} od {sidebarQuestionIds.length}
           </span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>

@@ -71,6 +71,16 @@ function App() {
     return entries.filter(([id]) => isQuestionHard(questionMeta, id));
   }, [allQuestions, questionMeta, settings.showHardOnly]);
 
+  const sidebarQuestionIds = useMemo(
+    () => sortedQuestions.map(([id]) => String(id)),
+    [sortedQuestions]
+  );
+
+  const currentQuestionPosition = useMemo(() => {
+    const index = sidebarQuestionIds.indexOf(String(currentQuestionId));
+    return index >= 0 ? index + 1 : 0;
+  }, [sidebarQuestionIds, currentQuestionId]);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -374,7 +384,7 @@ function App() {
       <div className="card">
         <div className="question-stats">
           <span>
-            Pitanje {currentQuestionId} od {Object.keys(allQuestions).length}
+            Pitanje {currentQuestionPosition} od {sidebarQuestionIds.length}
           </span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>
