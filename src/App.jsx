@@ -33,6 +33,7 @@ const META_MODE_KEY = 'practice';
 
 function App() {
   const [view, setView] = useState(getViewFromHash);
+  const [lekcijeLesson, setLekcijeLesson] = useState(getLekcijeLessonFromHash);
   const [allQuestions, setAllQuestions] = useState({});
   const [activeQuestionPool, setActiveQuestionPool] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
@@ -58,12 +59,18 @@ function App() {
   const navigate = useCallback((nextView) => {
     setViewHash(nextView);
     setView(nextView);
+    if (nextView === VIEWS.LEKCIJE) {
+      setLekcijeLesson(LEKCIJE_LESSONS.HUB);
+    }
     setQuestionsMenuOpen(false);
     setSettingsMenuOpen(false);
   }, []);
 
   useEffect(() => {
-    const onHashChange = () => setView(getViewFromHash());
+    const onHashChange = () => {
+      setView(getViewFromHash());
+      setLekcijeLesson(getLekcijeLessonFromHash());
+    };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
@@ -483,10 +490,9 @@ function App() {
       return <Katalog3Practice />;
     }
     if (view === VIEWS.LEKCIJE) {
-      const lesson = getLekcijeLessonFromHash();
-      if (lesson === LEKCIJE_LESSONS.UDALJENOSTI) return <LekcijeUdaljenosti />;
-      if (lesson === LEKCIJE_LESSONS.VISE_TACNIH) return <LekcijeViseTacnih />;
-      if (lesson === LEKCIJE_LESSONS.BITNE_BRZINE) return <LekcijeBitneBrzine />;
+      if (lekcijeLesson === LEKCIJE_LESSONS.UDALJENOSTI) return <LekcijeUdaljenosti />;
+      if (lekcijeLesson === LEKCIJE_LESSONS.VISE_TACNIH) return <LekcijeViseTacnih />;
+      if (lekcijeLesson === LEKCIJE_LESSONS.BITNE_BRZINE) return <LekcijeBitneBrzine />;
       return <LekcijeHub />;
     }
     return renderPracticeContent();
