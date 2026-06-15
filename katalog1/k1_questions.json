@@ -213,8 +213,8 @@
   "17": {
     "question": "Zaustavljanje vozila je:",
     "options": [
-      "svaki prekid kretanja vozila na putu u trajanju do 5 minuta, osim prekida koji se pravi da bi se postupilo po znaku ili pravilu kojim se reguliše saobraćaj.",
-      "svaki prekid kretanja vozila na putu u trajanju do 15 minuta, osim prekida koji se pravi da bi se postupilo po znaku ili pravilu kojim se reguliše saobraćaj;"
+      "svaki prekid kretanja vozila na putu u trajanju do 15 minuta, osim prekida koji se pravi da bi se postupilo po znaku ili pravilu kojim se reguliše saobraćaj;",
+      "svaki prekid kretanja vozila na putu u trajanju do 5 minuta, osim prekida koji se pravi da bi se postupilo po znaku ili pravilu kojim se reguliše saobraćaj."
     ],
     "answers": [
       2
@@ -2789,8 +2789,8 @@
       "nepropisna i neprilagođena brzina kretanja vozila;",
       "pravilno vršenje radnje mimoilaženja;",
       "ne držanje potrebnog odstojanja;",
-      "nepravilno vršenje radnje preticanja ili obilaženja;",
-      "poštovanje saobraćajnih pravila i propisa;"
+      "poštovanje saobraćajnih pravila i propisa;",
+      "nepravilno vršenje radnje preticanja ili obilaženja;"
     ],
     "answers": [
       1,
@@ -3273,10 +3273,10 @@
     "categories": "D"
   },
   "251": {
-    "question": "Kandidat za vozača CE kategorije može polagati ispit iz upravljanja motornim vozilom ako prikolica ima nosivost od:[cite: 1]",
+    "question": "Kandidat za vozača CE kategorije može polagati ispit iz upravljanja motornim vozilom ako prikolica ima nosivost od:",
     "options": [
-      "minimalno 1.000 kg;[cite: 1]",
-      "minimalno 2.500 kg.[cite: 1]"
+      "minimalno 1.000 kg;",
+      "minimalno 2.500 kg."
     ],
     "answers": [
       2
@@ -3285,10 +3285,10 @@
     "categories": "C"
   },
   "252": {
-    "question": "Koliko kandidata za vozača D kategorije može ispitati ispitivač tokom jednog dana?[cite: 1]",
+    "question": "Koliko kandidata za vozača D kategorije može ispitati ispitivač tokom jednog dana?",
     "options": [
-      "6 kandidata;[cite: 1]",
-      "8 kandidata.[cite: 1]"
+      "6 kandidata;",
+      "8 kandidata."
     ],
     "answers": [
       1
@@ -3297,10 +3297,10 @@
     "categories": "D"
   },
   "253": {
-    "question": "Koliko je vrijeme trajanja ispita iz upravljanja motornim vozilom za podkategoriju C1?[cite: 1]",
+    "question": "Koliko je vrijeme trajanja ispita iz upravljanja motornim vozilom za podkategoriju C1?",
     "options": [
-      "najmanje 25 min;[cite: 1]",
-      "najmanje 35 min.[cite: 1]"
+      "najmanje 25 min;",
+      "najmanje 35 min."
     ],
     "answers": [
       2
@@ -3309,11 +3309,11 @@
     "categories": "C"
   },
   "254": {
-    "question": "Kandidat za vozača DE kategorije može polagati ispit iz upravljanja motornim vozilom ako priključno vozilo ima: (više tačnih odgovora)[cite: 1]",
+    "question": "Kandidat za vozača DE kategorije može polagati ispit iz upravljanja motornim vozilom ako priključno vozilo ima: (više tačnih odgovora)",
     "options": [
-      "najveću dozvoljenu masu veću od 750 kg;[cite: 1]",
-      "zatvoren tovarni prostor, najmanje 3 m širine i 3 m visine;[cite: 1]",
-      "zatvoren tovarni prostor, najmanje 2 m širine i 2 m visine.[cite: 1]"
+      "najveću dozvoljenu masu veću od 750 kg;",
+      "zatvoren tovarni prostor, najmanje 3 m širine i 3 m visine;",
+      "zatvoren tovarni prostor, najmanje 2 m širine i 2 m visine."
     ],
     "answers": [
       1,
@@ -3323,10 +3323,10 @@
     "categories": "D"
   },
   "255": {
-    "question": "Najveća dozvoljena masa skupa vozila C1E podkategorije ne smije preći:[cite: 1]",
+    "question": "Najveća dozvoljena masa skupa vozila C1E podkategorije ne smije preći:",
     "options": [
-      "10.500 kg;[cite: 1]",
-      "12.000 kg.[cite: 1]"
+      "10.500 kg;",
+      "12.000 kg."
     ],
     "answers": [
       2
@@ -3335,11 +3335,11 @@
     "categories": "C"
   },
   "256": {
-    "question": "Kada teretno motorno vozilo (osim tegljača namijenjenih za vuču poluprikolica) mora biti obilježeno oznakom za teško motorno vozilo?[cite: 1]",
+    "question": "Kada teretno motorno vozilo (osim tegljača namijenjenih za vuču poluprikolica) mora biti obilježeno oznakom za teško motorno vozilo?",
     "options": [
-      "ako najveća dopuštena masa prelazi 12.000 kg;[cite: 1]",
-      "ako najveća dopuštena masa prelazi 7.500 kg;[cite: 1]",
-      "ako najveća dopuštena masa prelazi 3.500 kg.[cite: 1]"
+      "ako najveća dopuštena masa prelazi 12.000 kg;",
+      "ako najveća dopuštena masa prelazi 7.500 kg;",
+      "ako najveća dopuštena masa prelazi 3.500 kg."
     ],
     "answers": [
       1
@@ -3348,11 +3348,11 @@
     "categories": "C"
   },
   "257": {
-    "question": "Kada priključna vozila moraju biti obilježena oznakama za duga priključna vozila? (više tačnih odgovora)[cite: 1]",
+    "question": "Kada priključna vozila moraju biti obilježena oznakama za duga priključna vozila? (više tačnih odgovora)",
     "options": [
-      "kad dužina, uključujući i rudu, prelazi 8 m, a najveća dopuštena masa manja je ili jednaka 10.000 kg;[cite: 1]",
-      "kad najveća dopuštena masa, bez obzira na dužinu priključnog vozila, prelazi 10.000 kg;[cite: 1]",
-      "sva priključna vozila moraju nositi oznaku za duga vozila.[cite: 1]"
+      "kad dužina, uključujući i rudu, prelazi 8 m, a najveća dopuštena masa manja je ili jednaka 10.000 kg;",
+      "kad najveća dopuštena masa, bez obzira na dužinu priključnog vozila, prelazi 10.000 kg;",
+      "sva priključna vozila moraju nositi oznaku za duga vozila."
     ],
     "answers": [
       1,
@@ -3362,10 +3362,10 @@
     "categories": "C"
   },
   "258": {
-    "question": "Da li se, po pravilu, od momenta prijema do momenta predaje opasne materije vozač motornog vozila smije udaljiti od vozila?[cite: 1]",
+    "question": "Da li se, po pravilu, od momenta prijema do momenta predaje opasne materije vozač motornog vozila smije udaljiti od vozila?",
     "options": [
-      "da;[cite: 1]",
-      "ne.[cite: 1]"
+      "da;",
+      "ne."
     ],
     "answers": [
       2
@@ -3374,11 +3374,11 @@
     "categories": "B,C"
   },
   "259": {
-    "question": "Koliko kutija prve pomoći mora imati autobus sa više od 25 sjedećih mjesta?[cite: 1]",
+    "question": "Koliko kutija prve pomoći mora imati autobus sa više od 25 sjedećih mjesta?",
     "options": [
-      "jedna kutija;[cite: 1]",
-      "dvije kutije;[cite: 1]",
-      "tri kutije.[cite: 1]"
+      "jedna kutija;",
+      "dvije kutije;",
+      "tri kutije."
     ],
     "answers": [
       2
@@ -3387,10 +3387,10 @@
     "categories": "D"
   },
   "260": {
-    "question": "Klinasti podmetači obavezni su za sva motorna i priključna vozila čija najveća dopuštena masa prelazi:[cite: 1]",
+    "question": "Klinasti podmetači obavezni su za sva motorna i priključna vozila čija najveća dopuštena masa prelazi:",
     "options": [
-      "5 t;[cite: 1]",
-      "7,5 t.[cite: 1]"
+      "5 t;",
+      "7,5 t."
     ],
     "answers": [
       1
@@ -3399,11 +3399,11 @@
     "categories": "C,D,T"
   },
   "261": {
-    "question": "Motorno vozilo koje vuče vozilo koje prevozi opasne materije, ne smije se kretati brzinom većom od:[cite: 1]",
+    "question": "Motorno vozilo koje vuče vozilo koje prevozi opasne materije, ne smije se kretati brzinom većom od:",
     "options": [
-      "25 km/h;[cite: 1]",
-      "30 km/h;[cite: 1]",
-      "40 km/h.[cite: 1]"
+      "25 km/h;",
+      "30 km/h;",
+      "40 km/h."
     ],
     "answers": [
       3
@@ -3412,10 +3412,10 @@
     "categories": "B,C"
   },
   "262": {
-    "question": "Koja motorna i priključna vozila moraju imati gabaritna svjetla?[cite: 1]",
+    "question": "Koja motorna i priključna vozila moraju imati gabaritna svjetla?",
     "options": [
-      "motorna i priključna vozila čija visina prelazi 2,8 m;[cite: 1]",
-      "motorna i priključna vozila koja su šira od 2,1 m.[cite: 1]"
+      "motorna i priključna vozila čija visina prelazi 2,8 m;",
+      "motorna i priključna vozila koja su šira od 2,1 m."
     ],
     "answers": [
       2
@@ -3424,12 +3424,12 @@
     "categories": "B,C,D,T"
   },
   "263": {
-    "question": "Lice koje je položilo vozački ispit i kome je izdata vozačka dozvola za kategoriju vozila A1, A, B ili C1 ne smije dvije godine od dana izdavanja vozačke dozvole upravljati vozilom na autoputu brzinom većom od:[cite: 1]",
+    "question": "Lice koje je položilo vozački ispit i kome je izdata vozačka dozvola za kategoriju vozila A1, A, B ili C1 ne smije dvije godine od dana izdavanja vozačke dozvole upravljati vozilom na autoputu brzinom većom od:",
     "options": [
-      "130 km/h;[cite: 1]",
-      "70 km/h;[cite: 1]",
-      "100 km/h;[cite: 1]",
-      "120 km/h.[cite: 1]"
+      "130 km/h;",
+      "70 km/h;",
+      "100 km/h;",
+      "120 km/h."
     ],
     "answers": [
       4
@@ -3438,12 +3438,12 @@
     "categories": "А,B,C"
   },
   "264": {
-    "question": "Vuča natovarenog teretnog vozila sa priključnim vozilom ili bez priključnog vozila, odnosno traktora sa priključnim vozilom dozvoljena je samo: (više tačnih odgovora)[cite: 1]",
+    "question": "Vuča natovarenog teretnog vozila sa priključnim vozilom ili bez priključnog vozila, odnosno traktora sa priključnim vozilom dozvoljena je samo: (više tačnih odgovora)",
     "options": [
-      "do prvog mjesta pogodnog za pretovar tereta;[cite: 1]",
-      "izuzetno i do prvog mjesta na kojem može da se otkloni kvar na vozilu;[cite: 1]",
-      "vuča natovarenog teretnog vozila nije dozvoljena;[cite: 1]",
-      "vuča natovarenog teretnog vozila je dozvoljena bez ikakvih uslova.[cite: 1]"
+      "do prvog mjesta pogodnog za pretovar tereta;",
+      "izuzetno i do prvog mjesta na kojem može da se otkloni kvar na vozilu;",
+      "vuča natovarenog teretnog vozila nije dozvoljena;",
+      "vuča natovarenog teretnog vozila je dozvoljena bez ikakvih uslova."
     ],
     "answers": [
       1,
@@ -3453,12 +3453,12 @@
     "categories": "B,C,T"
   },
   "265": {
-    "question": "Teret na vozilu ne smije da pređe najudaljeniju tačku na prednjoj strani vozila za više od:[cite: 1]",
+    "question": "Teret na vozilu ne smije da pređe najudaljeniju tačku na prednjoj strani vozila za više od:",
     "options": [
-      "0,25 m;[cite: 1]",
-      "0,50 m;[cite: 1]",
-      "1,00 m;[cite: 1]",
-      "jednu šestinu svoje dužine.[cite: 1]"
+      "0,25 m;",
+      "0,50 m;",
+      "1,00 m;",
+      "jednu šestinu svoje dužine."
     ],
     "answers": [
       3
@@ -3467,12 +3467,12 @@
     "categories": "B,C,T"
   },
   "266": {
-    "question": "Širina motornih i priključnih vozila, uključujući izmjenjive nadgradnje za prihvat tereta, kao i svih uređaja koji se pri vožnji nalaze na vozilu, izuzimajući uređaje za čišćenje snijega i vozila namijenjenih za zimsko održavanje puteva, može biti maksimalne vrijednosti-uopšteno:[cite: 1]",
+    "question": "Širina motornih i priključnih vozila, uključujući izmjenjive nadgradnje za prihvat tereta, kao i svih uređaja koji se pri vožnji nalaze na vozilu, izuzimajući uređaje za čišćenje snijega i vozila namijenjenih za zimsko održavanje puteva, može biti maksimalne vrijednosti-uopšteno:",
     "options": [
-      "2,00 m;[cite: 1]",
-      "2,50 m;[cite: 1]",
-      "2,55 m;[cite: 1]",
-      "4,50 m.[cite: 1]"
+      "2,00 m;",
+      "2,50 m;",
+      "2,55 m;",
+      "4,50 m."
     ],
     "answers": [
       3
@@ -3481,12 +3481,12 @@
     "categories": "B,C,T"
   },
   "267": {
-    "question": "U podkategoriju C1 ubrajaju se motorna vozila za prevoz tereta čija najveća dozvoljena masa ne prelazi:[cite: 1]",
+    "question": "U podkategoriju C1 ubrajaju se motorna vozila za prevoz tereta čija najveća dozvoljena masa ne prelazi:",
     "options": [
-      "3 500 kg;[cite: 1]",
-      "5 000 kg;[cite: 1]",
-      "7 000 kg;[cite: 1]",
-      "7 500 kg.[cite: 1]"
+      "3 500 kg;",
+      "5 000 kg;",
+      "7 000 kg;",
+      "7 500 kg."
     ],
     "answers": [
       4
@@ -3495,12 +3495,12 @@
     "categories": "C"
   },
   "268": {
-    "question": "Teret koji se prevozi na vozilu i priključnom vozilu može da pređe najudaljeniju tačku na zadnjoj strani vozila najviše za:[cite: 1]",
+    "question": "Teret koji se prevozi na vozilu i priključnom vozilu može da pređe najudaljeniju tačku na zadnjoj strani vozila najviše za:",
     "options": [
-      "jednu desetinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;[cite: 1]",
-      "jednu šestinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;[cite: 1]",
-      "jednu petu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;[cite: 1]",
-      "jednu četvrtinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor.[cite: 1]"
+      "jednu desetinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;",
+      "jednu šestinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;",
+      "jednu petu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor;",
+      "jednu četvrtinu svoje dužine koja je kao kontinuiran teret oslonjena na tovarni prostor."
     ],
     "answers": [
       2
@@ -3509,12 +3509,12 @@
     "categories": "B,C,T"
   },
   "269": {
-    "question": "Najveća dozvoljena dužina skupa vozila koji se sastoji od autobusa i prikolice iznosi:[cite: 1]",
+    "question": "Najveća dozvoljena dužina skupa vozila koji se sastoji od autobusa i prikolice iznosi:",
     "options": [
-      "16,50 m;[cite: 1]",
-      "17,50 m;[cite: 1]",
-      "18,75 m;[cite: 1]",
-      "20,00 m.[cite: 1]"
+      "16,50 m;",
+      "17,50 m;",
+      "18,75 m;",
+      "20,00 m."
     ],
     "answers": [
       3
@@ -3523,11 +3523,11 @@
     "categories": "D"
   },
   "270": {
-    "question": "Da li za vrijeme upravljanja vozilom kategorija C i D vozač smije da ima alkohola u krvi?[cite: 1]",
+    "question": "Da li za vrijeme upravljanja vozilom kategorija C i D vozač smije da ima alkohola u krvi?",
     "options": [
-      "da, do 0,5 g/kg;[cite: 1]",
-      "ne;[cite: 1]",
-      "da, do 0,3 g/kg.[cite: 1]"
+      "da, do 0,5 g/kg;",
+      "ne;",
+      "da, do 0,3 g/kg."
     ],
     "answers": [
       2
@@ -3536,10 +3536,10 @@
     "categories": "C,D"
   },
   "271": {
-    "question": "Potvrda o aktivnostima vozača:[cite: 1]",
+    "question": "Potvrda o aktivnostima vozača:",
     "options": [
-      "obrazac o evidenciji i razlozima ne korišćenja slobodnog vremena i odsustva vozača;[cite: 1]",
-      "potvrda koju izdaje prijevoznik vozaču za period dok vozač nije upravljao vozilom (bolovanje, godišnji odmor, ostali izostanci i dr.).[cite: 1]"
+      "obrazac o evidenciji i razlozima ne korišćenja slobodnog vremena i odsustva vozača;",
+      "potvrda koju izdaje prijevoznik vozaču za period dok vozač nije upravljao vozilom (bolovanje, godišnji odmor, ostali izostanci i dr.)."
     ],
     "answers": [
       2
@@ -3548,11 +3548,11 @@
     "categories": "C,D"
   },
   "272": {
-    "question": "Tahograf je uređaj u vozilu koji bilježi: (više tačnih odgovora)[cite: 1]",
+    "question": "Tahograf je uređaj u vozilu koji bilježi: (više tačnih odgovora)",
     "options": [
-      "silu kočenja vozila;[cite: 1]",
-      "brzinu, vrijeme i pređeni put vozila;[cite: 1]",
-      "vremena rada i odmora vozača.[cite: 1]"
+      "silu kočenja vozila;",
+      "brzinu, vrijeme i pređeni put vozila;",
+      "vremena rada i odmora vozača."
     ],
     "answers": [
       2,
@@ -3562,11 +3562,11 @@
     "categories": "C,D"
   },
   "273": {
-    "question": "Vozač koji upravlja autobusom mora, po pravilu, prije početka svog radnog dana imati neprekidan odmor od najmanje:[cite: 1]",
+    "question": "Vozač koji upravlja autobusom mora, po pravilu, prije početka svog radnog dana imati neprekidan odmor od najmanje:",
     "options": [
-      "10 h;[cite: 1]",
-      "8 h;[cite: 1]",
-      "11 h.[cite: 1]"
+      "10 h;",
+      "8 h;",
+      "11 h."
     ],
     "answers": [
       3
@@ -3575,11 +3575,11 @@
     "categories": "D"
   },
   "274": {
-    "question": "Vozača na vanredni ljekarski pregled rješenjem upućuje:[cite: 1]",
+    "question": "Vozača na vanredni ljekarski pregled rješenjem upućuje:",
     "options": [
-      "radnik policije;[cite: 1]",
-      "organ kod koga se vozač vodi u evidenciji;[cite: 1]",
-      "nadležna zdravstvena organizacija.[cite: 1]"
+      "radnik policije;",
+      "organ kod koga se vozač vodi u evidenciji;",
+      "nadležna zdravstvena organizacija."
     ],
     "answers": [
       2
@@ -3588,12 +3588,12 @@
     "categories": "B,C,D,T"
   },
   "275": {
-    "question": "Visina motornih i priključnih vozila, uključujući izmjenjive nadgradnje za prihvatanje tereta kao i svih uređaja koji se pri vožnji nalaze na vozilu, može imati maksimalnu vrijednost:[cite: 1]",
+    "question": "Visina motornih i priključnih vozila, uključujući izmjenjive nadgradnje za prihvatanje tereta kao i svih uređaja koji se pri vožnji nalaze na vozilu, može imati maksimalnu vrijednost:",
     "options": [
-      "5,00m;[cite: 1]",
-      "4,00 m;[cite: 1]",
-      "3,00 m;[cite: 1]",
-      "4,50 m.[cite: 1]"
+      "5,00m;",
+      "4,00 m;",
+      "3,00 m;",
+      "4,50 m."
     ],
     "answers": [
       2
@@ -3602,11 +3602,11 @@
     "categories": "B,C,D,T"
   },
   "276": {
-    "question": "Redovni dnevni odmor je:[cite: 1]",
+    "question": "Redovni dnevni odmor je:",
     "options": [
-      "neprekinuti period odmora od najmanje 11 sati;[cite: 1]",
-      "neprekidni period od najmanje tri sata i drugi neprekidni period od najmanje devet sati;[cite: 1]",
-      "neprekinuti period odmora od najmanje devet sati, ali manje od 11 sati.[cite: 1]"
+      "neprekinuti period odmora od najmanje 11 sati;",
+      "neprekidni period od najmanje tri sata i drugi neprekidni period od najmanje devet sati;",
+      "neprekinuti period odmora od najmanje devet sati, ali manje od 11 sati."
     ],
     "answers": [
       1
@@ -3615,12 +3615,12 @@
     "categories": "C,D"
   },
   "277": {
-    "question": "Teret na vozilu treba da bude raspoređen i prema potrebi, pričvršćen i pokriven tako da: (više tačnih odgovora)[cite: 1]",
+    "question": "Teret na vozilu treba da bude raspoređen i prema potrebi, pričvršćen i pokriven tako da: (više tačnih odgovora)",
     "options": [
-      "ne ugrožava bezbjednost učesnika u saobraćaju;[cite: 1]",
-      "ne umanjuje vozaču preglednost puta;[cite: 1]",
-      "ne rasipa se po putu, osim sa desne strane;[cite: 1]",
-      "ne otežava upravljanje vozilom.[cite: 1]"
+      "ne ugrožava bezbjednost učesnika u saobraćaju;",
+      "ne umanjuje vozaču preglednost puta;",
+      "ne rasipa se po putu, osim sa desne strane;",
+      "ne otežava upravljanje vozilom."
     ],
     "answers": [
       1,
@@ -3631,11 +3631,11 @@
     "categories": "C,T"
   },
   "278": {
-    "question": "Ako se na putu kreću dva ili više vozila koja prevoze opasne materije, odstojanje između tih vozila ne smije biti manje od:[cite: 1]",
+    "question": "Ako se na putu kreću dva ili više vozila koja prevoze opasne materije, odstojanje između tih vozila ne smije biti manje od:",
     "options": [
-      "150 m;[cite: 1]",
-      "200 m;[cite: 1]",
-      "280 m.[cite: 1]"
+      "150 m;",
+      "200 m;",
+      "280 m."
     ],
     "answers": [
       2
@@ -3644,11 +3644,11 @@
     "categories": "B,C"
   },
   "279": {
-    "question": "Ako teret na motornom ili priključnom vozilu sa bočne strane prelazi više od 20 cm vanjsku ivicu prednjeg ili zadnjeg svjetla za označavanje vozila mora se, noću, kao i danju u slučaju smanjene vidljivosti, označiti svjetlom i katadiopterima koji:[cite: 1]",
+    "question": "Ako teret na motornom ili priključnom vozilu sa bočne strane prelazi više od 20 cm vanjsku ivicu prednjeg ili zadnjeg svjetla za označavanje vozila mora se, noću, kao i danju u slučaju smanjene vidljivosti, označiti svjetlom i katadiopterima koji:",
     "options": [
-      "sa prednje strane daju bijelo a sa zadnje crveno svjetlo;[cite: 1]",
-      "sa prednje strane daju bijelo a sa zadnje narandžasto svjetlo;[cite: 1]",
-      "sa prednje i zadnje strane daju bijelo svjetlo.[cite: 1]"
+      "sa prednje strane daju bijelo a sa zadnje crveno svjetlo;",
+      "sa prednje strane daju bijelo a sa zadnje narandžasto svjetlo;",
+      "sa prednje i zadnje strane daju bijelo svjetlo."
     ],
     "answers": [
       1
@@ -3657,12 +3657,12 @@
     "categories": "B,C,T"
   },
   "280": {
-    "question": "Brzina kretanja za autobuse, kad se kreću autoputem ograničava se na:[cite: 1]",
+    "question": "Brzina kretanja za autobuse, kad se kreću autoputem ograničava se na:",
     "options": [
-      "75 km/h;[cite: 1]",
-      "80 km/h;[cite: 1]",
-      "90 km/h;[cite: 1]",
-      "100 km/h.[cite: 1]"
+      "75 km/h;",
+      "80 km/h;",
+      "90 km/h;",
+      "100 km/h."
     ],
     "answers": [
       4
@@ -3671,12 +3671,12 @@
     "categories": "D"
   },
   "281": {
-    "question": "U slučaju neispravnosti vozila koje je natovareno opasnim materijama, takvo vozilo se vuče pomoću:[cite: 1]",
+    "question": "U slučaju neispravnosti vozila koje je natovareno opasnim materijama, takvo vozilo se vuče pomoću:",
     "options": [
-      "užeta;[cite: 1]",
-      "automatskih vučnih kuka sa višestepenovanom regulacijom;[cite: 1]",
-      "krute veze (rude);[cite: 1]",
-      "oslanjanjem ili vješanjem vozila na vučno vozilo.[cite: 1]"
+      "užeta;",
+      "automatskih vučnih kuka sa višestepenovanom regulacijom;",
+      "krute veze (rude);",
+      "oslanjanjem ili vješanjem vozila na vučno vozilo."
     ],
     "answers": [
       3
@@ -3685,12 +3685,12 @@
     "categories": "B,C"
   },
   "282": {
-    "question": "Vozač ne čini povredu propisa ako teret na vozilu kojim upravlja prelazi najudaljeniju tačku na prednjoj strani vozila: (više tačnih odgovora)[cite: 1]",
+    "question": "Vozač ne čini povredu propisa ako teret na vozilu kojim upravlja prelazi najudaljeniju tačku na prednjoj strani vozila: (više tačnih odgovora)",
     "options": [
-      "više od 1 m ali ne više od 2 m, ako je prednji dio tereta obilježen crvenom tkaninom;[cite: 1]",
-      "za 80 cm;[cite: 1]",
-      "za 100 cm;[cite: 1]",
-      "za dužinu koja nije propisana, ako je prednji dio tereta obilježen odgovarajućom tablom.[cite: 1]"
+      "više od 1 m ali ne više od 2 m, ako je prednji dio tereta obilježen crvenom tkaninom;",
+      "za 80 cm;",
+      "za 100 cm;",
+      "za dužinu koja nije propisana, ako je prednji dio tereta obilježen odgovarajućom tablom."
     ],
     "answers": [
       2,
@@ -3700,11 +3700,11 @@
     "categories": "B,C,T"
   },
   "283": {
-    "question": "Kad se na javnom putu van naselja koji ima jednu saobraćajnu traku namijenjenu za saobraćaj vozila u jednom smijeru, kreću jedno za drugim motorna vozila čija je najveća dozvoljena masa veća od 3.500 kg ili čija je dužina veća od sedam metara vozači su dužni da između svakog od tih vozila drže odstojanje od:[cite: 1]",
+    "question": "Kad se na javnom putu van naselja koji ima jednu saobraćajnu traku namijenjenu za saobraćaj vozila u jednom smijeru, kreću jedno za drugim motorna vozila čija je najveća dozvoljena masa veća od 3.500 kg ili čija je dužina veća od sedam metara vozači su dužni da između svakog od tih vozila drže odstojanje od:",
     "options": [
-      "najmanje 100 m i to na dijelu puta gdje je dozvoljeno preticanje;[cite: 1]",
-      "najmanje 500 m i to na dijelu puta gdje je dozvoljeno preticanje;[cite: 1]",
-      "najmanje 200 m, i to na dijelu puta gdje je dozvoljeno preticanje.[cite: 1]"
+      "najmanje 100 m i to na dijelu puta gdje je dozvoljeno preticanje;",
+      "najmanje 500 m i to na dijelu puta gdje je dozvoljeno preticanje;",
+      "najmanje 200 m, i to na dijelu puta gdje je dozvoljeno preticanje."
     ],
     "answers": [
       1
@@ -3713,11 +3713,11 @@
     "categories": "C,D"
   },
   "284": {
-    "question": "Na tovarnom sanduku teretnog motornog vozila dugom 9 m prevoze se željezničke šine koje se kontinuirano oslanjaju na pod tovarnog sanduka. Teret je pravilno utovaren ako: (više tačnih odgovora)[cite: 1]",
+    "question": "Na tovarnom sanduku teretnog motornog vozila dugom 9 m prevoze se željezničke šine koje se kontinuirano oslanjaju na pod tovarnog sanduka. Teret je pravilno utovaren ako: (više tačnih odgovora)",
     "options": [
-      "najudaljeniju tačku na zadnjoj strani vozila prelazi za manje od 2 m;[cite: 1]",
-      "najudaljeniju tačku na zadnjoj strani vozila prelazi za manje od 1,5 m;[cite: 1]",
-      "je najisturenija tačka tereta označena tablom kvadratnog obilka, dimenzija 50x50cm, obojena naizmjeničnim kosim trakama reflektujuće narandžaste i bijele boje i postavljena uspravno na uzdužnu osu vozila.[cite: 1]"
+      "najudaljeniju tačku na zadnjoj strani vozila prelazi za manje od 2 m;",
+      "najudaljeniju tačku na zadnjoj strani vozila prelazi za manje od 1,5 m;",
+      "je najisturenija tačka tereta označena tablom kvadratnog obilka, dimenzija 50x50cm, obojena naizmjeničnim kosim trakama reflektujuće narandžaste i bijele boje i postavljena uspravno na uzdužnu osu vozila."
     ],
     "answers": [
       2,
@@ -3727,12 +3727,12 @@
     "categories": "C"
   },
   "285": {
-    "question": "Odgovarajućom metodom utvrđeno je da vozač u krvi ima 0,2 g/kg. Smatra se da je taj vozač pod dejstvom alkohola ukoliko upravlja vozilom: (više tačnih odgovora)[cite: 1]",
+    "question": "Odgovarajućom metodom utvrđeno je da vozač u krvi ima 0,2 g/kg. Smatra se da je taj vozač pod dejstvom alkohola ukoliko upravlja vozilom: (više tačnih odgovora)",
     "options": [
-      "bilo koje kategorije;[cite: 1]",
-      "kategorija C ili CE;[cite: 1]",
-      "kategorija D ili DE;[cite: 1]",
-      "kategorije A.[cite: 1]"
+      "bilo koje kategorije;",
+      "kategorija C ili CE;",
+      "kategorija D ili DE;",
+      "kategorije A."
     ],
     "answers": [
       2,
@@ -3742,10 +3742,10 @@
     "categories": "B,C,D"
   },
   "286": {
-    "question": "Digitalni tahograf je:[cite: 1]",
+    "question": "Digitalni tahograf je:",
     "options": [
-      "uređaj u drumskom saobraćaju za bilježenje brzine i pređenog puta, kao i vremena rada i odmora, gdje se podaci zapisuju na tahografski listić na kojem vrh pisača ostvaruje zapis mehaničkim pritiskom na tahografski listić, a koji omogućava bilježenje podataka za jedan dan;[cite: 1]",
-      "uređaj u drumskom saobraćaju za bilježenje brzine i pređenog puta, kao i vremena rada i odmora, gdje se podaci zapisuju u radnu memoriju i memorijsku karticu, a koji omogućava pohranjivanje podataka za period od 365 dana.[cite: 1]"
+      "uređaj u drumskom saobraćaju za bilježenje brzine i pređenog puta, kao i vremena rada i odmora, gdje se podaci zapisuju na tahografski listić na kojem vrh pisača ostvaruje zapis mehaničkim pritiskom na tahografski listić, a koji omogućava bilježenje podataka za jedan dan;",
+      "uređaj u drumskom saobraćaju za bilježenje brzine i pređenog puta, kao i vremena rada i odmora, gdje se podaci zapisuju u radnu memoriju i memorijsku karticu, a koji omogućava pohranjivanje podataka za period od 365 dana."
     ],
     "answers": [
       2
@@ -3754,10 +3754,10 @@
     "categories": "C,D"
   },
   "287": {
-    "question": "Na traktoru za vrijeme vožnje po javnom putu mora biti upaljeno:[cite: 1]",
+    "question": "Na traktoru za vrijeme vožnje po javnom putu mora biti upaljeno:",
     "options": [
-      "plavo rotaciono svjetlo;[cite: 1]",
-      "žuto rotaciono svjetlo[cite: 1]"
+      "plavo rotaciono svjetlo;",
+      "žuto rotaciono svjetlo"
     ],
     "answers": [
       2
@@ -3766,10 +3766,10 @@
     "categories": "T"
   },
   "288": {
-    "question": "Redovni sedmični odmor je:[cite: 1]",
+    "question": "Redovni sedmični odmor je:",
     "options": [
-      "odmor koji neprekidno traje najmanje 45 sati;[cite: 1]",
-      "odmor koji neprekidno traje najmanje 48 sati[cite: 1]"
+      "odmor koji neprekidno traje najmanje 45 sati;",
+      "odmor koji neprekidno traje najmanje 48 sati"
     ],
     "answers": [
       1
@@ -3778,11 +3778,11 @@
     "categories": "C,D"
   },
   "289": {
-    "question": "Kad vozač upravlja vozilom koje je opremljeno analognim tahografom, na zahtjev ovlašćenog lica mora pokazati:[cite: 1]",
+    "question": "Kad vozač upravlja vozilom koje je opremljeno analognim tahografom, na zahtjev ovlašćenog lica mora pokazati:",
     "options": [
-      "samo tahografski listić za tekući dan;[cite: 1]",
-      "tahografski listić za tekući dan i prethodnih 28 dana;[cite: 1]",
-      "tahografski listić za tekući dan i prethodnih 21 dan.[cite: 1]"
+      "samo tahografski listić za tekući dan;",
+      "tahografski listić za tekući dan i prethodnih 28 dana;",
+      "tahografski listić za tekući dan i prethodnih 21 dan."
     ],
     "answers": [
       2
@@ -3791,10 +3791,10 @@
     "categories": "C,D"
   },
   "290": {
-    "question": "Tegljač je:[cite: 1]",
+    "question": "Tegljač je:",
     "options": [
-      "motorno vozilo namijenjeno i opremljeno za vuču poluprikolice;[cite: 1]",
-      "motorno vozilo namijenjeno i opremljeno za vuču lake prikolice.[cite: 1]"
+      "motorno vozilo namijenjeno i opremljeno za vuču poluprikolice;",
+      "motorno vozilo namijenjeno i opremljeno za vuču lake prikolice."
     ],
     "answers": [
       1
@@ -3803,10 +3803,10 @@
     "categories": "C"
   },
   "291": {
-    "question": "U slučaju kad vozilo nije opremljeno tahografom, a isto se koristi za obavljanje unutrašnjeg linijskog prevoza putnika na linijama ukupne udaljenosti do 50 km, vozač mora imati u vozilu:[cite: 1]",
+    "question": "U slučaju kad vozilo nije opremljeno tahografom, a isto se koristi za obavljanje unutrašnjeg linijskog prevoza putnika na linijama ukupne udaljenosti do 50 km, vozač mora imati u vozilu:",
     "options": [
-      "izvod iz rasporeda dužnosti i primjerak voznog reda;[cite: 1]",
-      "samo izvod iz rasporeda dužnosti.[cite: 1]"
+      "izvod iz rasporeda dužnosti i primjerak voznog reda;",
+      "samo izvod iz rasporeda dužnosti."
     ],
     "answers": [
       1
@@ -3815,10 +3815,10 @@
     "categories": "D"
   },
   "292": {
-    "question": "Da li teret u rasutom stanju, kad se prevozi na javnom putu, mora da bude prekriven na odgovarajući način kako bi se spriječilo rasipanje tereta:[cite: 1]",
+    "question": "Da li teret u rasutom stanju, kad se prevozi na javnom putu, mora da bude prekriven na odgovarajući način kako bi se spriječilo rasipanje tereta:",
     "options": [
-      "da;[cite: 1]",
-      "ne.[cite: 1]"
+      "da;",
+      "ne."
     ],
     "answers": [
       1
@@ -3827,11 +3827,11 @@
     "categories": "C"
   },
   "293": {
-    "question": "Na teretnom vozilu u prostoru za smještaj tereta može se prevoziti:[cite: 1]",
+    "question": "Na teretnom vozilu u prostoru za smještaj tereta može se prevoziti:",
     "options": [
-      "najviše 10 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje;[cite: 1]",
-      "najviše 5 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje;[cite: 1]",
-      "najviše 7 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje.[cite: 1]"
+      "najviše 10 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje;",
+      "najviše 5 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje;",
+      "najviše 7 lica koja utovaraju ili istovaraju teret ili obavljaju druge radnje."
     ],
     "answers": [
       2
@@ -3840,10 +3840,10 @@
     "categories": "B,C"
   },
   "294": {
-    "question": "Da li se u zatvorenom prostoru vozila koje se ne može otvoriti iznutra smiju prevoziti lica?[cite: 1]",
+    "question": "Da li se u zatvorenom prostoru vozila koje se ne može otvoriti iznutra smiju prevoziti lica?",
     "options": [
-      "da;[cite: 1]",
-      "ne.[cite: 1]"
+      "da;",
+      "ne."
     ],
     "answers": [
       2
@@ -3852,10 +3852,10 @@
     "categories": "B,C"
   },
   "295": {
-    "question": "Ukupno akumulirano vrijeme vožnje tokom 14 dana uzastopno ne smije biti duže od:[cite: 1]",
+    "question": "Ukupno akumulirano vrijeme vožnje tokom 14 dana uzastopno ne smije biti duže od:",
     "options": [
-      "96 sati;[cite: 1]",
-      "90 sati.[cite: 1]"
+      "96 sati;",
+      "90 sati."
     ],
     "answers": [
       2
@@ -3864,10 +3864,10 @@
     "categories": "C,D"
   },
   "296": {
-    "question": "Dvojna posada je:[cite: 1]",
+    "question": "Dvojna posada je:",
     "options": [
-      "posada koju čine četiri vozača;[cite: 1]",
-      "posada koju čine dva vozača (vozač koji upravlja vozilom i vozač u pripravnosti).[cite: 1]"
+      "posada koju čine četiri vozača;",
+      "posada koju čine dva vozača (vozač koji upravlja vozilom i vozač u pripravnosti)."
     ],
     "answers": [
       2
@@ -3876,11 +3876,11 @@
     "categories": "D"
   },
   "297": {
-    "question": "U zaštitnom pojasu javnog puta van naselja mogu se postavljati natpisi za reklame, i to pored magistralnog i regionalnog puta:[cite: 1]",
+    "question": "U zaštitnom pojasu javnog puta van naselja mogu se postavljati natpisi za reklame, i to pored magistralnog i regionalnog puta:",
     "options": [
-      "na razdaljini od najmanje 12 metara, računajući od krajnje tačke poprečnog profila;[cite: 1]",
-      "na razdaljini od najmanje 10 metara, računajući od krajnje tačke poprečnog profila;[cite: 1]",
-      "na razdaljini od najmanje 15 metara, računajući od krajnje tačke poprečnog profila.[cite: 1]"
+      "na razdaljini od najmanje 12 metara, računajući od krajnje tačke poprečnog profila;",
+      "na razdaljini od najmanje 10 metara, računajući od krajnje tačke poprečnog profila;",
+      "na razdaljini od najmanje 15 metara, računajući od krajnje tačke poprečnog profila."
     ],
     "answers": [
       2
@@ -3889,10 +3889,10 @@
     "categories": "A,B,C,D,T"
   },
   "298": {
-    "question": "Uređaj za davanje zvučnih signala ugrađen na motorna vozila koja spadaju u kategoriju vozačke dozvole D1 i D, mora proizvoditi zvukove jačine najmanje:[cite: 1]",
+    "question": "Uređaj za davanje zvučnih signala ugrađen na motorna vozila koja spadaju u kategoriju vozačke dozvole D1 i D, mora proizvoditi zvukove jačine najmanje:",
     "options": [
-      "90 dB(A);[cite: 1]",
-      "93 dB(A).[cite: 1]"
+      "90 dB(A);",
+      "93 dB(A)."
     ],
     "answers": [
       2
@@ -3901,10 +3901,10 @@
     "categories": "D"
   },
   "299": {
-    "question": "Da li se na vozila smiju postavljati gume sa ekserima?[cite: 1]",
+    "question": "Da li se na vozila smiju postavljati gume sa ekserima?",
     "options": [
-      "da;[cite: 1]",
-      "ne.[cite: 1]"
+      "da;",
+      "ne."
     ],
     "answers": [
       2
@@ -3913,10 +3913,10 @@
     "categories": "A,B,C,D,T"
   },
   "300": {
-    "question": "Sedmično vrijeme vožnje ne smije biti duže od?[cite: 1]",
+    "question": "Sedmično vrijeme vožnje ne smije biti duže od?",
     "options": [
-      "48 sati;[cite: 1]",
-      "56 sati.[cite: 1]"
+      "48 sati;",
+      "56 sati."
     ],
     "answers": [
       2
