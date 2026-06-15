@@ -9,6 +9,7 @@
     "build": "vite build",
     "check:multi-hints": "node scripts/check-multi-answer-hints.js",
     "generate:vise-tacnih": "node scripts/generate-vise-tacnih-lesson.js",
+    "generate:lessons": "node scripts/generate-speed-distance-lessons.js",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

@@ -240,8 +240,9 @@ export default function LekcijeUdaljenosti() {
         <p className="lekcije-eyebrow">Lekcije · B kategorija</p>
         <h1>Udaljenosti i rastojanja</h1>
         <p className="lekcije-intro">
-          Propisi o udaljenostima u saobraćaju u Bosni i Hercegovini — sažetak pravila i povezanih
-          pitanja iz kataloga. Proširite sekcije za učenje, zatim uradite kviz na dnu.
+          Automatski izvučeno iz kataloga propisa (B kategorija): pitanja o odstojanju,
+          razdaljini, širini i visini u metrima. Brojevi u oznakama su ključne vrijednosti iz
+          tačnih odgovora — ispod je pun tekst pitanja.
         </p>
         <div className="lekcije-stats">
           <span>{UDALJENOSTI_SECTIONS.length} teme</span>
@@ -268,7 +269,7 @@ export default function LekcijeUdaljenosti() {
               {isOpen && (
                 <div className="lekcije-accordion-panel">
                   {section.items.map((item) => (
-                    <article key={`${section.id}-${item.distance}`} className="lekcije-rule-card">
+                    <article key={item.questionIds[0]} className="lekcije-rule-card">
                       <div className="lekcije-rule-distance">{item.distance}</div>
                       <p className="lekcije-rule-text">{item.text}</p>
                       <p className="lekcije-rule-questions">{formatQuestionIds(item.questionIds)}</p>

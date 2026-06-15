@@ -240,8 +240,9 @@ export default function LekcijeBitneBrzine() {
         <p className="lekcije-eyebrow">Lekcije · B kategorija</p>
         <h1>Bitne brzine</h1>
         <p className="lekcije-intro">
-          Ograničenja brzine u Bosni i Hercegovini — sažetak pravila i povezanih pitanja iz
-          kataloga propisa. Proširite sekcije za učenje, zatim uradite kviz na dnu.
+          Automatski izvučeno iz kataloga propisa (B kategorija): sva pitanja gdje je tačan
+          odgovor broj u km/h. Brojevi u zelenim oznakama su ono što treba pamtiti — ispod je
+          pun tekst pitanja i tačan odgovor.
         </p>
         <div className="lekcije-stats">
           <span>{BITNE_BRZINE_SECTIONS.length} teme</span>
@@ -268,7 +269,7 @@ export default function LekcijeBitneBrzine() {
               {isOpen && (
                 <div className="lekcije-accordion-panel">
                   {section.items.map((item) => (
-                    <article key={`${section.id}-${item.speed}`} className="lekcije-rule-card">
+                    <article key={item.questionIds[0]} className="lekcije-rule-card">
                       <div className="lekcije-rule-speed">{item.speed}</div>
                       <p className="lekcije-rule-text">{item.text}</p>
                       <p className="lekcije-rule-questions">{formatQuestionIds(item.questionIds)}</p>
