@@ -6,7 +6,7 @@ import {
 } from '../cookies';
 import QuestionMetaPanel from '../components/QuestionMetaPanel';
 import { buildAnswerOrder } from '../utils/shuffle';
-import { buildActivePool, getNextSequentialVisibleId } from '../utils/practicePool';
+import { buildActivePool, getNavigableQuestionIds, getNextSequentialVisibleId } from '../utils/practicePool';
 import {
   clearKatalog1Reviews,
   filterQuestionsByCategories,
@@ -135,7 +135,15 @@ export default function Katalog1Practice() {
     if (Object.keys(allQuestions).length > 0) {
       refreshActivePool(progress, filteredQuestions, questionMeta, settings);
     }
-  }, [allQuestions, filteredQuestions, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
+  }, [allQuestions, filteredQuestions, settings.shuffleQuestions, settings.prioritizeLowest, settings.showHardOnly, refreshActivePool]);
+
+  useEffect(() => {
+    if (!settings.showHardOnly || Object.keys(filteredQuestions).length === 0) return;
+    const navigable = getNavigableQuestionIds(filteredQuestions, questionMeta, settings);
+    if (currentQuestionId && !navigable.includes(String(currentQuestionId))) {
+      refreshActivePool(progress, filteredQuestions, questionMeta, settings);
+    }
+  }, [questionMeta, settings.showHardOnly, filteredQuestions, currentQuestionId, progress, settings, refreshActivePool]);
 
   useEffect(() => {
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
@@ -193,7 +201,7 @@ export default function Katalog1Practice() {
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialVisibleId(currentQuestionId, filteredQuestions, questionMeta);
+      const nextId = getNextSequentialVisibleId(currentQuestionId, filteredQuestions, questionMeta, settings);
       setCurrentQuestionId(nextId);
       return;
     }

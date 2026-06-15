@@ -6,7 +6,7 @@ import {
   saveProgress,
 } from './cookies';
 import { buildAnswerOrder } from './utils/shuffle';
-import { buildActivePool, getNextSequentialVisibleId } from './utils/practicePool';
+import { buildActivePool, getNavigableQuestionIds, getNextSequentialVisibleId } from './utils/practicePool';
 import {
   hasQuestionNote,
   isQuestionHard,
@@ -20,6 +20,7 @@ import ExamMode from './pages/ExamMode';
 import Katalog1Practice from './pages/Katalog1Practice';
 import Katalog2Practice from './pages/Katalog2Practice';
 import Katalog3Practice from './pages/Katalog3Practice';
+import LekcijeBitneBrzine from './pages/LekcijeBitneBrzine';
 import QuestionMetaPanel from './components/QuestionMetaPanel';
 
 const MASTERY_THRESHOLD = 3;
@@ -121,7 +122,15 @@ function App() {
     if (Object.keys(allQuestions).length > 0) {
       refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
+  }, [allQuestions, settings.shuffleQuestions, settings.prioritizeLowest, settings.showHardOnly, refreshActivePool]);
+
+  useEffect(() => {
+    if (!settings.showHardOnly || Object.keys(allQuestions).length === 0) return;
+    const navigable = getNavigableQuestionIds(allQuestions, questionMeta, settings);
+    if (currentQuestionId && !navigable.includes(String(currentQuestionId))) {
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
+    }
+  }, [questionMeta, settings.showHardOnly, allQuestions, currentQuestionId, progress, settings, refreshActivePool]);
 
   useEffect(() => {
     if (view !== VIEWS.PRACTICE) return;
@@ -162,7 +171,7 @@ function App() {
     setSelectedAnswer(null);
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta);
+      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta, settings);
       setCurrentQuestionId(nextId);
       return;
     }
@@ -460,6 +469,9 @@ function App() {
     if (view === VIEWS.KATALOG3) {
       return <Katalog3Practice />;
     }
+    if (view === VIEWS.LEKCIJE) {
+      return <LekcijeBitneBrzine />;
+    }
     return renderPracticeContent();
   };
 
@@ -564,6 +576,13 @@ function App() {
             onClick={() => navigate(VIEWS.KATALOG3)}
           >
             Raskrsnice
+          </button>
+          <button
+            type="button"
+            className={`mode-nav-button ${view === VIEWS.LEKCIJE ? 'active' : ''}`}
+            onClick={() => navigate(VIEWS.LEKCIJE)}
+          >
+            Lekcije
           </button>
           <button
             type="button"

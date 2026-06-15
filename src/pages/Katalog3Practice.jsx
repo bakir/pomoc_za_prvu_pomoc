@@ -6,7 +6,7 @@ import {
 } from '../cookies';
 import QuestionMetaPanel from '../components/QuestionMetaPanel';
 import { buildAnswerOrder } from '../utils/shuffle';
-import { buildActivePool, getNextSequentialVisibleId } from '../utils/practicePool';
+import { buildActivePool, getNavigableQuestionIds, getNextSequentialVisibleId } from '../utils/practicePool';
 import {
   clearKatalog3Reviews,
   getCorrectDisplayIndices,
@@ -103,7 +103,15 @@ export default function Katalog3Practice() {
     if (Object.keys(allQuestions).length > 0) {
       refreshActivePool(progress, allQuestions, questionMeta, settings);
     }
-  }, [allQuestions, settings.shuffleQuestions, settings.prioritizeLowest, refreshActivePool]);
+  }, [allQuestions, settings.shuffleQuestions, settings.prioritizeLowest, settings.showHardOnly, refreshActivePool]);
+
+  useEffect(() => {
+    if (!settings.showHardOnly || Object.keys(allQuestions).length === 0) return;
+    const navigable = getNavigableQuestionIds(allQuestions, questionMeta, settings);
+    if (currentQuestionId && !navigable.includes(String(currentQuestionId))) {
+      refreshActivePool(progress, allQuestions, questionMeta, settings);
+    }
+  }, [questionMeta, settings.showHardOnly, allQuestions, currentQuestionId, progress, settings, refreshActivePool]);
 
   useEffect(() => {
     if (!currentQuestionId || !allQuestions[currentQuestionId] || isAnswered) return;
@@ -147,7 +155,7 @@ export default function Katalog3Practice() {
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
-      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta);
+      const nextId = getNextSequentialVisibleId(currentQuestionId, allQuestions, questionMeta, settings);
       setCurrentQuestionId(nextId);
       return;
     }

@@ -1,8 +1,17 @@
 import { getNextSequentialQuestionId, orderQuestionIds } from './shuffle';
-import { isQuestionHidden } from './questionMeta';
+import { isQuestionHard, isQuestionHidden } from './questionMeta';
 
 export function getVisibleQuestionIds(questions, meta) {
   return Object.keys(questions).filter((id) => !isQuestionHidden(meta, id));
+}
+
+/** Question IDs eligible for quiz navigation (matches sidebar when showHardOnly is on). */
+export function getNavigableQuestionIds(questions, meta, settings = {}) {
+  let ids = getVisibleQuestionIds(questions, meta);
+  if (settings.showHardOnly) {
+    ids = ids.filter((id) => isQuestionHard(meta, id));
+  }
+  return ids.sort((a, b) => Number(a) - Number(b));
 }
 
 export function getUnmasteredIds(ids, progress, masteryThreshold) {
@@ -36,12 +45,12 @@ export function orderPracticePool(ids, progress, { shuffleQuestions, prioritizeL
 }
 
 export function buildActivePool(questions, progress, meta, settings, masteryThreshold) {
-  const visible = getVisibleQuestionIds(questions, meta);
-  const unmastered = getUnmasteredIds(visible, progress, masteryThreshold);
+  const navigable = getNavigableQuestionIds(questions, meta, settings);
+  const unmastered = getUnmasteredIds(navigable, progress, masteryThreshold);
   return orderPracticePool(unmastered, progress, settings);
 }
 
-export function getNextSequentialVisibleId(currentId, questions, meta) {
-  const visibleIds = getVisibleQuestionIds(questions, meta);
-  return getNextSequentialQuestionId(currentId, visibleIds);
+export function getNextSequentialVisibleId(currentId, questions, meta, settings = {}) {
+  const navigableIds = getNavigableQuestionIds(questions, meta, settings);
+  return getNextSequentialQuestionId(currentId, navigableIds);
 }
