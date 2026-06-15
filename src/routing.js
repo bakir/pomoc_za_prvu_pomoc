@@ -12,10 +12,12 @@ export const LEKCIJE_LESSONS = {
   HUB: 'hub',
   BITNE_BRZINE: 'bitne-brzine',
   UDALJENOSTI: 'udaljenosti',
+  VISE_TACNIH: 'vise-tacnih',
 };
 
 export function getLekcijeLessonFromHash() {
   const hash = window.location.hash.replace(/^#\/?/, '');
+  if (hash === 'lekcije/vise-tacnih') return LEKCIJE_LESSONS.VISE_TACNIH;
   if (hash === 'lekcije/udaljenosti') return LEKCIJE_LESSONS.UDALJENOSTI;
   if (hash === 'lekcije/bitne-brzine' || hash === 'bitne-brzine') return LEKCIJE_LESSONS.BITNE_BRZINE;
   return LEKCIJE_LESSONS.HUB;

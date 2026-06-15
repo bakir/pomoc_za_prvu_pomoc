@@ -1306,6 +1306,67 @@ body {
   border-left: 4px solid #0d7c66;
 }
 
+.lekcije-hub-card-warning {
+  border-top: 4px solid #c45c00;
+}
+
+.lekcije-hero-warning .lekcije-stats span {
+  background: #fff4e6;
+  color: #c45c00;
+}
+
+.lekcije-rule-callout {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.lekcije-rule-callout-info {
+  background: #eef4ff;
+  border: 1px solid #c5d7f5;
+  color: #1a4fd6;
+}
+
+.lekcije-section-desc {
+  margin: 0 0 0.75rem;
+  color: #495057;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.lekcije-rule-warning {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
+  background: #c45c00;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.lekcije-exception-card {
+  border-left: 3px solid #dee2e6;
+}
+
+.lekcije-exception-hint-but-single {
+  border-left-color: #c45c00;
+}
+
+.lekcije-exception-multi-no-hint {
+  border-left-color: #b42318;
+}
+
+.lekcije-exception-question {
+  font-weight: 500;
+}
+
+.lekcije-quiz-cta-warning {
+  border-left: 4px solid #c45c00;
+}
+
 @media (max-width: 768px) {
   .lekcije-hero h1 {
     font-size: 1.55rem;

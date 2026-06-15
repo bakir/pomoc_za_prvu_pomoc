@@ -1,5 +1,6 @@
 import { BITNE_BRZINE_QUIZ_IDS, BITNE_BRZINE_SECTIONS } from '../data/bitneBrzine';
 import { UDALJENOSTI_QUIZ_IDS, UDALJENOSTI_SECTIONS } from '../data/udaljenosti';
+import { VISE_TACNIH_QUIZ_IDS, VISE_TACNIH_SECTIONS } from '../data/viseTacnihIznimke';
 import { navigateToLekcijeLesson } from '../routing';
 
 const LESSONS = [
@@ -20,6 +21,15 @@ const LESSONS = [
     topics: UDALJENOSTI_SECTIONS.length,
     questions: UDALJENOSTI_QUIZ_IDS.length,
     accent: 'distance',
+  },
+  {
+    id: 'vise-tacnih',
+    title: 'Više tačnih — iznimke',
+    description:
+      'Pitanja koja krše pravilo o oznaci „(više tačnih odgovora)” — naučite ih napamet prije ispita.',
+    topics: VISE_TACNIH_SECTIONS.length,
+    questions: VISE_TACNIH_QUIZ_IDS.length,
+    accent: 'warning',
   },
 ];
 

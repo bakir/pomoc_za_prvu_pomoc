@@ -23,6 +23,7 @@ import Katalog3Practice from './pages/Katalog3Practice';
 import LekcijeBitneBrzine from './pages/LekcijeBitneBrzine';
 import LekcijeHub from './pages/LekcijeHub';
 import LekcijeUdaljenosti from './pages/LekcijeUdaljenosti';
+import LekcijeViseTacnih from './pages/LekcijeViseTacnih';
 import QuestionMetaPanel from './components/QuestionMetaPanel';
 
 const MASTERY_THRESHOLD = 3;
@@ -484,6 +485,7 @@ function App() {
     if (view === VIEWS.LEKCIJE) {
       const lesson = getLekcijeLessonFromHash();
       if (lesson === LEKCIJE_LESSONS.UDALJENOSTI) return <LekcijeUdaljenosti />;
+      if (lesson === LEKCIJE_LESSONS.VISE_TACNIH) return <LekcijeViseTacnih />;
       if (lesson === LEKCIJE_LESSONS.BITNE_BRZINE) return <LekcijeBitneBrzine />;
       return <LekcijeHub />;
     }
