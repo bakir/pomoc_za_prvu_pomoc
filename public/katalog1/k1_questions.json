@@ -4071,10 +4071,9 @@
   "312": {
     "question": "Pod izrazom naseljeno mjesto podrazumijeva se:",
     "options": [
-      "javni putevi izgrađeni sa uređenim trotoarom i ivičnjakom pored kojeg se nalazi najmanje sa jedne strane red kuća ili grupa zgrada i čije su granice obilježene saobraćajnim znakom za obilježavanje naselja;",
+      "izgrađen, nastanjen, prostorno i funkcionalno objedinjen dio naseljenog mjesta u kom su javni putevi izgrađeni sa uređenim trotoarom i ivičnjakom pored kojeg se nalazi najmanje sa jedne strane red kuća ili grupa zgrada i čije su granice obilježene saobraćajnim znakom za obilježavanje naselja;",
       "prostorna jedinica u Bosni i Hercegovini koja obuhvata jedno ili više naselja sa područjem koje pripada tom naseljenom mjestu, čiji se naziv i teritorija uređuju posebnim zakonima i čija je teritorija označena saobraćajnim znakom za obilježavanje naseljenih mjesta;",
-      "prostor na kojem se redovi ili grupe zgrada nalaze s jedne ili s obje strane puta, dajući mu izgled ulice i čije granice određuje nadležni organ za upravljanje putevima saobraćajnim znakovima za obilježavanje naseljenih mjesta.",
-      "izgrađen, nastanjen, prostorno i funkcionalno objedinjen dio naseljenog mjesta u kom su"
+      "prostor na kojem se redovi ili grupe zgrada nalaze s jedne ili s obje strane puta, dajući mu izgled ulice i čije granice određuje nadležni organ za upravljanje putevima saobraćajnim znakovima za obilježavanje naseljenih mjesta."
     ],
     "answers": [
       2
@@ -4806,8 +4805,8 @@
   "367": {
     "question": "Oznake na kolovozu ne smiju biti više od:",
     "options": [
-      "0.6 cm.",
-      "0.5 cm;"
+      "0.5 cm.",
+      "0.6 cm;"
     ],
     "answers": [
       2

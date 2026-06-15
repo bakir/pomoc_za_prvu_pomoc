@@ -70,6 +70,15 @@ export default function Katalog1Practice() {
     return counts;
   }, [allQuestions]);
 
+  const filteredQuestionIds = useMemo(() => {
+    return Object.keys(filteredQuestions).sort((a, b) => Number(a) - Number(b));
+  }, [filteredQuestions]);
+
+  const currentQuestionPosition = useMemo(() => {
+    const index = filteredQuestionIds.indexOf(String(currentQuestionId));
+    return index >= 0 ? index + 1 : 0;
+  }, [filteredQuestionIds, currentQuestionId]);
+
   const sortedQuestions = useMemo(() => {
     const entries = Object.entries(filteredQuestions).sort(([idA], [idB]) => Number(idA) - Number(idB));
     if (!settings.showHardOnly) return entries;
@@ -447,7 +456,7 @@ export default function Katalog1Practice() {
       <div className="card">
         <div className="question-stats">
           <span>
-            Pitanje {currentQuestionId} od {Object.keys(filteredQuestions).length}
+            Pitanje {currentQuestionPosition} od {filteredQuestionIds.length}
           </span>
           <span style={{ margin: '0 10px' }}>|</span>
           <span>
