@@ -8,6 +8,27 @@ export const VIEWS = {
   EXAM: 'exam',
 };
 
+export const LEKCIJE_LESSONS = {
+  HUB: 'hub',
+  BITNE_BRZINE: 'bitne-brzine',
+  UDALJENOSTI: 'udaljenosti',
+};
+
+export function getLekcijeLessonFromHash() {
+  const hash = window.location.hash.replace(/^#\/?/, '');
+  if (hash === 'lekcije/udaljenosti') return LEKCIJE_LESSONS.UDALJENOSTI;
+  if (hash === 'lekcije/bitne-brzine' || hash === 'bitne-brzine') return LEKCIJE_LESSONS.BITNE_BRZINE;
+  return LEKCIJE_LESSONS.HUB;
+}
+
+export function navigateToLekcijeHub() {
+  window.location.hash = '#/lekcije';
+}
+
+export function navigateToLekcijeLesson(lessonId) {
+  window.location.hash = `#/lekcije/${lessonId}`;
+}
+
 export function getViewFromHash() {
   const hash = window.location.hash.replace(/^#\/?/, '');
   if (hash === 'o-aplikaciji' || hash === 'uputstvo') return VIEWS.ABOUT;
@@ -15,7 +36,7 @@ export function getViewFromHash() {
   if (hash === 'znakovi' || hash === 'katalog2') return VIEWS.KATALOG2;
   if (hash === 'propisi' || hash === 'katalog1') return VIEWS.KATALOG1;
   if (hash === 'raskrsnice' || hash === 'katalog3') return VIEWS.KATALOG3;
-  if (hash === 'lekcije' || hash === 'bitne-brzine') return VIEWS.LEKCIJE;
+  if (hash.startsWith('lekcije') || hash === 'bitne-brzine') return VIEWS.LEKCIJE;
   return VIEWS.PRACTICE;
 }
 

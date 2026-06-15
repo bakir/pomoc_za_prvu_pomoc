@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { navigateToLekcijeHub } from '../routing';
-import { BITNE_BRZINE_QUIZ_IDS, BITNE_BRZINE_SECTIONS } from '../data/bitneBrzine';
+import { UDALJENOSTI_QUIZ_IDS, UDALJENOSTI_SECTIONS } from '../data/udaljenosti';
 import {
   filterQuestionsByCategories,
   getCorrectDisplayIndices,
@@ -8,16 +7,17 @@ import {
   KATALOG1_DEFAULT_CATEGORIES,
   katalog1AssetUrl,
 } from '../utils/katalog1';
+import { navigateToLekcijeHub } from '../routing';
 
 function formatQuestionIds(ids) {
   if (ids.length === 1) return `Pitanje br. ${ids[0]}`;
   return `Pitanja br. ${ids.join(', ')}`;
 }
 
-export default function LekcijeBitneBrzine() {
+export default function LekcijeUdaljenosti() {
   const [phase, setPhase] = useState('hub');
   const [openSections, setOpenSections] = useState(() =>
-    Object.fromEntries(BITNE_BRZINE_SECTIONS.map((section) => [section.id, true]))
+    Object.fromEntries(UDALJENOSTI_SECTIONS.map((section) => [section.id, true]))
   );
   const [allQuestions, setAllQuestions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +42,7 @@ export default function LekcijeBitneBrzine() {
 
   const quizQuestions = useMemo(() => {
     const bOnly = filterQuestionsByCategories(allQuestions, KATALOG1_DEFAULT_CATEGORIES);
-    return BITNE_BRZINE_QUIZ_IDS.filter((id) => bOnly[id]).map((id) => [id, bOnly[id]]);
+    return UDALJENOSTI_QUIZ_IDS.filter((id) => bOnly[id]).map((id) => [id, bOnly[id]]);
   }, [allQuestions]);
 
   const answeredCount = useMemo(
@@ -112,14 +112,14 @@ export default function LekcijeBitneBrzine() {
 
     return (
       <div className="card lekcije-page exam-results">
-        <p className="lekcije-eyebrow">Bitne brzine · Kviz</p>
+        <p className="lekcije-eyebrow">Udaljenosti · Kviz</p>
         <h1>Rezultat kviza</h1>
         <p className={`exam-score ${passed ? 'passed' : 'failed'}`}>
           {score}/{total} tačno
         </p>
         <p className="exam-score-message">
           {passed
-            ? 'Odlično! Savladali ste pitanja o bitnim brzinama za B kategoriju.'
+            ? 'Odlično! Savladali ste pitanja o udaljenostima i rastojanjima za B kategoriju.'
             : 'Pregledajte lekcije i pokušajte ponovo.'}
         </p>
 
@@ -168,8 +168,8 @@ export default function LekcijeBitneBrzine() {
     return (
       <div className="card lekcije-page exam-form">
         <div className="exam-form-header">
-          <p className="lekcije-eyebrow">Bitne brzine · Kviz</p>
-          <h1>Kviz — ograničenja brzine (B)</h1>
+          <p className="lekcije-eyebrow">Udaljenosti · Kviz</p>
+          <h1>Kviz — udaljenosti i rastojanja (B)</h1>
           <p className="exam-progress">
             Odgovoreno: {answeredCount}/{quizQuestions.length}
           </p>
@@ -236,21 +236,21 @@ export default function LekcijeBitneBrzine() {
         ← Sve lekcije
       </button>
 
-      <header className="lekcije-hero card">
+      <header className="lekcije-hero card lekcije-hero-distance">
         <p className="lekcije-eyebrow">Lekcije · B kategorija</p>
-        <h1>Bitne brzine</h1>
+        <h1>Udaljenosti i rastojanja</h1>
         <p className="lekcije-intro">
-          Ograničenja brzine u Bosni i Hercegovini — sažetak pravila i povezanih pitanja iz
-          kataloga propisa. Proširite sekcije za učenje, zatim uradite kviz na dnu.
+          Propisi o udaljenostima u saobraćaju u Bosni i Hercegovini — sažetak pravila i povezanih
+          pitanja iz kataloga. Proširite sekcije za učenje, zatim uradite kviz na dnu.
         </p>
         <div className="lekcije-stats">
-          <span>{BITNE_BRZINE_SECTIONS.length} teme</span>
+          <span>{UDALJENOSTI_SECTIONS.length} teme</span>
           <span>{quizQuestions.length} pitanja u kvizu</span>
         </div>
       </header>
 
       <div className="lekcije-sections">
-        {BITNE_BRZINE_SECTIONS.map((section) => {
+        {UDALJENOSTI_SECTIONS.map((section) => {
           const isOpen = openSections[section.id];
           return (
             <section key={section.id} className="lekcije-accordion card">
@@ -268,8 +268,8 @@ export default function LekcijeBitneBrzine() {
               {isOpen && (
                 <div className="lekcije-accordion-panel">
                   {section.items.map((item) => (
-                    <article key={`${section.id}-${item.speed}`} className="lekcije-rule-card">
-                      <div className="lekcije-rule-speed">{item.speed}</div>
+                    <article key={`${section.id}-${item.distance}`} className="lekcije-rule-card">
+                      <div className="lekcije-rule-distance">{item.distance}</div>
                       <p className="lekcije-rule-text">{item.text}</p>
                       <p className="lekcije-rule-questions">{formatQuestionIds(item.questionIds)}</p>
                     </article>
@@ -281,11 +281,11 @@ export default function LekcijeBitneBrzine() {
         })}
       </div>
 
-      <section className="lekcije-quiz-cta card">
-        <h2>Kviz — Bitne brzine</h2>
+      <section className="lekcije-quiz-cta card lekcije-quiz-cta-distance">
+        <h2>Kviz — Udaljenosti i rastojanja</h2>
         <p>
           Testirajte znanje na <strong>{quizQuestions.length} pitanja</strong> iz kataloga koja
-          pokrivaju ova ograničenja brzine. Sva pitanja su prikazana odjednom; predajte kviz na
+          pokrivaju ova pravila o udaljenostima. Sva pitanja su prikazana odjednom; predajte kviz na
           kraju da vidite rezultat.
         </p>
         <ul className="exam-rules lekcije-quiz-rules">

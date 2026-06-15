@@ -14,13 +14,15 @@ import {
   loadQuestionMeta,
   toggleQuestionHard,
 } from './utils/questionMeta';
-import { getViewFromHash, setViewHash, VIEWS } from './routing';
+import { getLekcijeLessonFromHash, getViewFromHash, LEKCIJE_LESSONS, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
 import Katalog1Practice from './pages/Katalog1Practice';
 import Katalog2Practice from './pages/Katalog2Practice';
 import Katalog3Practice from './pages/Katalog3Practice';
 import LekcijeBitneBrzine from './pages/LekcijeBitneBrzine';
+import LekcijeHub from './pages/LekcijeHub';
+import LekcijeUdaljenosti from './pages/LekcijeUdaljenosti';
 import QuestionMetaPanel from './components/QuestionMetaPanel';
 
 const MASTERY_THRESHOLD = 3;
@@ -480,7 +482,10 @@ function App() {
       return <Katalog3Practice />;
     }
     if (view === VIEWS.LEKCIJE) {
-      return <LekcijeBitneBrzine />;
+      const lesson = getLekcijeLessonFromHash();
+      if (lesson === LEKCIJE_LESSONS.UDALJENOSTI) return <LekcijeUdaljenosti />;
+      if (lesson === LEKCIJE_LESSONS.BITNE_BRZINE) return <LekcijeBitneBrzine />;
+      return <LekcijeHub />;
     }
     return renderPracticeContent();
   };

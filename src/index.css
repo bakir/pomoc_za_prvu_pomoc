@@ -1229,6 +1229,83 @@ body {
   margin-top: 0.75rem;
 }
 
+.lekcije-hub-back {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0;
+  border: none;
+  background: transparent;
+  color: #1a4fd6;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lekcije-hub-back:hover {
+  text-decoration: underline;
+}
+
+.lekcije-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.lekcije-hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.lekcije-hub-card h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #1d1d1f;
+}
+
+.lekcije-hub-card p {
+  margin: 0;
+  flex: 1;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.lekcije-hub-card-speed {
+  border-top: 4px solid #1a4fd6;
+}
+
+.lekcije-hub-card-distance {
+  border-top: 4px solid #0d7c66;
+}
+
+.lekcije-hub-open {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+}
+
+.lekcije-hero-distance .lekcije-stats span {
+  background: #e8f7f3;
+  color: #0d7c66;
+}
+
+.lekcije-rule-distance {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
+  background: #0d7c66;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.lekcije-quiz-cta-distance {
+  border-left: 4px solid #0d7c66;
+}
+
 @media (max-width: 768px) {
   .lekcije-hero h1 {
     font-size: 1.55rem;
