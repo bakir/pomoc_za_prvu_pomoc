@@ -649,9 +649,23 @@ body {
 }
 
 .question-meta-panel {
-  margin: 1.25rem 0 0.5rem;
+  margin: 0;
   padding-top: 1rem;
   border-top: 1px solid #e9ecef;
+}
+
+.practice-answer-actions {
+  margin-top: 1.25rem;
+}
+
+.practice-answer-actions .feedback-container {
+  margin-top: 0;
+  min-height: auto;
+  padding: 0 0 0.75rem;
+}
+
+.practice-answer-actions .question-meta-panel {
+  margin-top: 0;
 }
 
 .question-meta-label {
@@ -1025,6 +1039,19 @@ body {
   .mode-nav-button {
     flex: 1;
     text-align: center;
+  }
+
+  .practice-answer-actions .next-button {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  .practice-answer-actions .feedback-container {
+    padding-bottom: 0.5rem;
   }
 
   .card {

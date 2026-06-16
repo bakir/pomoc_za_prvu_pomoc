@@ -46,6 +46,7 @@ export default function Katalog3Practice() {
     shuffleAnswers: false,
     prioritizeLowest: false,
     showHardOnly: false,
+    rapidFire: false,
   });
 
   const settingsRef = useRef(null);
@@ -161,7 +162,8 @@ export default function Katalog3Practice() {
     setQuestionReview(null);
   };
 
-  const loadNextQuestion = useCallback(() => {
+  const loadNextQuestion = useCallback((progressOverride = null) => {
+    const currentProgress = progressOverride ?? progress;
     resetQuestionState();
 
     if (!settings.shuffleQuestions) {
@@ -171,7 +173,7 @@ export default function Katalog3Practice() {
     }
 
     let nextPool = [...activeQuestionPool];
-    const currentCount = progress[currentQuestionId] || 0;
+    const currentCount = currentProgress[currentQuestionId] || 0;
 
     if (currentCount >= MASTERY_THRESHOLD) {
       nextPool = activeQuestionPool.filter((id) => id !== currentQuestionId);
@@ -180,7 +182,7 @@ export default function Katalog3Practice() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, questionMeta, settings);
+      refreshActivePool(currentProgress, allQuestions, questionMeta, settings);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
@@ -227,17 +229,21 @@ export default function Katalog3Practice() {
     const order = getDisplayOrder();
     const isCorrect = isKatalog3SelectionCorrect(question, order, selectedAnswers);
 
-    setIsAnswered(true);
-    setIsRevealed(false);
-    setQuestionReview(loadKatalog3Reviews()[currentQuestionId] || null);
-
     if (isCorrect) {
       const newCount = (progress[currentQuestionId] || 0) + 1;
       const newProgress = { ...progress, [currentQuestionId]: newCount };
       setProgress(newProgress);
       saveKatalog3Progress(newProgress);
+      if (settings.rapidFire) {
+        loadNextQuestion(newProgress);
+        return;
+      }
     }
-  }, [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder, selectedAnswers]);
+
+    setIsAnswered(true);
+    setIsRevealed(false);
+    setQuestionReview(loadKatalog3Reviews()[currentQuestionId] || null);
+  }, [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder, selectedAnswers, settings.rapidFire, loadNextQuestion]);
 
   const handleRevealAnswer = useCallback(() => {
     if (isAnswered) return;
@@ -296,6 +302,10 @@ export default function Katalog3Practice() {
 
   const handleShowHardOnlyToggle = () => {
     updateSettings({ showHardOnly: !settings.showHardOnly });
+  };
+
+  const handleRapidFireToggle = () => {
+    updateSettings({ rapidFire: !settings.rapidFire });
   };
 
   const jumpToQuestion = (id) => {
@@ -478,17 +488,9 @@ export default function Katalog3Practice() {
           </div>
         )}
 
-        <QuestionMetaPanel
-          modeKey={META_MODE_KEY}
-          questionId={currentQuestionId}
-          meta={questionMeta}
-          setMeta={setQuestionMeta}
-          onHidden={handleQuestionHidden}
-        />
-
-        <div className="feedback-container">
+        <div className="practice-answer-actions">
           {isAnswered && (
-            <>
+            <div className="feedback-container">
               <p className={`feedback-text ${isCorrectSelection ? 'correct' : 'incorrect'}`}>
                 {isCorrectSelection ? '✅ TAČNO!' : '❌ NETAČNO!'}
               </p>
@@ -526,11 +528,19 @@ export default function Katalog3Practice() {
                 </div>
               )}
 
-              <button type="button" className="next-button" onClick={loadNextQuestion}>
+              <button type="button" className="next-button" onClick={() => loadNextQuestion()}>
                 Dalje (Enter)
               </button>
-            </>
+            </div>
           )}
+
+          <QuestionMetaPanel
+            modeKey={META_MODE_KEY}
+            questionId={currentQuestionId}
+            meta={questionMeta}
+            setMeta={setQuestionMeta}
+            onHidden={handleQuestionHidden}
+          />
         </div>
 
         <div className="keyboard-hints">
@@ -603,6 +613,14 @@ export default function Katalog3Practice() {
                   onChange={handleShowHardOnlyToggle}
                 />
                 <span>Samo teška u listi (?)</span>
+              </label>
+              <label className="settings-option">
+                <input
+                  type="checkbox"
+                  checked={settings.rapidFire}
+                  onChange={handleRapidFireToggle}
+                />
+                <span>Rapid fire</span>
               </label>
               <button type="button" className="settings-reset" onClick={handleResetProgress}>
                 Resetuj napredak

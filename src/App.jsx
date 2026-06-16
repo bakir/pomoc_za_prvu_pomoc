@@ -52,6 +52,7 @@ function App() {
     shuffleAnswers: false,
     prioritizeLowest: false,
     showHardOnly: false,
+    rapidFire: false,
   });
 
   const settingsRef = useRef(null);
@@ -215,7 +216,8 @@ function App() {
     return buildAnswerOrder(question.options.length, settings.shuffleAnswers);
   }, [allQuestions, currentQuestionId, answerOrder, settings.shuffleAnswers]);
 
-  const loadNextQuestion = useCallback(() => {
+  const loadNextQuestion = useCallback((progressOverride = null) => {
+    const currentProgress = progressOverride ?? progress;
     setIsAnswered(false);
     setIsRevealed(false);
     setSelectedAnswer(null);
@@ -228,7 +230,7 @@ function App() {
 
     let nextPool = [...activeQuestionPool];
 
-    const currentCount = progress[currentQuestionId] || 0;
+    const currentCount = currentProgress[currentQuestionId] || 0;
     if (currentCount >= MASTERY_THRESHOLD) {
       nextPool = activeQuestionPool.filter((id) => id !== currentQuestionId);
     } else {
@@ -236,7 +238,7 @@ function App() {
     }
 
     if (nextPool.length === 0) {
-      refreshActivePool(progress, allQuestions, questionMeta, settings);
+      refreshActivePool(currentProgress, allQuestions, questionMeta, settings);
     } else {
       setActiveQuestionPool(nextPool);
       setCurrentQuestionId(nextPool[0]);
@@ -267,18 +269,22 @@ function App() {
       const originalIndex = order[displayIndex];
       const isCorrect = originalIndex === question.correct_index;
 
-      setSelectedAnswer(displayIndex);
-      setIsAnswered(true);
-      setIsRevealed(false);
-
       if (isCorrect) {
         const newCount = (progress[currentQuestionId] || 0) + 1;
         const newProgress = { ...progress, [currentQuestionId]: newCount };
         setProgress(newProgress);
         saveProgress(newProgress);
+        if (settings.rapidFire) {
+          loadNextQuestion(newProgress);
+          return;
+        }
       }
+
+      setSelectedAnswer(displayIndex);
+      setIsAnswered(true);
+      setIsRevealed(false);
     },
-    [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder]
+    [isAnswered, allQuestions, currentQuestionId, progress, getDisplayOrder, settings.rapidFire, loadNextQuestion]
   );
 
   const handleRevealAnswer = useCallback(() => {
@@ -332,6 +338,10 @@ function App() {
 
   const handleShowHardOnlyToggle = () => {
     updateSettings({ showHardOnly: !settings.showHardOnly });
+  };
+
+  const handleRapidFireToggle = () => {
+    updateSettings({ rapidFire: !settings.rapidFire });
   };
 
   const jumpToQuestion = (id) => {
@@ -470,25 +480,25 @@ function App() {
           </button>
         )}
 
-        <QuestionMetaPanel
-          modeKey={META_MODE_KEY}
-          questionId={currentQuestionId}
-          meta={questionMeta}
-          setMeta={setQuestionMeta}
-          onHidden={handleQuestionHidden}
-        />
-
-        <div className="feedback-container">
+        <div className="practice-answer-actions">
           {isAnswered && (
-            <>
+            <div className="feedback-container">
               <p className={`feedback-text ${isCorrectSelection ? 'correct' : 'incorrect'}`}>
                 {isCorrectSelection ? '✅ TAČNO!' : '❌ NETAČNO!'}
               </p>
-              <button className="next-button" onClick={loadNextQuestion}>
+              <button type="button" className="next-button" onClick={() => loadNextQuestion()}>
                 Dalje (Enter)
               </button>
-            </>
+            </div>
           )}
+
+          <QuestionMetaPanel
+            modeKey={META_MODE_KEY}
+            questionId={currentQuestionId}
+            meta={questionMeta}
+            setMeta={setQuestionMeta}
+            onHidden={handleQuestionHidden}
+          />
         </div>
 
         <div className="keyboard-hints">
@@ -609,6 +619,14 @@ function App() {
                       onChange={handleShowHardOnlyToggle}
                     />
                     <span>Samo teška u listi (?)</span>
+                  </label>
+                  <label className="settings-option">
+                    <input
+                      type="checkbox"
+                      checked={settings.rapidFire}
+                      onChange={handleRapidFireToggle}
+                    />
+                    <span>Rapid fire</span>
                   </label>
                   <button type="button" className="settings-reset" onClick={handleResetProgress}>
                     Resetuj napredak
