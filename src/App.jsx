@@ -14,6 +14,7 @@ import {
   loadQuestionMeta,
   toggleQuestionHard,
 } from './utils/questionMeta';
+import { applyProgressTransferKey, buildProgressTransferKey } from './utils/progressTransfer';
 import { getLekcijeLessonFromHash, getViewFromHash, LEKCIJE_LESSONS, setViewHash, VIEWS } from './routing';
 import AboutPage from './pages/AboutPage';
 import ExamMode from './pages/ExamMode';
@@ -55,6 +56,35 @@ function App() {
 
   const settingsRef = useRef(null);
   const questionsRef = useRef(null);
+
+  const handleCopyTransferKey = useCallback(async () => {
+    try {
+      const key = buildProgressTransferKey();
+      try {
+        await navigator.clipboard.writeText(key);
+        window.alert('Ključ je kopiran. Zalijepite ga u drugi preglednik i koristite "Uvezi ključ".');
+      } catch {
+        window.prompt('Kopirajte ovaj ključ:', key);
+      }
+    } catch (error) {
+      console.error('Failed to export transfer key:', error);
+      window.alert('Nije moguće generisati ključ za prenos napretka.');
+    }
+  }, []);
+
+  const handleImportTransferKey = useCallback(() => {
+    const key = window.prompt('Zalijepite ključ za prenos napretka:');
+    if (!key) return;
+
+    try {
+      applyProgressTransferKey(key);
+      window.alert('Napredak je uvezen. Stranica će se osvježiti.');
+      window.location.reload();
+    } catch (error) {
+      console.error('Failed to import transfer key:', error);
+      window.alert('Ključ nije važeći ili je oštećen.');
+    }
+  }, []);
 
   const navigate = useCallback((nextView) => {
     setViewHash(nextView);
@@ -502,6 +532,24 @@ function App() {
     <div className="app-shell">
       <header className="app-toolbar">
         <div className="toolbar-left">
+          <button
+            type="button"
+            className="icon-button transfer-button"
+            onClick={handleCopyTransferKey}
+            aria-label="Kopiraj ključ napretka"
+            title="Kopiraj ključ napretka"
+          >
+            ⎘
+          </button>
+          <button
+            type="button"
+            className="icon-button transfer-button"
+            onClick={handleImportTransferKey}
+            aria-label="Uvezi ključ napretka"
+            title="Uvezi ključ napretka"
+          >
+            ⇪
+          </button>
           {view === VIEWS.PRACTICE && (
             <button
               type="button"

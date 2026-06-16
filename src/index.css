@@ -90,6 +90,10 @@ body {
   color: #212529;
 }
 
+.transfer-button {
+  font-size: 1rem;
+}
+
 .settings-menu,
 .info-menu {
   position: relative;
